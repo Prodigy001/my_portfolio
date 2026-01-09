@@ -6,6 +6,16 @@
   --color-zabira-green: #00dd77;
 }
 
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color-scheme: light dark;
+  background-color: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   @apply bg-[#F4F4F5] text-zabira-dark font-sans;
 }
@@ -35,6 +45,53 @@ button {
 
   .custom-button__inverted {
     @apply whitespace-normal inline-flex hover:bg-[#E1E1E2] items-center justify-center gap-2 bg-[#FCFCFC] border border-[#E1E1E2] text-zabira-dark rounded-md py-2.5 px-4 font-semibold text-base;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.active_tab {
+  position: relative;
+  background-color: #52525b;
+  overflow: hidden;
+}
+
+.active_tab::after {
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  background-color: white;
+  content: " ";
+  animation: fill 4.1s linear;
+}
+
+.dormant_tab {
+  background-color: #52525b;
+}
+
+.fade_In {
+  animation: fadeIn 0.5s linear;
+  transform: scale(1);
+  transform-origin: center;
+}
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
   }
 }
 
