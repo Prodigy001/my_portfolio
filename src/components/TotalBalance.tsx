@@ -68,7 +68,7 @@ const TotalBalance = () => {
             const { code, flag: Flag } = currency;
 
             return (
-              <li className="w-full items">
+              <li key={code} className="w-full items">
                 <input
                   type="radio"
                   name="currency"

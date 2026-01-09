@@ -184,34 +184,23 @@ function BgFive() {
   );
 }
 
-interface UserState {
+interface LoginState {
   email: string;
   password: string;
-  referralCode: string;
-  failedPasswordMatches: string[];
-  passwordStrength: number;
+  error: string;
 }
 
-function Signup() {
+function Login() {
   const navigate = useNavigate();
-  const { setUser: saveUserToContext } = useApp();
+  const { setUser } = useApp();
   const [backgroundProgress, setBackgroundProgress] = useState(0);
-  const [user, setUserData] = useState<UserState>({
+  const [loginData, setLoginData] = useState<LoginState>({
     email: "",
     password: "",
-    referralCode: "",
-    failedPasswordMatches: [
-      "minimumLength",
-      "lowercase",
-      "uppercase",
-      "number",
-      "specialCharacter",
-    ],
-    passwordStrength: 0,
+    error: "",
   });
-  const [error, setError] = useState("");
+
   const BG_STORE = [<BgOne />, <BgTwo />, <BgThree />, <BgFour />, <BgFive />];
-  const strengthIndicatorText = ["Weak", "Average", "Good", "Strong"];
   const bgStoreLength = BG_STORE.length;
 
   useEffect(() => {
@@ -225,115 +214,57 @@ function Signup() {
     };
   }, [bgStoreLength]);
 
-  const PASSWORD_VISUALS = [
-    {
-      label: "minimumLength",
-      text: "Must be at least 8 characters",
-    },
-    {
-      label: "lowercase|uppercase",
-      text: " Capital letters and lower case, e.g. A and a",
-    },
-    {
-      label: "number",
-      text: "Numbers, e.g. 1234567890",
-    },
-    {
-      label: "specialCharacter",
-      text: "Special characters, e.g. !@#$%^&*()_+{}",
-    },
-  ];
-
-  const PASSWORD_VALIDATOR: Record<string, (password: string) => string> = {
-    minimumLength: (password: string) => {
-      return /.{8,}/.test(password) ? "" : "minimumLength";
-    },
-    lowercase: (password: string) => {
-      return /(?=.*[a-z])/.test(password) ? "" : "lowercase";
-    },
-    uppercase: (password: string) => {
-      return /(?=.*[A-Z])/.test(password) ? "" : "uppercase";
-    },
-    number: (password: string) => {
-      return /(?=.*\d)/.test(password) ? "" : "number";
-    },
-    specialCharacter: (password: string) => {
-      return /(?=.*[!@#$%^&*()_+{}])/.test(password) ? "" : "specialCharacter";
-    },
-  };
-
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const name = e.target.name;
-    const value = e.target.value;
-    let failedMatches: string[] = [];
-    let strength = 0;
-    if (name === "password") {
-      for (const validator in PASSWORD_VALIDATOR) {
-        failedMatches.push(PASSWORD_VALIDATOR[validator](value));
-      }
-    }
-    failedMatches = failedMatches.filter((match) => Boolean(match));
-    if (failedMatches.length === 0) {
-      strength = 4;
-    } else if (
-      !["minimumLength", "lowercase", "uppercase", "number"].some((item) =>
-        failedMatches.includes(item)
-      )
-    ) {
-      strength = 3;
-    } else if (
-      !["minimumLength", "number"].some((item) =>
-        failedMatches.includes(item)
-      ) &&
-      ["lowercase", "uppercase"].some((item) => failedMatches.includes(item))
-    ) {
-      strength = 2;
-    } else {
-      strength = 1;
-    }
-
-    setUserData({
-      ...user,
+    const { name, value } = e.target;
+    setLoginData({
+      ...loginData,
       [name]: value,
-      failedPasswordMatches: failedMatches,
-      passwordStrength: strength,
+      error: "",
     });
   }
 
-  function handleSignUp(e: React.FormEvent) {
+  function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-    setError("");
 
     // Validate inputs
-    if (!user.email || !user.password) {
-      setError("Please fill in all required fields");
+    if (!loginData.email || !loginData.password) {
+      setLoginData({
+        ...loginData,
+        error: "Please fill in all fields",
+      });
       return;
     }
 
-    if (user.passwordStrength < 3) {
-      setError("Password is not strong enough");
+    // Check if user exists in localStorage
+    const savedUser = localStorage.getItem("zabira_user");
+    if (!savedUser) {
+      setLoginData({
+        ...loginData,
+        error: "User not found. Please sign up first.",
+      });
       return;
     }
 
-    // Check if user already exists
-    const existingUser = localStorage.getItem("zabira_user");
-    if (existingUser) {
-      const parsed = JSON.parse(existingUser);
-      if (parsed.email === user.email) {
-        setError("Email already registered. Please login instead.");
-        return;
+    try {
+      const user = JSON.parse(savedUser);
+
+      // Simple email check (password verification would be on backend)
+      if (user.email === loginData.email) {
+        // Set user in context
+        setUser(user);
+        navigate("/dashboard");
+      } else {
+        setLoginData({
+          ...loginData,
+          error: "Email or password is incorrect",
+        });
       }
+    } catch (error) {
+      setLoginData({
+        ...loginData,
+        error: "An error occurred. Please try again.",
+      });
     }
-
-    // Store user data
-    const newUser = {
-      email: user.email,
-      password: user.password,
-      referralCode: user.referralCode,
-    };
-
-    saveUserToContext(newUser);
-    navigate("/dashboard");
   }
 
   return (
@@ -372,14 +303,14 @@ function Signup() {
             {/* section 1 */}
             <div className="space-y-6">
               <h1 className="font-bold leading-[124%] -tracking-[1.2%] text-2xl text-[#1A1A1A]">
-                Create an account in 2 minutes!
+                Welcome back!
               </h1>
               <div className="h-20 w-full rounded-xl border-2 border-[#FFFFFF2E] bg-[linear-gradient(67.36deg,#3F9906_-90.03%,#C3BC02_-7.9%,#4B9C06_52.41%,#FFCC00_153.78%)]"></div>
 
               {/* Error Message */}
-              {error && (
+              {loginData.error && (
                 <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
-                  <p className="text-red-600 text-sm">{error}</p>
+                  <p className="text-red-600 text-sm">{loginData.error}</p>
                 </div>
               )}
 
@@ -393,14 +324,15 @@ function Signup() {
                   <input
                     name="email"
                     type="email"
-                    value={user.email}
+                    value={loginData.email}
                     onChange={handleInputChange}
-                    placeholder="Type your email"
+                    placeholder="Enter your email"
                     autoFocus={true}
                     className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
                   />
                 </div>
               </div>
+
               {/* Password */}
               <div className="border border-[#E1E1E2] rounded-lg p-4">
                 <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
@@ -410,107 +342,31 @@ function Signup() {
                   <div className="size-5 bg-black"></div>
                   <input
                     name="password"
-                    id="password"
-                    value={user.password}
+                    type="password"
+                    value={loginData.password}
                     onChange={handleInputChange}
                     placeholder="Enter your password"
-                    className="outline-none leading-[140%] -tracking-[1%]   placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C]"
+                    className="outline-none leading-[140%] -tracking-[1%]   placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
                   />
                 </div>
               </div>
-              {/* Password Validator */}
-              <div className="space-y-3">
-                <div className="flex gap-4 items-center bg-[#F9F9FB] rounded-lg py-1 px-3">
-                  <p>{strengthIndicatorText[user.passwordStrength - 1]}</p>
-                  <div className="flex w-full items-center gap-2">
-                    {[1, 2, 3, 4]
-                      .slice(0, user.passwordStrength)
-                      .map((level) => {
-                        return (
-                          <div
-                            key={level}
-                            className={`h-1 ${
-                              user.passwordStrength === 1 && "bg-[#DC2828]"
-                            } ${
-                              user.passwordStrength === 2 && "bg-[#E7B008]"
-                            }  ${
-                              user.passwordStrength > 2 && "bg-[#16A249]"
-                            } rounded-sm w-full`}
-                          ></div>
-                        );
-                      })}
-                    {[1, 2, 3, 4].slice(user.passwordStrength).map((level) => {
-                      return (
-                        <div
-                          key={level}
-                          className={`h-1 bg-[#E1E1E2] rounded-sm w-full`}
-                        ></div>
-                      );
-                    })}
-                  </div>
-                </div>
-                {PASSWORD_VISUALS.map((visual) => {
-                  return (
-                    <div key={visual.label} className="flex items-center gap-3">
-                      <div
-                        className={`size-4 ${
-                          visual.label
-                            .split("|")
-                            .some((item) =>
-                              user.failedPasswordMatches.includes(item)
-                            )
-                            ? "bg-red-500"
-                            : "bg-green-500"
-                        }`}
-                      ></div>
-                      <p className="leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1A]">
-                        {visual.text}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-              {/* Referral */}
-              <div className="border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
-                  Referral Code (Optional)
-                </label>
-                <div className="flex items-center gap-2 mt-2">
-                  <div className="size-5 bg-black"></div>
-                  <input
-                    name="referralCode"
-                    value={user.referralCode}
-                    onChange={handleInputChange}
-                    placeholder="Enter referral code"
-                    className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C]"
-                  />
-                </div>
-              </div>
-              {/* Accept Terms */}
-              <div className="flex items-start gap-3">
-                <div className="size-5 min-w-5 border-2 border-[#1A1A1A5C] rounded-md"></div>
 
-                <p className="leading-[140%] -tracking-[1%] text-sm text-[#1A1A1A]">
-                  By clicking 'Sign Up', I agree to Zabira's{" "}
-                  <span className="font-medium text-[#0044ee]">
-                    Terms of Service
-                  </span>{" "}
-                  and{" "}
-                  <span className="font-medium text-[#0044ee]">
-                    Privacy Policy
-                  </span>
+              {/* Forgot Password Link */}
+              <div className="text-right">
+                <p className="text-[#0044ee] font-medium text-sm cursor-pointer">
+                  Forgot password?
                 </p>
               </div>
             </div>
+
             {/* section 2 */}
             <div className="space-y-5">
               <div>
                 <button
-                  onClick={handleSignUp}
-                  className="h-11 w-full bg-[#0044EE] text-white rounded-md font-medium hover:bg-[#0035BB] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-                  disabled={user.passwordStrength < 3}
+                  onClick={handleLogin}
+                  className="h-11 w-full bg-[#0044EE] text-white rounded-md font-medium hover:bg-[#0035BB] transition-colors"
                 >
-                  Sign Up
+                  Login
                 </button>
               </div>
               <p className="text-center leading-[124%] -tracking-[1.2%] text-[#1A1A1AB2]">
@@ -537,15 +393,16 @@ function Signup() {
               </div>
             </div>
           </div>
+
           {/* outer form */}
           <div className="flex flex-col items-center gap-6">
             <p className="font-medium leading-[124%] -tracking-[1.2%] text-[#1A1A1A] text-center">
-              Already have an account?{" "}
+              Don't have an account?{" "}
               <span
                 className=" text-[#0044ee] cursor-pointer hover:underline"
-                onClick={() => navigate("/login")}
+                onClick={() => navigate("/sign-up")}
               >
-                Login
+                Sign up
               </span>
             </p>
             <div className="bg-white p-2 flex items-center rounded-md gap-2">
@@ -569,4 +426,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;

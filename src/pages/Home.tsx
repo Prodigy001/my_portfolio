@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import ActionButtons from "../components/ActionButtons";
 import BecomeMerchantCta from "../components/BecomeMerchantCta";
 import Carousel from "../components/Carousel";
@@ -47,8 +48,8 @@ const Home = () => {
         <TopTraded />
 
         <div className=" self-end col-span-6 flex justify-end">
-          <button
-            type="button"
+          <Link
+            to="/dashboard/rewards"
             title="earn rewards"
             className="hover:bg-[#E1E1E2]  rounded-md inline-flex items-center justify-center gap-2"
           >
@@ -59,7 +60,7 @@ const Home = () => {
             <span className="-rotate-135 text-2xl text-[#52525B]">
               <IconArrow />
             </span>
-          </button>
+          </Link>
         </div>
       </section>
 

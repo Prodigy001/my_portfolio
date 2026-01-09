@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { paymentMethods } from "../data";
 import IconLighting from "../icons/IconLighting";
 
@@ -15,10 +16,23 @@ const PaymentMethods = () => {
         {paymentMethods.map((paymentMethod) => {
           const { id, name, icon: Icon, description, color } = paymentMethod;
 
+          const getPath = (id: string) => {
+            const pathMap: Record<string, string> = {
+              giftcard: "/dashboard/giftcard",
+              crypto: "/dashboard/wallet",
+              paybills: "/dashboard/bill-payment",
+              paylink: "/dashboard/wallet",
+              rates: "/dashboard/wallet",
+              betting: "/dashboard/wallet",
+            };
+            return pathMap[id] || "/dashboard";
+          };
+
           return (
-            <li
+            <Link
               key={id}
-              className="p-4 rounded-xl bg-[#F4F4F5] max-md:text-center"
+              to={getPath(id)}
+              className="p-4 rounded-xl bg-[#F4F4F5] max-md:text-center no-underline block hover:shadow-md transition-shadow"
             >
               <div
                 style={{ backgroundColor: color }}
@@ -34,7 +48,7 @@ const PaymentMethods = () => {
               <p className="text-zabira-dark/36 font-medium text-sm text-zabira mt-1.5 max-md:hidden">
                 {description}
               </p>
-            </li>
+            </Link>
           );
         })}
       </ul>

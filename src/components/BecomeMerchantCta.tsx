@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import merchant from "../assets/merchant.png";
 import IconArrow from "../icons/IconArrow";
 
@@ -13,12 +14,15 @@ const BecomeMerchantCta = () => {
         <p className="text-white/70 text-lg font-medium">
           Get access to APIs and assets for your merchant profile
         </p>
-        <button type="button" className="custom-button text-sm leading-5.5">
+        <Link
+          to="#"
+          className="custom-button text-sm leading-5.5 inline-flex items-center justify-center gap-2"
+        >
           Apply Now
           <span className="text-[1.25rem] -rotate-135">
             <IconArrow />
           </span>
-        </button>
+        </Link>
       </article>
     </div>
   );

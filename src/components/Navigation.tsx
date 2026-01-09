@@ -1,8 +1,38 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import { navigationItems } from "../data";
 import logo from "../assets/logo.png";
 import qrCode from "../assets/qr-code.png";
 
 const Navigation = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigation = (id: string) => {
+    const pathMap: Record<string, string> = {
+      dashboard: "/dashboard",
+      giftcard: "/dashboard/giftcard",
+      billpayment: "/dashboard/bill-payment",
+      wallet: "/dashboard/wallet",
+      transactions: "/dashboard/transactions",
+      rewards: "/dashboard/rewards",
+      settings: "/dashboard/settings",
+    };
+    navigate(pathMap[id]);
+  };
+
+  const isActive = (id: string): boolean => {
+    const pathMap: Record<string, string> = {
+      dashboard: "/dashboard",
+      giftcard: "/dashboard/giftcard",
+      billpayment: "/dashboard/bill-payment",
+      wallet: "/dashboard/wallet",
+      transactions: "/dashboard/transactions",
+      rewards: "/dashboard/rewards",
+      settings: "/dashboard/settings",
+    };
+    return location.pathname === pathMap[id];
+  };
+
   return (
     <div className="h-screen overflow-y-auto no-scrollbar flex flex-col bg-white px-4 py-6 border-r border-[#EDEDED]">
       <div className="">
@@ -19,8 +49,9 @@ const Navigation = () => {
             return (
               <li key={item.id} className="last:mt-auto">
                 <button
+                  onClick={() => handleNavigation(item.id)}
                   className={`w-full flex items-center gap-3 p-3 rounded-md transition-colors ${
-                    item.isActive
+                    isActive(item.id)
                       ? "bg-[#EBF0FF] text-[#0044EE]"
                       : "text-[#1A1A1A5C] hover:bg-gray-50"
                   }`}
@@ -50,7 +81,7 @@ const Navigation = () => {
       </div>
 
       {/* Footer */}
-      <div className="px-6 mt-5">
+      <div className="px-6 mt-3">
         <p className="font-semibold text-zabira text-sm mb-2 text-[#1A1A1AB2]">
           Zabira Technologies
         </p>

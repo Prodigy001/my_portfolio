@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import Navigation from "../components/Navigation";
 import TopPanel from "../components/TopPanel";
@@ -34,7 +35,7 @@ function Dashboard() {
 
         {/* Main Content Area */}
         <main className="flex-1 overflow-y-auto p-6">
-          <Home />
+          <Outlet context={{ Home }} />
         </main>
       </div>
     </div>

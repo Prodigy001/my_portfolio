@@ -1,12 +1,17 @@
 import IconBell from "../icons/IconBell";
 import logoSingle from "../assets/logo-single.png";
 import IconHamburger from "../icons/IconHamburger";
+import { useApp } from "../context/AppContext";
 
 interface TopPanelProps {
   onMenuClick?: () => void;
 }
 
 const TopPanel = ({ onMenuClick }: TopPanelProps) => {
+  const { user } = useApp();
+  const userEmail = user?.email || "User";
+  const userName = userEmail.split("@")[0];
+
   return (
     <div className="flex items-center justify-between pl-12 pr-5.5 py-4">
       <button
@@ -19,7 +24,7 @@ const TopPanel = ({ onMenuClick }: TopPanelProps) => {
 
       <article>
         <h4 className="font-bold text-base text-zabira-dark mb-1">
-          Hi Jacob 👋🏽
+          Hi {userName} 👋🏽
         </h4>
         <p className="text-[#1A1A1A5C] font-medium text-zabira text-sm">
           Buy/Sell BTC, ETH. Start trading now on Zabira
