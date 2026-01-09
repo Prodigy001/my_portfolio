@@ -207,17 +207,18 @@ function Signup() {
   });
   const BG_STORE = [<BgOne />, <BgTwo />, <BgThree />, <BgFour />, <BgFive />];
   const strengthIndicatorText = ["Weak", "Average", "Good", "Strong"];
+  const bgStoreLength = BG_STORE.length;
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setBackgroundProgress((prev) =>
-        prev === BG_STORE.length - 1 ? 0 : prev + 1
+        prev === bgStoreLength - 1 ? 0 : prev + 1
       );
     }, 4000);
     return () => {
       clearInterval(intervalId);
     };
-  }, []);
+  }, [bgStoreLength]);
 
   const PASSWORD_VISUALS = [
     {
