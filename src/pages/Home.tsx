@@ -11,6 +11,7 @@ import TotalBalance from "../components/TotalBalance";
 import TransactionsTable from "../components/TransactionsTable";
 import WelcomeModal from "../components/WelcomeModal";
 import VerifyPhoneModal from "../components/VerifyPhoneModal";
+import PersonalDetailsModal from "../components/PersonalDetailsModal";
 import IconArrow from "../icons/IconArrow";
 import IconCaret from "../icons/IconCaret";
 import IconCoins from "../icons/IconCoins";
@@ -20,6 +21,8 @@ import { onboardingSteps } from "../data";
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
+  const [isPersonalDetailsModalOpen, setIsPersonalDetailsModalOpen] =
+    useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [steps, setSteps] = useState(onboardingSteps);
 
@@ -37,6 +40,8 @@ const Home = () => {
     const step = steps[stepIndex];
     if (step.id === "verify-phone") {
       setIsPhoneModalOpen(true);
+    } else if (step.id === "personal-info") {
+      setIsPersonalDetailsModalOpen(true);
     }
     // Add more conditions for other steps as needed
   };
@@ -49,6 +54,18 @@ const Home = () => {
     );
     if (phoneStepIndex !== -1) {
       updatedSteps[phoneStepIndex].completed = true;
+      setSteps(updatedSteps);
+    }
+  };
+
+  const handlePersonalDetailsSaved = () => {
+    // Update the personal-info step as completed
+    const updatedSteps = [...steps];
+    const detailsStepIndex = updatedSteps.findIndex(
+      (step) => step.id === "personal-info"
+    );
+    if (detailsStepIndex !== -1) {
+      updatedSteps[detailsStepIndex].completed = true;
       setSteps(updatedSteps);
     }
   };
@@ -81,8 +98,9 @@ const Home = () => {
           </Link>
         </div>
       </section>
-
-      <TotalBalance />
+      <div className="md:hidden">
+        <TotalBalance />
+      </div>
 
       <section className="bg-[#D6ECFF] border-2 border-[#A3D4FF] p-4 rounded-xl my-6 flex gap-6 justify-between items-start lg:items-center">
         <div className="flex gap-6 items-center">
@@ -159,6 +177,13 @@ const Home = () => {
         isOpen={isPhoneModalOpen}
         onClose={() => setIsPhoneModalOpen(false)}
         onVerified={handlePhoneVerified}
+      />
+
+      {/* Personal Details Modal */}
+      <PersonalDetailsModal
+        isOpen={isPersonalDetailsModalOpen}
+        onClose={() => setIsPersonalDetailsModalOpen(false)}
+        onSaved={handlePersonalDetailsSaved}
       />
     </main>
   );

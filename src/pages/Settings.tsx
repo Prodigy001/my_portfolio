@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
+import PersonalDetailsModal from "../components/PersonalDetailsModal";
 
 function Settings() {
   const navigate = useNavigate();
   const { logout, user } = useApp();
+  const [isPersonalDetailsModalOpen, setIsPersonalDetailsModalOpen] =
+    useState(false);
 
   const handleLogout = () => {
     logout();
@@ -36,6 +40,12 @@ function Settings() {
                 </div>
               </div>
             </div>
+            <button
+              onClick={() => setIsPersonalDetailsModalOpen(true)}
+              className="w-full mt-4 py-3 px-4 bg-[#1A1A1A] text-white rounded-lg text-sm font-semibold hover:bg-[#2A2A2A] transition-colors"
+            >
+              Update Personal Details
+            </button>
           </div>
 
           {/* Logout Section */}
@@ -62,6 +72,16 @@ function Settings() {
           </div>
         </div>
       </section>
+
+      {/* Personal Details Modal */}
+      <PersonalDetailsModal
+        isOpen={isPersonalDetailsModalOpen}
+        onClose={() => setIsPersonalDetailsModalOpen(false)}
+        onSaved={() => {
+          // Optionally show a success message or update UI
+          console.log("Personal details saved successfully");
+        }}
+      />
     </main>
   );
 }
