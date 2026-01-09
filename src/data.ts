@@ -21,6 +21,12 @@ import IconMedal from "./icons/IconMedal";
 import IconEye from "./icons/IconEye";
 import IconFile from "./icons/IconFile";
 import IconShield from "./icons/IconBell";
+import IconEnvelop from "./icons/IconEnvelop";
+import IconVerifyPhone from "./icons/IconVerifyPhone";
+import IconCustomer from "./icons/IconCustomer";
+import IconCustomerUpgrade from "./icons/IconCustomerUpgrade";
+import Icon2fa from "./icons/Icon2fa";
+import IconPaperPlane from "./icons/IconPaperPlane";
 
 const currencies = [
   {
@@ -282,7 +288,7 @@ const onboardingSteps = [
     id: "verify-email",
     title: "Verify your email",
     description: "Confirm your email address to secure your account.",
-    icon: "📧",
+    icon: IconEnvelop,
     duration: "2 minutes",
     completed: true,
   },
@@ -290,7 +296,7 @@ const onboardingSteps = [
     id: "verify-phone",
     title: "Verify phone number",
     description: "Add a phone number for account recovery.",
-    icon: "📱",
+    icon: IconVerifyPhone,
     duration: "2 minutes",
     completed: false,
   },
@@ -298,7 +304,7 @@ const onboardingSteps = [
     id: "personal-info",
     title: "Update personal information",
     description: "Complete your profile with personal details.",
-    icon: "👤",
+    icon: IconCustomer,
     duration: "2 minutes",
     completed: false,
   },
@@ -306,7 +312,7 @@ const onboardingSteps = [
     id: "upgrade-kyc",
     title: "Upgrade KYC",
     description: "Verify your identity to increase transaction limits.",
-    icon: "✓",
+    icon: IconCustomerUpgrade,
     duration: "2 minutes",
     completed: false,
   },
@@ -314,7 +320,15 @@ const onboardingSteps = [
     id: "enable-2fa",
     title: "Enable 2FA",
     description: "Add an extra layer of security to your account.",
-    icon: "🔐",
+    icon: Icon2fa,
+    duration: "2 minutes",
+    completed: false,
+  },
+  {
+    id: "first-transaction",
+    title: "Make your first transaction",
+    description: "Start trading to experience our platform.",
+    icon: IconPaperPlane,
     duration: "2 minutes",
     completed: false,
   },

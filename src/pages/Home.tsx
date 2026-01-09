@@ -10,6 +10,7 @@ import TopTraded from "../components/TopTraded";
 import TotalBalance from "../components/TotalBalance";
 import TransactionsTable from "../components/TransactionsTable";
 import WelcomeModal from "../components/WelcomeModal";
+import VerifyPhoneModal from "../components/VerifyPhoneModal";
 import IconArrow from "../icons/IconArrow";
 import IconCaret from "../icons/IconCaret";
 import IconCoins from "../icons/IconCoins";
@@ -18,6 +19,7 @@ import { onboardingSteps } from "../data";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [steps, setSteps] = useState(onboardingSteps);
 
@@ -27,10 +29,26 @@ const Home = () => {
 
   const handleStepClick = (stepIndex: number) => {
     setCurrentStep(stepIndex);
-    // Update step completion if needed
+
+    // Close welcome modal
+    setIsModalOpen(false);
+
+    // Open specific modal based on step
+    const step = steps[stepIndex];
+    if (step.id === "verify-phone") {
+      setIsPhoneModalOpen(true);
+    }
+    // Add more conditions for other steps as needed
+  };
+
+  const handlePhoneVerified = () => {
+    // Update the verify-phone step as completed
     const updatedSteps = [...steps];
-    if (!updatedSteps[stepIndex].completed) {
-      updatedSteps[stepIndex].completed = true;
+    const phoneStepIndex = updatedSteps.findIndex(
+      (step) => step.id === "verify-phone"
+    );
+    if (phoneStepIndex !== -1) {
+      updatedSteps[phoneStepIndex].completed = true;
       setSteps(updatedSteps);
     }
   };
@@ -134,6 +152,13 @@ const Home = () => {
         steps={steps}
         currentStep={currentStep}
         onStepClick={handleStepClick}
+      />
+
+      {/* Phone Verification Modal */}
+      <VerifyPhoneModal
+        isOpen={isPhoneModalOpen}
+        onClose={() => setIsPhoneModalOpen(false)}
+        onVerified={handlePhoneVerified}
       />
     </main>
   );
