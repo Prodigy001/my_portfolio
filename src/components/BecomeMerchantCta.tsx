@@ -1,0 +1,27 @@
+import merchant from "../assets/merchant.png";
+import IconArrow from "../icons/IconArrow";
+
+const BecomeMerchantCta = () => {
+  return (
+    <div className="bg-gradient-blue p-6 pb-0 overflow-hidden flex items-center gap-7.5 rounded-[1.125rem] border-[3px] border-white/18">
+      <img src={merchant} alt="merchant" className="mt-6" />
+
+      <article className="space-y-3 text-white mb-2">
+        <h4 className="font-bold text-xl text-zabira text-white">
+          Become a Merchant
+        </h4>
+        <p className="text-white/70 text-lg font-medium">
+          Get access to APIs and assets for your merchant profile
+        </p>
+        <button type="button" className="custom-button text-sm leading-5.5">
+          Apply Now
+          <span className="text-[1.25rem] -rotate-135">
+            <IconArrow />
+          </span>
+        </button>
+      </article>
+    </div>
+  );
+};
+
+export default BecomeMerchantCta;

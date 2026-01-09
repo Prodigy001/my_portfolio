@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --color-zabira-blue: #0044ee;
+  --color-zabira-dark: #1a1a1a;
+  --color-zabira-green: #00dd77;
+}
+
+body {
+  @apply bg-[#F4F4F5] text-zabira-dark font-sans;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+  }
+}
+
+button {
+  @apply cursor-pointer;
+}
+
+@layer components {
+  .text-zabira {
+    @apply -tracking-[0.012em] leading-tight;
+  }
+  .custom-button {
+    @apply whitespace-nowrap inline-flex hover:bg-[#22A0FC] items-center justify-center gap-2 bg-zabira-dark border border-[#1A1A1A1F] text-white rounded-md py-2.5 px-4 font-semibold text-base;
+  }
+
+  .custom-button__inverted {
+    @apply whitespace-normal inline-flex hover:bg-[#E1E1E2] items-center justify-center gap-2 bg-[#FCFCFC] border border-[#E1E1E2] text-zabira-dark rounded-md py-2.5 px-4 font-semibold text-base;
+  }
+}
+
+.bg-gradient-green {
+  background: url(./assets/money-bg1.png),
+    linear-gradient(
+      67.36deg,
+      #3f9906 -90.03%,
+      #c3bc02 -7.9%,
+      #4b9c06 52.41%,
+      #ffcc00 153.78%
+    );
+  background-repeat: no-repeat;
+  background-clip: padding-box;
+}
+
+.bg-gradient-purple {
+  background: url(./assets/money-bg2.png),
+    linear-gradient(92.56deg, #5b129f 11.27%, #9234ea 75.65%, #521d84 112.1%);
+
+  background-repeat: no-repeat;
+  background-position: right;
+  background-clip: padding-box;
+}
+
+.bg-gradient-blue {
+  background: linear-gradient(255.44deg, #00e8d1 -25.51%, #502dff 108.99%);
+  background-clip: padding-box;
+}
+
+.panel-top-shadow {
+  box-shadow: 0px 2px 5px 0px #b0b0b01a, 0px 8px 8px 0px #b0b0b017,
+    0px 19px 11px 0px #b0b0b00d, 0px 33px 13px 0px #b0b0b003,
+    0px 52px 15px 0px #b0b0b000;
+}
+
+.custom-select {
+  background-image: url(./assets/icon-caret.svg);
+  background-position: right 12px center;
+}

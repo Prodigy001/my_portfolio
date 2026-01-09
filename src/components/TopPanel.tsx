@@ -1,0 +1,47 @@
+import IconBell from "../icons/IconBell";
+import logoSingle from "../assets/logo-single.png";
+import IconHamburger from "../icons/IconHamburger";
+
+interface TopPanelProps {
+  onMenuClick?: () => void;
+}
+
+const TopPanel = ({ onMenuClick }: TopPanelProps) => {
+  return (
+    <div className="flex items-center justify-between pl-12 pr-5.5 py-4">
+      <button
+        onClick={onMenuClick}
+        className="md:hidden text-[#323232] hover:text-zabira-dark transition-colors text-[1.625rem]"
+        aria-label="Toggle menu"
+      >
+        <IconHamburger />
+      </button>
+
+      <article>
+        <h4 className="font-bold text-base text-zabira-dark mb-1">
+          Hi Jacob 👋🏽
+        </h4>
+        <p className="text-[#1A1A1A5C] font-medium text-zabira text-sm">
+          Buy/Sell BTC, ETH. Start trading now on Zabira
+        </p>
+      </article>
+
+      <div className="flex items-center gap-4">
+        <button className="p-2 relative bg-[#FCFCFC] text-[#52525B] rounded-full transition-colors shadow-[0px_1px_2px_0px_rgba(26,26,26,0.08)]">
+          <IconBell />
+
+          <div className="flex items-center justify-center w-4 bg-[#0044EE] h-3.5 rounded-lg absolute top-0 right-0.5 translate-x-1/2 -translate-y-1/2">
+            <p className="font-semibold text-[10px] leading-4.5 text-white">
+              8
+            </p>
+          </div>
+        </button>
+        <button className="p-1 border border-[#00DD77] rounded-full hover:bg-gray-100 transition-colors ">
+          <img src={logoSingle} alt="Zabira logo" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default TopPanel;
