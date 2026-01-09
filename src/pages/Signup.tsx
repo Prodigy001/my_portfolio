@@ -61,7 +61,7 @@ function BgOne() {
 function BgTwo() {
   return (
     <div className="relative h-full flex flex-col justify-between fade_In">
-      <div className="absolute size-full px-7 pt-18">
+      <div className="absolute size-full px-7 pt-20">
         <div className="w-full h-[70%] bg-[#00102680] rounded-xl flex items-center justify-center px-9">
           <div className="relative w-full aspect-square">
             <img
@@ -92,7 +92,7 @@ function BgTwo() {
 function BgThree() {
   return (
     <div className="relative h-full flex flex-col justify-between fade_In">
-      <div className="absolute size-full px-7 pt-18">
+      <div className="absolute size-full px-7 pt-20">
         <div className="w-full h-[70%] bg-[#00102680] rounded-xl flex items-center justify-center px-9">
           <div className="relative w-full aspect-square">
             <img
@@ -123,7 +123,7 @@ function BgThree() {
 function BgFour() {
   return (
     <div className="relative h-full flex flex-col justify-between fade_In">
-      <div className="absolute size-full px-7 pt-18">
+      <div className="absolute size-full px-7 pt-20">
         <div className="w-full h-[70%] bg-[#00102680] rounded-xl flex items-center justify-center px-9">
           <div className="relative w-full aspect-square">
             <img
@@ -154,7 +154,7 @@ function BgFour() {
 function BgFive() {
   return (
     <div className="relative h-full flex flex-col justify-between fade_In">
-      <div className="absolute size-full px-7 pt-18">
+      <div className="absolute size-full px-7 pt-20">
         <div className="w-full h-[70%] bg-[#00102680] rounded-xl flex items-center justify-center px-9">
           <div className="relative w-full aspect-square">
             <img
@@ -297,8 +297,8 @@ function Signup() {
 
   return (
     <div className="bg-[#F4F4F5] h-screen w-full p-4 flex gap-4 overflow-auto">
-      <aside className=" h-full overflow-hidden w-[30%] max-w-100 sticky top-0 rounded-2xl bg-linear-to-b from-[#003B8D] to-[#000000]">
-        <div className="absolute h-full bg-red- w-full">
+      <aside className=" h-full overflow-hidden w-[30%] max-w-md sticky top-0 rounded-2xl bg-gradient-to-b from-[#003B8D] to-[#000000]">
+        <div className="absolute h-full w-full">
           {BG_STORE[backgroundProgress]}
         </div>
 
@@ -325,7 +325,7 @@ function Signup() {
             </div>
           </nav>
         </div>
-        <div className=" max-h-[80vh] max-w-125 overflow-auto no-scrollbar space-y-6">
+        <div className=" max-h-[80vh] max-w-2xl overflow-auto no-scrollbar space-y-6">
           {/* inner form */}
           <div className=" text-black p-9 rounded-2xl bg-white shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
             {/* section 1 */}
