@@ -47,7 +47,7 @@ const TotalBalance = () => {
               }`}
               aria-hidden={!showBalance}
             >
-              {displayAmount}
+              {Number(displayAmount).toLocaleString()}
             </p>
             <p
               className={`font-bold text-[2rem] text-zabira col-start-1 row-start-1 transition-opacity ${

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
+import IconPerson from "../icons/IconPerson";
+import IconCalendar from "../icons/IconCalendar";
 
 interface PersonalDetailsModalProps {
   isOpen: boolean;
@@ -243,7 +245,9 @@ const PersonalDetailsModal = ({
                   Username
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                  <div className="size-5 bg-black"></div>
+                 <div className="size-6 min-w-6 flex items-center justify-center">
+                    <IconPerson stroke={formData.username ? "#0044EE" : "#819099"} />
+                  </div>
                   <input
                     name="username"
                     type="text"
@@ -286,7 +290,9 @@ const PersonalDetailsModal = ({
                   Firstname
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                  <div className="size-5 bg-black"></div>
+                 <div className="size-6 min-w-6 flex items-center justify-center">
+                    <IconPerson stroke={formData.firstname ? "#0044EE" : "#819099"} />
+                  </div>
                   <input
                     name="firstname"
                     type="text"
@@ -309,7 +315,9 @@ const PersonalDetailsModal = ({
                   Lastname
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                  <div className="size-5 bg-black"></div>
+                  <div className="size-6 min-w-6 flex items-center justify-center">
+                    <IconPerson  stroke={formData.lastname ? "#0044EE" : "#819099"}/>
+                  </div>
                   <input
                     name="lastname"
                     type="text"
@@ -332,7 +340,9 @@ const PersonalDetailsModal = ({
                   Date of Birth (Optional)
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                  <div className="size-5 bg-black"></div>
+                 <div className="size-6 min-w-6 flex items-center justify-center">
+                    <IconCalendar  stroke={formData.dateOfBirth ? "#0044EE" : "#819099"}/>
+                  </div>
                   <input
                     name="dateOfBirth"
                     type="date"

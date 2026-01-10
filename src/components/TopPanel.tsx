@@ -2,6 +2,8 @@ import IconBell from "../icons/IconBell";
 import logoSingle from "../assets/logo-single.png";
 import IconHamburger from "../icons/IconHamburger";
 import { useApp } from "../context/AppContext";
+import IconCheckRates from "../icons/IconCheckRates";
+import IconGetHelp from "../icons/IconGetHelp";
 
 interface TopPanelProps {
   onMenuClick?: () => void;
@@ -24,14 +26,30 @@ const TopPanel = ({ onMenuClick }: TopPanelProps) => {
 
       <article>
         <h4 className="font-bold text-base text-zabira-dark mb-1">
-          Hi {userName} 👋🏽
+          Hi <span className="capitalize">{userName}</span> 👋🏽
         </h4>
         <p className="text-[#1A1A1A5C] font-medium text-zabira text-sm">
           Buy/Sell BTC, ETH. Start trading now on Zabira
         </p>
       </article>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-12">
+         <div className=" flex justify-end">
+          <nav className="flex">
+            <div className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white pl-4 pr-3 rounded-l-[50px] border border-[#E1E1E2] h-9">
+              <div className="size-5 min-w-5 flex items-center justify-center">
+                <IconCheckRates />
+              </div>
+              <p>Check Rates</p>
+            </div>
+            <div className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white p-3 rounded-r-[50px] border border-[#E1E1E2] border-l-transparent h-9">
+              <div className="size-5 min-w-5 flex items-center justify-center">
+                <IconGetHelp />
+              </div>
+              <p>Get Help</p>
+            </div>
+          </nav>
+        </div>
         <button className="p-2 relative bg-[#FCFCFC] text-[#52525B] rounded-full transition-colors shadow-[0px_1px_2px_0px_rgba(26,26,26,0.08)]">
           <IconBell />
 

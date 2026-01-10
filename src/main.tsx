@@ -16,6 +16,8 @@ import Wallet from "./pages/Wallet.tsx";
 import Transactions from "./pages/Transactions.tsx";
 import Rewards from "./pages/Rewards.tsx";
 import Settings from "./pages/Settings.tsx";
+import AuthLayout from "./pages/AuthLayout.tsx";
+import ChangeEmail from "./pages/ChangeEmail.tsx";
 
 const router = createBrowserRouter([
   {
@@ -27,17 +29,28 @@ const router = createBrowserRouter([
         element: <Splash />,
       },
       {
-        path: "sign-up",
-        element: <Signup />,
+        path: "auth",
+        element: <AuthLayout />,
+        children: [
+          {
+            path: "sign-up",
+            element: <Signup />,
+          },
+          {
+            path: "change-email",
+            element: <ChangeEmail />,
+          },
+          {
+            path: "login",
+            element: <Login />,
+          },
+          {
+            path: "verify-email",
+            element: <VerifyEmail />,
+          },
+        ],
       },
-      {
-        path: "login",
-        element: <Login />,
-      },
-      {
-        path: "verify-email",
-        element: <VerifyEmail />,
-      },
+
       {
         path: "dashboard",
         element: <Dashboard />,

@@ -9,7 +9,7 @@ const PaymentMethods = () => {
         <span className="text-zabira-green text-[1.25rem]">
           <IconLighting />
         </span>
-        Top traded assets this week
+        Start Making Payments
       </h4>
 
       <ul className="grid grid-cols-3 xl:grid-cols-[repeat(auto-fit,minmax(0,1fr))] gap-3 w-full">
@@ -32,7 +32,7 @@ const PaymentMethods = () => {
             <Link
               key={id}
               to={getPath(id)}
-              className="p-4 rounded-xl bg-[#F4F4F5] max-md:text-center no-underline block hover:shadow-md transition-shadow"
+              className="p-4 rounded-xl border border-[#F4F4F5] max-md:text-center no-underline block hover:shadow-md transition-shadow"
             >
               <div
                 style={{ backgroundColor: color }}

@@ -1,188 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import IconZabira from "../icons/IconZabira";
 import { useApp } from "../context/AppContext";
-import altCoins from "../assets/alt_coins.png";
-import africaMap from "../assets/africa_map.png";
-import bgTwo from "../assets/bg_two.png";
-import bgThree from "../assets/bg_three.png";
-import bgFour from "../assets/bg_four.png";
-import bgFive from "../assets/bg_five.png";
-
-const asideBannerMainText =
-  "font-extrabold text-2xl leading-[124%] -tracking-[1.2%] relative z-10";
-const asideBannerSubText =
-  "font-light text-xl leading-[140%] -tracking-[1%] text-[#FFFFFFB2]";
-
-interface ProgressBarProps {
-  tabsLength?: number;
-  backgroundProgress: number;
-}
-
-function ProgressBar({ tabsLength = 5, backgroundProgress }: ProgressBarProps) {
-  return (
-    <ul className="flex gap-1 items-center">
-      {Array(tabsLength)
-        .fill(0)
-        .map((_, idx) => {
-          return (
-            <li
-              key={idx}
-              className={`h-1 w-4 rounded-sm ${
-                idx === backgroundProgress ? "active_tab" : "dormant_tab"
-              }`}
-            ></li>
-          );
-        })}
-    </ul>
-  );
-}
-
-function BgOne() {
-  return (
-    <div className="h-full flex flex-col justify-between fade_In">
-      <div className="relative h-[60%]">
-        <img
-          alt="alt coins"
-          src={altCoins}
-          className="size-full object-cover object-bottom"
-        />
-      </div>
-      <div className="pb-14 px-7">
-        <h2 className={asideBannerMainText}>
-          Easily Buy & Sell Cryptocurrencies, Giftcards & Pay Bills
-        </h2>
-        <p className={asideBannerSubText}>
-          Manage your assets and portfolio easily!
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function BgTwo() {
-  return (
-    <div className="relative h-full flex flex-col justify-between fade_In">
-      <div className="absolute size-full px-7 pt-20">
-        <div className="w-full h-[70%] bg-[#00102680] rounded-xl flex items-center justify-center px-9">
-          <div className="relative w-full aspect-square">
-            <img
-              alt="Vector Illustration of a man looking at his alt coins wallet portfolio"
-              src={bgTwo}
-              className="size-full object-cover object-bottom"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="relative h-[40%]">
-        <img
-          alt="alt coins"
-          src={africaMap}
-          className="size-full object-cover object-bottom"
-        />
-      </div>
-      <div className="pb-14 px-7">
-        <h2 className={asideBannerMainText}>Trade Cryptocurrencies</h2>
-        <p className={asideBannerSubText}>
-          Easy way to buy, sell, convert and store cryptocurrencies
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function BgThree() {
-  return (
-    <div className="relative h-full flex flex-col justify-between fade_In">
-      <div className="absolute size-full px-7 pt-20">
-        <div className="w-full h-[70%] bg-[#00102680] rounded-xl flex items-center justify-center px-9">
-          <div className="relative w-full aspect-square">
-            <img
-              alt="Vector Illustration of a man thinking of different bills he has to pay"
-              src={bgThree}
-              className="size-full object-cover object-bottom"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="relative h-[40%]">
-        <img
-          alt="Africa Vector Map"
-          src={africaMap}
-          className="size-full object-cover object-bottom"
-        />
-      </div>
-      <div className="pb-14 px-7">
-        <h2 className={asideBannerMainText}>Pay Bills</h2>
-        <p className={asideBannerSubText}>
-          Instantly pay all your bills and make payments all over the world
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function BgFour() {
-  return (
-    <div className="relative h-full flex flex-col justify-between fade_In">
-      <div className="absolute size-full px-7 pt-20">
-        <div className="w-full h-[70%] bg-[#00102680] rounded-xl flex items-center justify-center px-9">
-          <div className="relative w-full aspect-square">
-            <img
-              alt="Vector Illustration of a lady looking at her giftcard"
-              src={bgFour}
-              className="size-full object-cover object-bottom"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="relative h-[40%]">
-        <img
-          alt="Africa Vector Map"
-          src={africaMap}
-          className="size-full object-cover object-bottom"
-        />
-      </div>
-      <div className="pb-14 px-7">
-        <h2 className={asideBannerMainText}>Trade Giftcards</h2>
-        <p className={asideBannerSubText}>
-          Trade giftcards with Bitcoin, Ether, Tether, and more.
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function BgFive() {
-  return (
-    <div className="relative h-full flex flex-col justify-between fade_In">
-      <div className="absolute size-full px-7 pt-20">
-        <div className="w-full h-[70%] bg-[#00102680] rounded-xl flex items-center justify-center px-9">
-          <div className="relative w-full aspect-square">
-            <img
-              alt="Vector Illustration of a customer support lady"
-              src={bgFive}
-              className="size-full object-cover object-bottom"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="relative h-[40%]">
-        <img
-          alt="Africa Vector Map"
-          src={africaMap}
-          className="size-full object-cover object-bottom"
-        />
-      </div>
-      <div className="pb-14 px-7">
-        <h2 className={asideBannerMainText}>Customer Support</h2>
-        <p className={asideBannerSubText}>
-          We provide excellent customer support to ensure seamless experience
-        </p>
-      </div>
-    </div>
-  );
-}
+import cryptoLight from "../assets/crypto-light.png";
+import IconEmail from "../icons/IconEmail";
+import IconPassword from "../icons/IconPassword";
+import IconReferralCode from "../icons/IconReferralCode";
+import IconGoogle from "../icons/IconGoogle";
+import IconApple from "../icons/IconApple";
+import IconNDPR from "../icons/IconNDPR";
+import IconFailedPasswordMatch from "../icons/IconFailedPasswordMatch";
+import IconCorrectPasswordMatch from "../icons/IconCorrectPasswordMatch";
+import Eye from "../icons/IconEye";
+import EyeDisable from "../icons/IconEyeDisable";
+import IconShield from "../icons/IconShield";
+import IconRocket from "../icons/IconRocket";
 
 interface UserState {
   email: string;
@@ -190,12 +21,13 @@ interface UserState {
   referralCode: string;
   failedPasswordMatches: string[];
   passwordStrength: number;
+  acceptTerms: boolean;
+  showPassword: boolean;
 }
 
 function Signup() {
   const navigate = useNavigate();
   const { setUser: saveUserToContext } = useApp();
-  const [backgroundProgress, setBackgroundProgress] = useState(0);
   const [user, setUserData] = useState<UserState>({
     email: "",
     password: "",
@@ -208,22 +40,11 @@ function Signup() {
       "specialCharacter",
     ],
     passwordStrength: 0,
+    acceptTerms: false,
+    showPassword: true,
   });
   const [error, setError] = useState("");
-  const BG_STORE = [<BgOne />, <BgTwo />, <BgThree />, <BgFour />, <BgFive />];
   const strengthIndicatorText = ["Weak", "Average", "Good", "Strong"];
-  const bgStoreLength = BG_STORE.length;
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setBackgroundProgress((prev) =>
-        prev === bgStoreLength - 1 ? 0 : prev + 1
-      );
-    }, 4000);
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [bgStoreLength]);
 
   const PASSWORD_VISUALS = [
     {
@@ -262,34 +83,56 @@ function Signup() {
     },
   };
 
+  const enableSignupBtn =
+    Boolean(user.email) &&
+    Boolean(user.password) &&
+    user.passwordStrength > 2 &&
+    user.acceptTerms;
+
+  const beginTyping = Boolean(user.email) || Boolean(user.password);
+
+  function acceptTerms() {
+    setUserData({
+      ...user,
+      acceptTerms: !user.acceptTerms,
+    });
+  }
+
+  function showPassword() {
+    setUserData({
+      ...user,
+      showPassword: !user.showPassword,
+    });
+  }
+
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     const name = e.target.name;
     const value = e.target.value;
     let failedMatches: string[] = [];
-    let strength = 0;
+    let strength = 4;
     if (name === "password") {
       for (const validator in PASSWORD_VALIDATOR) {
         failedMatches.push(PASSWORD_VALIDATOR[validator](value));
       }
-    }
-    failedMatches = failedMatches.filter((match) => Boolean(match));
-    if (failedMatches.length === 0) {
-      strength = 4;
-    } else if (
-      !["minimumLength", "lowercase", "uppercase", "number"].some((item) =>
-        failedMatches.includes(item)
-      )
-    ) {
-      strength = 3;
-    } else if (
-      !["minimumLength", "number"].some((item) =>
-        failedMatches.includes(item)
-      ) &&
-      ["lowercase", "uppercase"].some((item) => failedMatches.includes(item))
-    ) {
-      strength = 2;
-    } else {
-      strength = 1;
+      failedMatches = failedMatches.filter((match) => Boolean(match));
+      if (failedMatches.length === 0) {
+        strength = 4;
+      } else if (
+        !["minimumLength", "lowercase", "uppercase", "number"].some((item) =>
+          failedMatches.includes(item)
+        )
+      ) {
+        strength = 3;
+      } else if (
+        !["minimumLength", "number"].some((item) =>
+          failedMatches.includes(item)
+        ) &&
+        ["lowercase", "uppercase"].some((item) => failedMatches.includes(item))
+      ) {
+        strength = 2;
+      } else {
+        strength = 1;
+      }
     }
 
     setUserData({
@@ -333,40 +176,13 @@ function Signup() {
     };
 
     saveUserToContext(newUser);
-    navigate("/dashboard");
+    navigate("/auth/verify-email");
   }
 
   return (
     <div className="bg-[#F4F4F5] h-screen w-full p-4 flex gap-4 overflow-auto">
-      <aside className=" h-full overflow-hidden w-[30%] max-w-md sticky top-0 rounded-2xl bg-gradient-to-b from-[#003B8D] to-[#000000]">
-        <div className="absolute h-full w-full">
-          {BG_STORE[backgroundProgress]}
-        </div>
-
-        <div className="relative p-7 h-full flex flex-col justify-between">
-          <div>
-            <IconZabira width="90" />
-          </div>
-          <ProgressBar
-            tabsLength={BG_STORE.length}
-            backgroundProgress={backgroundProgress}
-          />
-        </div>
-      </aside>
       <main className="relative h-full w-full flex items-center justify-center">
-        <div className="absolute top-0 right-0 w-full flex justify-end">
-          <nav className="flex">
-            <div className="text-[#1A1A1A] font-medium flex items-center gap-2 bg-white pl-4 pr-3 rounded-l-[50px] border border-[#E1E1E2] h-9">
-              <div className="size-5 bg-red-500"></div>
-              <p>Check Rates</p>
-            </div>
-            <div className="text-[#1A1A1A] font-medium flex items-center gap-2 bg-white p-3 rounded-r-[50px] border border-[#E1E1E2] border-l-transparent h-9">
-              <div className="size-5 bg-red-500"></div>
-              <p>Get Help</p>
-            </div>
-          </nav>
-        </div>
-        <div className=" max-h-[80vh] max-w-2xl overflow-auto no-scrollbar space-y-6">
+        <div className=" max-h-[80vh] w-125 overflow-auto no-scrollbar space-y-6">
           {/* inner form */}
           <div className=" text-black p-9 rounded-2xl bg-white shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
             {/* section 1 */}
@@ -374,7 +190,36 @@ function Signup() {
               <h1 className="font-bold leading-[124%] -tracking-[1.2%] text-2xl text-[#1A1A1A]">
                 Create an account in 2 minutes!
               </h1>
-              <div className="h-20 w-full rounded-xl border-2 border-[#FFFFFF2E] bg-[linear-gradient(67.36deg,#3F9906_-90.03%,#C3BC02_-7.9%,#4B9C06_52.41%,#FFCC00_153.78%)]"></div>
+
+              {beginTyping ? (
+                <div
+                  className={`relative bg-gradient-purple bg-cover p-4 overflow-hidden rounded-xl border-2 border-[#FFFFFF2E] flex gap-3 items-start justify-around w-full shrink-0`}
+                >
+                  <div className="absolute right-0 top-0 h-full aspect-square flex items-center justify-center">
+                    <IconRocket />
+                  </div>
+
+                  <p className="font-bold leading-[124%] -tracking-[1.2%] text-lg text-[#FFFFFF]">
+                    Speed UP Your Crypto, Giftcard & Bill Payments
+                  </p>
+                </div>
+              ) : (
+                <div
+                  className={`bg-gradient-green bg-cover p-4 border-2 overflow-hidden rounded-xl border-[#FFFFFF2E] flex gap-3 items-start justify-around w-full shrink-0`}
+                >
+                  <div className="w-24 aspect-[1/0.5]">
+                    <img
+                      src={cryptoLight}
+                      alt="Crypto currencies"
+                      className="size-full object-contain object-top"
+                    />
+                  </div>
+
+                  <p className="font-bold leading-[124%] -tracking-[1.2%] text-lg text-[#FFFFFF]">
+                    SELL & GAIN up to ₦50 on every $ Crypto Trade
+                  </p>
+                </div>
+              )}
 
               {/* Error Message */}
               {error && (
@@ -389,7 +234,9 @@ function Signup() {
                   Email
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                  <div className="size-5 bg-black"></div>
+                  <div className="size-6 min-w-6 flex items-center justify-center">
+                    <IconEmail stroke={user.email ? "#0044EE" : "#819099"} />
+                  </div>
                   <input
                     name="email"
                     type="email"
@@ -402,101 +249,151 @@ function Signup() {
                 </div>
               </div>
               {/* Password */}
-              <div className="border border-[#E1E1E2] rounded-lg p-4">
+              <div className=" border border-[#E1E1E2] rounded-lg p-4">
                 <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
                   Password
                 </label>
-                <div className="flex items-center gap-2 mt-2">
-                  <div className="size-5 bg-black"></div>
+                <div className="relative flex items-center gap-2 mt-2 ">
+                  <div className="absolute h-full aspect-square right-0">
+                    <button
+                      onClick={showPassword}
+                      className="size-full flex items-center justify-center"
+                    >
+                      {user.showPassword ? <EyeDisable /> : <Eye />}
+                    </button>
+                  </div>
+                  <div className="size-6 min-w-6 flex items-center justify-center">
+                    <IconPassword
+                      stroke={user.password ? "#0044EE" : "#819099"}
+                    />
+                  </div>
                   <input
                     name="password"
                     id="password"
+                    type={user.showPassword ? "text" : "password"}
                     value={user.password}
                     onChange={handleInputChange}
                     placeholder="Enter your password"
-                    className="outline-none leading-[140%] -tracking-[1%]   placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C]"
+                    className="outline-none leading-[140%] -tracking-[1%]   placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
                   />
                 </div>
               </div>
               {/* Password Validator */}
-              <div className="space-y-3">
-                <div className="flex gap-4 items-center bg-[#F9F9FB] rounded-lg py-1 px-3">
-                  <p>{strengthIndicatorText[user.passwordStrength - 1]}</p>
-                  <div className="flex w-full items-center gap-2">
-                    {[1, 2, 3, 4]
-                      .slice(0, user.passwordStrength)
-                      .map((level) => {
-                        return (
-                          <div
-                            key={level}
-                            className={`h-1 ${
-                              user.passwordStrength === 1 && "bg-[#DC2828]"
-                            } ${
-                              user.passwordStrength === 2 && "bg-[#E7B008]"
-                            }  ${
-                              user.passwordStrength > 2 && "bg-[#16A249]"
-                            } rounded-sm w-full`}
-                          ></div>
-                        );
-                      })}
-                    {[1, 2, 3, 4].slice(user.passwordStrength).map((level) => {
-                      return (
-                        <div
-                          key={level}
-                          className={`h-1 bg-[#E1E1E2] rounded-sm w-full`}
-                        ></div>
-                      );
-                    })}
+              {user.password && (
+                <div className="space-y-3">
+                  <div className="flex gap-4 items-center bg-[#F9F9FB] rounded-lg py-1 px-3">
+                    <p>
+                      {strengthIndicatorText[user.passwordStrength - 1] ??
+                        "Weak"}
+                    </p>
+                    <div className="flex w-full items-center gap-2">
+                      {[1, 2, 3, 4]
+                        .slice(0, user.passwordStrength)
+                        .map((level) => {
+                          return (
+                            <div
+                              key={level}
+                              className={`h-1 ${
+                                user.passwordStrength === 1 && "bg-[#DC2828]"
+                              } ${
+                                user.passwordStrength === 2 && "bg-[#E7B008]"
+                              }  ${
+                                user.passwordStrength > 2 && "bg-[#16A249]"
+                              } rounded-sm w-full`}
+                            ></div>
+                          );
+                        })}
+                      {[1, 2, 3, 4]
+                        .slice(user.passwordStrength)
+                        .map((level) => {
+                          return (
+                            <div
+                              key={level}
+                              className={`h-1 bg-[#E1E1E2] rounded-sm w-full`}
+                            ></div>
+                          );
+                        })}
+                    </div>
                   </div>
-                </div>
-                {PASSWORD_VISUALS.map((visual) => {
-                  return (
-                    <div key={visual.label} className="flex items-center gap-3">
+                  {PASSWORD_VISUALS.map((visual) => {
+                    return (
                       <div
-                        className={`size-4 ${
-                          visual.label
+                        key={visual.label}
+                        className="flex items-center gap-3"
+                      >
+                        <div className="size-4 min-w-4  rounded-full overflow-hidden">
+                          {visual.label
                             .split("|")
                             .some((item) =>
                               user.failedPasswordMatches.includes(item)
-                            )
-                            ? "bg-red-500"
-                            : "bg-green-500"
-                        }`}
-                      ></div>
-                      <p className="leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1A]">
-                        {visual.text}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
+                            ) ? (
+                            <IconFailedPasswordMatch />
+                          ) : (
+                            <IconCorrectPasswordMatch />
+                          )}
+                        </div>
+                        <p
+                          className={`leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1A] ${
+                            visual.label
+                              .split("|")
+                              .some((item) =>
+                                user.failedPasswordMatches.includes(item)
+                              )
+                              ? "text-[#E92F15]"
+                              : "text-[#819099]"
+                          }`}
+                        >
+                          {visual.text}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
               {/* Referral */}
               <div className="border border-[#E1E1E2] rounded-lg p-4">
                 <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
                   Referral Code (Optional)
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                  <div className="size-5 bg-black"></div>
+                  <div className="size-6 min-w-6 flex items-center justify-center">
+                    <IconReferralCode
+                      stroke={user.referralCode ? "#0044EE" : "#819099"}
+                    />
+                  </div>
                   <input
                     name="referralCode"
                     value={user.referralCode}
                     onChange={handleInputChange}
                     placeholder="Enter referral code"
-                    className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C]"
+                    className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
                   />
                 </div>
               </div>
               {/* Accept Terms */}
               <div className="flex items-start gap-3">
-                <div className="size-5 min-w-5 border-2 border-[#1A1A1A5C] rounded-md"></div>
+                <div className="">
+                  <button
+                    onClick={acceptTerms}
+                    className={`${
+                      user.acceptTerms
+                        ? "bg-zabira-blue border-zabira-blue"
+                        : "bg-transparent border-[#1A1A1A5C]"
+                    } size-5 min-w-5 border-2 rounded-md`}
+                  >
+                    {user.acceptTerms && (
+                      <IconCorrectPasswordMatch rectFill="#0044ee" />
+                    )}
+                  </button>
+                </div>
 
                 <p className="leading-[140%] -tracking-[1%] text-sm text-[#1A1A1A]">
                   By clicking 'Sign Up', I agree to Zabira's{" "}
-                  <span className="font-medium text-[#0044ee]">
+                  <span className="font-medium text-zabira-blue">
                     Terms of Service
                   </span>{" "}
                   and{" "}
-                  <span className="font-medium text-[#0044ee]">
+                  <span className="font-medium text-zabira-blue">
                     Privacy Policy
                   </span>
                 </p>
@@ -506,10 +403,11 @@ function Signup() {
             <div className="space-y-5">
               <div>
                 <button
+                  disabled={!enableSignupBtn}
                   onClick={handleSignUp}
-                  className="h-11 w-full bg-[#0044EE] text-white rounded-md font-medium hover:bg-[#0035BB] transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-                  disabled={user.passwordStrength < 3}
+                  className="h-11 w-full flex items-center gap-2 justify-center bg-[#1A1A1A] text-white rounded-md font-medium hover:bg-[#1a1a1aea] transition-colors disabled:bg-[#F4F4F5] disabled:text-[#1A1A1A2E] disabled:cursor-not-allowed "
                 >
+                  {enableSignupBtn && <IconShield />}
                   Sign Up
                 </button>
               </div>
@@ -519,17 +417,21 @@ function Signup() {
 
               <div className="flex w-full items-center justify-between gap-6">
                 <div className="w-full">
-                  <button className="h-11 w-full bg-[#FCFCFC] border border-[#E1E1E2] rounded-md flex items-center justify-center gap-2">
-                    <div className="size-6 bg-black"></div>
-                    <p className="font-medium leading-[124%] text-base text-[#1A1A1A]">
+                  <button className="h-11 w-full bg-[#FCFCFC] hover:bg-[#1a1a1a09] border border-[#E1E1E2] rounded-md flex items-center justify-center gap-2">
+                    <div className="size-6 min-w-6 flex items-center justify-center">
+                      <IconGoogle />
+                    </div>
+                    <p className="font-semibold leading-[124%] text-base text-[#1A1A1A]">
                       Google
                     </p>
                   </button>
                 </div>
                 <div className="w-full">
-                  <button className="h-11 w-full bg-[#1A1A1A] border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2">
-                    <div className="size-6 bg-white"></div>
-                    <p className="font-medium leading-[124%] text-base text-white">
+                  <button className="h-11 w-full bg-[#1A1A1A] hover:bg-[#1a1a1aea] border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2">
+                    <div className="size-6 min-w-6 flex items-center justify-center">
+                      <IconApple />
+                    </div>
+                    <p className="font-semibold leading-[124%] text-base text-white">
                       Apple
                     </p>
                   </button>
@@ -542,27 +444,21 @@ function Signup() {
             <p className="font-medium leading-[124%] -tracking-[1.2%] text-[#1A1A1A] text-center">
               Already have an account?{" "}
               <span
-                className=" text-[#0044ee] cursor-pointer hover:underline"
+                className=" text-zabira-blue cursor-pointer hover:underline"
                 onClick={() => navigate("/login")}
               >
                 Login
               </span>
             </p>
-            <div className="bg-white p-2 flex items-center rounded-md gap-2">
-              <div className="size-5 bg-black"></div>
+            <div className="bg-white p-2 flex items-center rounded-md gap-1">
+              <div className="size-5 min-w-5 flex items-center justify-center">
+                <IconNDPR />
+              </div>
               <p className="font-medium text-sm leading-[124%] -tracking-[1.2%] text-[#1A1A1AB2]">
                 NDPR Compliant
               </p>
             </div>
           </div>
-        </div>
-
-        <div className="absolute bottom-0 w-full bg-ed-50 px-4 text-[#1A1A1AB2] font-medium text-sm leading-4 flex items-center justify-between">
-          <p>&#169; Zabira, {new Date().getFullYear()}</p>
-          <nav className="flex gap-9 items-center">
-            <p>Privacy Policy</p>
-            <p>Terms of Service</p>
-          </nav>
         </div>
       </main>
     </div>
