@@ -11,7 +11,7 @@ function Settings() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/auth/login");
   };
 
   return (

@@ -445,7 +445,7 @@ function Signup() {
               Already have an account?{" "}
               <span
                 className=" text-zabira-blue cursor-pointer hover:underline"
-                onClick={() => navigate("/login")}
+                onClick={() => navigate("/auth/login")}
               >
                 Login
               </span>
