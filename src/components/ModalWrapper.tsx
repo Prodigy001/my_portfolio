@@ -17,12 +17,12 @@ const ModalWrapper = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-y-auto py-4">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-[#0A18204D] backdrop-blur-[10px]" />
+      <div className="fixed inset-0 bg-[#0A18204D] backdrop-blur-[10px]" />
 
       {/* Modal content */}
-      <div className="relative max-w-md w-full mx-4">
+      <div className="relative max-w-md w-full mx-4 my-auto">
         <div className="flex justify-end">
           <button
             type="button"
@@ -36,7 +36,7 @@ const ModalWrapper = ({
           </button>
         </div>
         <div
-          className={`bg-white rounded-2xl shadow-2xl ${className}`}
+          className={`bg-white rounded-2xl shadow-2xl max-h-[calc(100vh-8rem)] overflow-y-auto ${className}`}
           role="dialog"
           aria-modal="true"
         >

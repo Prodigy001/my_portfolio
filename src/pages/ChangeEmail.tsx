@@ -9,25 +9,50 @@ function ChangeEmail() {
   const { user, setUser } = useApp();
 
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  const validateEmail = (emailValue: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailValue) {
+      setEmailError("Email is required");
+      return false;
+    }
+
+    if (!emailRegex.test(emailValue)) {
+      setEmailError("Please enter a valid email address");
+      return false;
+    }
+
+    setEmailError("");
+    return true;
+  };
 
   function ChangeEmail() {
-
-    if (!email) return
-    navigate("/auth/verify-email");
+    if (!validateEmail(email)) return;
 
     setUser({
       email,
     });
+    navigate("/auth/verify-email");
   }
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setEmail(e.target.value);
+    const value = e.target.value;
+    setEmail(value);
+    if (emailError) {
+      validateEmail(value);
+    }
   }
 
   return (
     <div className="bg-[#F4F4F5] h-screen w-full p-4 flex gap-4 overflow-auto">
       <main className="relative h-full w-full flex items-center justify-center">
-        <form onSubmit={(e) => e.preventDefault()} className=" max-h-[80vh] w-125 overflow-auto no-scrollbar space-y-6">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          noValidate
+          className=" max-h-[80vh] w-125 overflow-auto no-scrollbar space-y-6"
+        >
           {/* inner form */}
           <div className=" text-black p-9 rounded-2xl bg-white shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
             {/* text */}
@@ -42,7 +67,10 @@ function ChangeEmail() {
             </div>
             {/* Email */}
             <div className="border border-[#E1E1E2] rounded-lg p-4">
-              <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+              <label
+                htmlFor="change-email"
+                className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
+              >
                 Email
               </label>
               <div className="flex items-center gap-2 mt-2">
@@ -50,6 +78,7 @@ function ChangeEmail() {
                   <IconEmail stroke={email ? "#0044EE" : "#819099"} />
                 </div>
                 <input
+                  id="change-email"
                   name="email"
                   type="email"
                   value={email}
@@ -59,6 +88,9 @@ function ChangeEmail() {
                   className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
                 />
               </div>
+              {emailError && (
+                <p className="text-xs text-red-600 mt-2">{emailError}</p>
+              )}
             </div>
 
             {/* button */}
@@ -66,7 +98,7 @@ function ChangeEmail() {
               <button
                 // disabled={!enableSignupBtn}
                 onClick={ChangeEmail}
-                className="h-11 w-full flex items-center gap-2 justify-center bg-[#1A1A1A] text-white rounded-md font-medium hover:bg-[#1a1a1aea] transition-colors disabled:bg-[#F4F4F5] disabled:text-[#1A1A1A2E] disabled:cursor-not-allowed "
+                className="h-11 w-full flex items-center gap-2 justify-center  rounded-md font-medium transition-colors disabled:bg-[#F4F4F5] disabled:text-[#1A1A1A2E] disabled:cursor-not-allowed custom-button"
               >
                 Change Email
               </button>

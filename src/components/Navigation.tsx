@@ -35,11 +35,14 @@ const Navigation = () => {
 
   return (
     <div className="h-screen overflow-y-auto no-scrollbar flex flex-col bg-white px-4 py-6 border-r border-[#EDEDED]">
-      <div className="">
+      <button
+        onClick={() => handleNavigation("dashboard")}
+        className="cursor-pointer"
+      >
         <h1>
           <img src={logo} alt="zabira" />
         </h1>
-      </div>
+      </button>
 
       {/* Navigation Items */}
       <nav className="flex-1 mb-5 mt-9">

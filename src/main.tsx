@@ -18,6 +18,7 @@ import Rewards from "./pages/Rewards.tsx";
 import Settings from "./pages/Settings.tsx";
 import AuthLayout from "./pages/AuthLayout.tsx";
 import ChangeEmail from "./pages/ChangeEmail.tsx";
+import NotFound from "./pages/NotFound.tsx";
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
             element: <Settings />,
           },
         ],
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },

@@ -2,6 +2,8 @@ import { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
 import IconPerson from "../icons/IconPerson";
 import IconCalendar from "../icons/IconCalendar";
+import IconVerifyEmail from "../icons/IconVerifyEmail";
+import IconVerify from "../icons/IconVerify";
 
 interface PersonalDetailsModalProps {
   isOpen: boolean;
@@ -204,27 +206,31 @@ const PersonalDetailsModal = ({
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
       {isSaving || isSaved ? (
-        // Confirmation Screen
-        <div className="p-6 text-center">
-          <div className="mb-6 flex justify-center">
-            <LoadingAnimation isComplete={isSaved} />
+        // Confirmation Screen copied from Email Verification style
+        <div className=" text-black p-9 rounded-2xl bg-white shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
+          <div className="w-full flex justify-center items-center">
+            <IconVerifyEmail />
           </div>
-          <h2 className="text-2xl font-bold text-zabira-dark mb-3">
-            {isSaved ? "Personal Details Saved!" : "Saving..."}
-          </h2>
-          <p className="text-base text-zabira-dark/70 mb-8">
-            {isSaved
-              ? "Your personal information has been updated successfully."
-              : "Please wait while we save your information."}
-          </p>
+          <div className="space-y-2">
+            <h1 className="text-center font-bold leading-[124%] -tracking-[1.2%] text-2xl text-[#1A1A1A]">
+              {isSaved ? "Personal Details Saved!" : "Saving..."}
+            </h1>
+            <p className="text-center text-base leading-[140%] -tracking-[1%] text-[#1A1A1AB2]">
+              {isSaved
+                ? "Your personal information has been updated successfully."
+                : "Please wait while we save your information."}
+            </p>
+          </div>
           {isSaved && (
-            <button
-              type="button"
-              onClick={handleDone}
-              className="w-full bg-[#1A1A1A] hover:bg-[#2A2A2A] text-white rounded-lg py-3 px-4 font-semibold text-base transition-colors"
-            >
-              Done
-            </button>
+            <div>
+              <button
+                type="button"
+                onClick={handleDone}
+                className="h-11 w-full flex items-center gap-2 justify-center custom-button text-white rounded-md font-medium  transition-colors disabled:bg-[#F4F4F5] disabled:text-[#1A1A1A2E] disabled:cursor-not-allowed "
+              >
+                Done
+              </button>
+            </div>
           )}
         </div>
       ) : (
@@ -241,14 +247,20 @@ const PersonalDetailsModal = ({
             {/* Username */}
             <div>
               <div className="border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+                <label
+                  htmlFor="personal-username"
+                  className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
+                >
                   Username
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                 <div className="size-6 min-w-6 flex items-center justify-center">
-                    <IconPerson stroke={formData.username ? "#0044EE" : "#819099"} />
+                  <div className="size-6 min-w-6 flex items-center justify-center">
+                    <IconPerson
+                      stroke={formData.username ? "#0044EE" : "#819099"}
+                    />
                   </div>
                   <input
+                    id="personal-username"
                     name="username"
                     type="text"
                     value={formData.username}
@@ -261,18 +273,30 @@ const PersonalDetailsModal = ({
               {!errors.username && (
                 <p className="text-xs text-[#1A1A1A5C] mt-2 flex items-center gap-1">
                   <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <circle
-                      cx="6"
-                      cy="6"
-                      r="6"
-                      fill="#1A1A1A"
-                      fillOpacity="0.2"
+                    <rect
+                      width="16"
+                      height="16"
+                      rx="8"
+                      fill={
+                        formData.username &&
+                        /[a-zA-Z]/.test(formData.username) &&
+                        /[0-9]/.test(formData.username)
+                          ? "#1DC660"
+                          : "#C7CDD1"
+                      }
+                    />
+                    <path
+                      d="M4.26666 8.53301L6.14742 10.0376C6.58866 10.3906 7.22861 10.3383 7.60661 9.91825L11.7333 5.33301"
+                      stroke="white"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
                     />
                   </svg>
                   Username must contain letter and number
@@ -286,14 +310,20 @@ const PersonalDetailsModal = ({
             {/* Firstname */}
             <div>
               <div className="border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+                <label
+                  htmlFor="personal-firstname"
+                  className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
+                >
                   Firstname
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                 <div className="size-6 min-w-6 flex items-center justify-center">
-                    <IconPerson stroke={formData.firstname ? "#0044EE" : "#819099"} />
+                  <div className="size-6 min-w-6 flex items-center justify-center">
+                    <IconPerson
+                      stroke={formData.firstname ? "#0044EE" : "#819099"}
+                    />
                   </div>
                   <input
+                    id="personal-firstname"
                     name="firstname"
                     type="text"
                     value={formData.firstname}
@@ -311,14 +341,20 @@ const PersonalDetailsModal = ({
             {/* Lastname */}
             <div>
               <div className="border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+                <label
+                  htmlFor="personal-lastname"
+                  className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
+                >
                   Lastname
                 </label>
                 <div className="flex items-center gap-2 mt-2">
                   <div className="size-6 min-w-6 flex items-center justify-center">
-                    <IconPerson  stroke={formData.lastname ? "#0044EE" : "#819099"}/>
+                    <IconPerson
+                      stroke={formData.lastname ? "#0044EE" : "#819099"}
+                    />
                   </div>
                   <input
+                    id="personal-lastname"
                     name="lastname"
                     type="text"
                     value={formData.lastname}
@@ -336,14 +372,20 @@ const PersonalDetailsModal = ({
             {/* Date of Birth (Optional) */}
             <div>
               <div className="border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+                <label
+                  htmlFor="personal-dob"
+                  className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
+                >
                   Date of Birth (Optional)
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                 <div className="size-6 min-w-6 flex items-center justify-center">
-                    <IconCalendar  stroke={formData.dateOfBirth ? "#0044EE" : "#819099"}/>
+                  <div className="size-6 min-w-6 flex items-center justify-center">
+                    <IconCalendar
+                      stroke={formData.dateOfBirth ? "#0044EE" : "#819099"}
+                    />
                   </div>
                   <input
+                    id="personal-dob"
                     name="dateOfBirth"
                     type="date"
                     value={formData.dateOfBirth}
@@ -359,20 +401,11 @@ const PersonalDetailsModal = ({
             <button
               type="button"
               onClick={handleSave}
-              className="w-full bg-[#1A1A1A] hover:bg-[#2A2A2A] text-white rounded-lg py-3 px-4 font-semibold text-base transition-colors flex items-center justify-center gap-2"
+              className="w-full custom-button "
             >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10 1.25C5.175 1.25 1.25 5.175 1.25 10C1.25 14.825 5.175 18.75 10 18.75C14.825 18.75 18.75 14.825 18.75 10C18.75 5.175 14.825 1.25 10 1.25ZM13.3125 7.6875L9.0625 11.9375C8.9375 12.0625 8.75 12.125 8.5625 12.125C8.375 12.125 8.1875 12.0625 8.0625 11.9375L6.6875 10.5625C6.4375 10.3125 6.4375 9.9375 6.6875 9.6875C6.9375 9.4375 7.3125 9.4375 7.5625 9.6875L8.5625 10.6875L12.4375 6.8125C12.6875 6.5625 13.0625 6.5625 13.3125 6.8125C13.5625 7.0625 13.5625 7.4375 13.3125 7.6875Z"
-                  fill="currentColor"
-                />
-              </svg>
+              <span className="text-2xl">
+                <IconVerify />
+              </span>
               Save
             </button>
           </div>

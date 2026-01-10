@@ -3,6 +3,7 @@ import ModalWrapper from "./ModalWrapper";
 import { currencies } from "../data";
 import { useApp } from "../context/AppContext";
 import IconVerify from "../icons/IconVerify";
+import IconVerifyEmail from "../icons/IconVerifyEmail";
 import IconCaret from "../icons/IconCaret";
 import IconArrow from "../icons/IconArrow";
 
@@ -298,27 +299,31 @@ const VerifyPhoneModal = ({
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
       {isVerifying || isConfirmed ? (
-        // Confirmation Screen
-        <div className="p-6 text-center">
-          <div className="mb-6 flex justify-center">
-            <LoadingAnimation isComplete={isConfirmed} />
+        // Confirmation Screen copied from Email Verification style
+        <div className=" text-black p-9 rounded-2xl bg-white shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
+          <div className="w-full flex justify-center items-center">
+            <IconVerifyEmail />
           </div>
-          <h2 className="text-2xl font-bold text-zabira-dark mb-3">
-            {isConfirmed ? "Phone Number Added!" : "Verifying..."}
-          </h2>
-          <p className="text-base text-zabira-dark/70 mb-8">
-            {isConfirmed
-              ? "Your phone number has been added successfully."
-              : "Please wait while we verify your code."}
-          </p>
+          <div className="space-y-2">
+            <h1 className="text-center font-bold leading-[124%] -tracking-[1.2%] text-2xl text-[#1A1A1A]">
+              {isConfirmed ? "Phone Number Verified!" : "Verifying..."}
+            </h1>
+            <p className="text-center text-base leading-[140%] -tracking-[1%] text-[#1A1A1AB2]">
+              {isConfirmed
+                ? "Your phone number has been verified successfully."
+                : "Please wait while we verify your code."}
+            </p>
+          </div>
           {isConfirmed && (
-            <button
-              type="button"
-              onClick={handleConfirmationDone}
-              className="w-full bg-[#1A1A1A] hover:bg-[#2A2A2A] text-white rounded-lg py-3 px-4 font-semibold text-base transition-colors"
-            >
-              Done
-            </button>
+            <div>
+              <button
+                type="button"
+                onClick={handleConfirmationDone}
+                className="h-11 w-full flex items-center gap-2 justify-center custom-button text-white rounded-md font-medium  transition-colors disabled:bg-[#F4F4F5] disabled:text-[#1A1A1A2E] disabled:cursor-not-allowed "
+              >
+                Done
+              </button>
+            </div>
           )}
         </div>
       ) : step === "phone" ? (
@@ -411,7 +416,10 @@ const VerifyPhoneModal = ({
 
           {/* Phone Number Input */}
           <div className="border border-[#E1E1E2] rounded-lg p-4">
-            <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1A]">
+            <label
+              htmlFor="phone-number"
+              className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1A]"
+            >
               Phone Number
             </label>
             <div className="flex items-center gap-2 mt-2">
@@ -494,6 +502,7 @@ const VerifyPhoneModal = ({
 
               {/* Phone Number Input */}
               <input
+                id="phone-number"
                 type="tel"
                 value={phoneNumber}
                 onChange={handlePhoneChange}
@@ -579,7 +588,10 @@ const VerifyPhoneModal = ({
           {/* Code Input */}
           <div className="mb-4">
             <div className="flex items-center justify-between mb-3">
-              <label className="block text-sm font-semibold text-zabira text-zabira-dark">
+              <label
+                htmlFor="verify-code"
+                className="block text-sm font-semibold text-zabira text-zabira-dark"
+              >
                 Enter Code
               </label>
               <button
@@ -610,6 +622,7 @@ const VerifyPhoneModal = ({
               {code.map((digit, index) => (
                 <input
                   key={index}
+                  id={index === 0 ? "verify-code" : undefined}
                   ref={(el) => {
                     inputRefs.current[index] = el;
                   }}

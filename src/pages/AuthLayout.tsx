@@ -398,20 +398,23 @@ function AuthLayout() {
         </div>
       </aside>
       <main className="relative h-full w-full flex items-center justify-center">
-        <div className="absolute top-0 right-0 w-full flex justify-end">
+        <div className="absolute top-0 right-0 w-full flex justify-end z-10">
           <nav className="flex">
-            <div className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white pl-4 pr-3 rounded-l-[50px] border border-[#E1E1E2] h-9">
+            <button className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white pl-4 pr-3 rounded-l-[50px] border border-[#E1E1E2] h-9">
               <div className="size-5 min-w-5 flex items-center justify-center">
                 <IconCheckRates />
               </div>
               <p>Check Rates</p>
-            </div>
-            <div className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white p-3 rounded-r-[50px] border border-[#E1E1E2] border-l-transparent h-9">
+            </button>
+            <a
+              href="mailto:hello@ayoosota.com"
+              className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white p-3 rounded-r-[50px] border border-[#E1E1E2] border-l-transparent h-9"
+            >
               <div className="size-5 min-w-5 flex items-center justify-center">
                 <IconGetHelp />
               </div>
               <p>Get Help</p>
-            </div>
+            </a>
           </nav>
         </div>
 

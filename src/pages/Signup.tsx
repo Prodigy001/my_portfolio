@@ -230,7 +230,10 @@ function Signup() {
 
               {/* Email */}
               <div className="border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+                <label
+                  htmlFor="signup-email"
+                  className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
+                >
                   Email
                 </label>
                 <div className="flex items-center gap-2 mt-2">
@@ -238,6 +241,7 @@ function Signup() {
                     <IconEmail stroke={user.email ? "#0044EE" : "#819099"} />
                   </div>
                   <input
+                    id="signup-email"
                     name="email"
                     type="email"
                     value={user.email}
@@ -250,7 +254,10 @@ function Signup() {
               </div>
               {/* Password */}
               <div className=" border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+                <label
+                  htmlFor="signup-password"
+                  className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
+                >
                   Password
                 </label>
                 <div className="relative flex items-center gap-2 mt-2 ">
@@ -269,7 +276,7 @@ function Signup() {
                   </div>
                   <input
                     name="password"
-                    id="password"
+                    id="signup-password"
                     type={user.showPassword ? "text" : "password"}
                     value={user.password}
                     onChange={handleInputChange}
@@ -352,7 +359,10 @@ function Signup() {
               )}
               {/* Referral */}
               <div className="border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+                <label
+                  htmlFor="referral-code"
+                  className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
+                >
                   Referral Code (Optional)
                 </label>
                 <div className="flex items-center gap-2 mt-2">
@@ -362,6 +372,7 @@ function Signup() {
                     />
                   </div>
                   <input
+                    id="referral-code"
                     name="referralCode"
                     value={user.referralCode}
                     onChange={handleInputChange}
@@ -405,7 +416,7 @@ function Signup() {
                 <button
                   disabled={!enableSignupBtn}
                   onClick={handleSignUp}
-                  className="h-11 w-full flex items-center gap-2 justify-center bg-[#1A1A1A] text-white rounded-md font-medium hover:bg-[#1a1a1aea] transition-colors disabled:bg-[#F4F4F5] disabled:text-[#1A1A1A2E] disabled:cursor-not-allowed "
+                  className="h-11 w-full flex items-center gap-2 justify-center custom-button text-white rounded-md font-medium  transition-colors disabled:bg-[#F4F4F5] disabled:text-[#1A1A1A2E] disabled:cursor-not-allowed "
                 >
                   {enableSignupBtn && <IconShield />}
                   Sign Up
@@ -427,7 +438,7 @@ function Signup() {
                   </button>
                 </div>
                 <div className="w-full">
-                  <button className="h-11 w-full bg-[#1A1A1A] hover:bg-[#1a1a1aea] border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2">
+                  <button className="h-11 w-full custom-button  border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2">
                     <div className="size-6 min-w-6 flex items-center justify-center">
                       <IconApple />
                     </div>

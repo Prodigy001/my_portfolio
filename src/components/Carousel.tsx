@@ -112,10 +112,7 @@ const Carousel = () => {
               </li>
             ))}
           </ul>
-
         </div>
-
-      
 
         {/* Indicators */}
         <div className="flex gap-1 items-center justify-center mt-4">
@@ -127,7 +124,9 @@ const Carousel = () => {
                 setCurrentIndex(index);
               }}
               className={`transition-colors duration-300 w-4.5 h-1 rounded-xs ${
-                index === currentIndex ? "bg-[#A1A1AA]" : "bg-[#E1E1E2]"
+                index === currentIndex
+                  ? "bg-[#00DD77] md:bg-[#A1A1AA]"
+                  : "bg-[#E1E1E2]"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             ></button>

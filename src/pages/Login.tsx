@@ -140,7 +140,10 @@ function Login() {
 
               {/* Email */}
               <div className="border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+                <label
+                  htmlFor="login-email"
+                  className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
+                >
                   Email
                 </label>
                 <div className="flex items-center gap-2 mt-2">
@@ -150,6 +153,7 @@ function Login() {
                     />
                   </div>
                   <input
+                    id="login-email"
                     name="email"
                     type="email"
                     value={loginData.email}
@@ -163,7 +167,10 @@ function Login() {
 
               {/* Password */}
               <div className=" border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+                <label
+                  htmlFor="login-password"
+                  className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
+                >
                   Password
                 </label>
                 <div className="relative flex items-center gap-2 mt-2 ">
@@ -182,7 +189,7 @@ function Login() {
                   </div>
                   <input
                     name="password"
-                    id="password"
+                    id="login-password"
                     type={loginData.showPassword ? "text" : "password"}
                     value={loginData.password}
                     onChange={handleInputChange}
@@ -203,10 +210,7 @@ function Login() {
             {/* section 2 */}
             <div className="space-y-5">
               <div>
-                <button
-                  onClick={handleLogin}
-                  className="h-11 w-full bg-[#0044EE] text-white rounded-md font-medium hover:bg-[#0035BB] transition-colors"
-                >
+                <button onClick={handleLogin} className="custom-button w-full">
                   Login
                 </button>
               </div>
@@ -226,7 +230,7 @@ function Login() {
                   </button>
                 </div>
                 <div className="w-full">
-                  <button className="h-11 w-full bg-[#1A1A1A] hover:bg-[#1a1a1aea] border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2">
+                  <button className="h-11 w-full custom-button  border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2">
                     <div className="size-6 min-w-6 flex items-center justify-center">
                       <IconApple />
                     </div>
