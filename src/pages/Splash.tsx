@@ -13,7 +13,7 @@ function Splash() {
       if (isAuthenticated) {
         navigate("/dashboard");
       } else {
-        navigate("/sign-up");
+        navigate("/auth/sign-up");
       }
     }, 5000);
 

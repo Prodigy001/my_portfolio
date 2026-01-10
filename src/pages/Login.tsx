@@ -245,7 +245,7 @@ function Login() {
               Don't have an account?{" "}
               <span
                 className=" text-zabira-blue cursor-pointer hover:underline"
-                onClick={() => navigate("/sign-up")}
+                onClick={() => navigate("/auth/sign-up")}
               >
                 Sign up
               </span>
