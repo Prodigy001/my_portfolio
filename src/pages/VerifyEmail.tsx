@@ -7,6 +7,8 @@ import IconShield from "../icons/IconShield";
 import IconNDPR from "../icons/IconNDPR";
 import IconVerifyEmail from "../icons/IconVerifyEmail";
 
+const OTP_LENGTH = 6;
+
 interface UserState {
   email: string;
   password: string;
@@ -103,12 +105,12 @@ function VerifyEmail() {
   }
 
   function pasteCode() {
-    setOTP({ ...otp, value: otp.dummyOtp, activeInput: "6" });
+    setOTP({ ...otp, value: otp.dummyOtp, activeInput: String(OTP_LENGTH) });
   }
 
   function resendCode() {
     let _otp = "";
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < OTP_LENGTH; i++) {
       const randVal = Math.round(Math.random() * 10);
       _otp += randVal;
     }
@@ -120,7 +122,7 @@ function VerifyEmail() {
   }
 
   function verifyEmail() {
-    if (otp.value === "" || otp.value.length !== 6) {
+    if (otp.value === "" || otp.value.length !== OTP_LENGTH) {
       return;
     }
     setOTP({ ...otp, verified: true });
@@ -208,7 +210,7 @@ function VerifyEmail() {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                {[1, 2, 3, 4, 5, 6].map((item, idx) => {
+                {Array.from({ length: OTP_LENGTH }, (_, i) => i + 1).map((item, idx) => {
                   return (
                     <div key={item}>
                       <input

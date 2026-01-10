@@ -114,13 +114,14 @@ const VerifyPhoneModal = ({
   const [isConfirmed, setIsConfirmed] = useState(false);
 
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-  const previousIsOpenRef = useRef(isOpen);
-  const previousStepRef = useRef(step);
+  const previousIsOpenRef = useRef(false);
+  const previousStepRef = useRef<"phone" | "code">("phone");
 
   // Reset state when modal closes
   useEffect(() => {
     if (previousIsOpenRef.current && !isOpen) {
       // Modal just closed, reset all state
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setStep("phone");
       setPhoneNumber("");
       setCode(["", "", "", "", "", ""]);
@@ -137,6 +138,7 @@ const VerifyPhoneModal = ({
   useEffect(() => {
     if (previousStepRef.current !== "code" && step === "code") {
       // Just entered code step, initialize countdown
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setResendCountdown(60);
     }
     previousStepRef.current = step;
@@ -151,6 +153,7 @@ const VerifyPhoneModal = ({
       return () => clearTimeout(timer);
     } else if (resendCountdown === 0 && step === "code") {
       // When timer reaches 0, reset verification method to none
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setVerificationMethod("none");
     }
   }, [resendCountdown, step]);
