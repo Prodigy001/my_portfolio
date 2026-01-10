@@ -37,6 +37,7 @@ function VerifyEmail() {
         otpCoolDownStartTime = Number(JSON.parse(otpCoolDownStartTime));
       } else {
         navigate("/auth/sign-up");
+        return;
       }
       const diff = Number(otpCoolDownStartTime) - Date.now();
 
@@ -53,14 +54,13 @@ function VerifyEmail() {
       if (formattedTime === "00:00") {
         clearInterval(timerId);
       }
-      setOTP({ ...otp, formattedTime });
+      setOTP((prev) => ({ ...prev, formattedTime }));
     }, 1000);
 
     return () => {
       clearInterval(timerId);
     };
-    // const now = new Date(); // Or new Date(Date.now())
-  }, []);
+  }, [navigate]);
 
   function focusInput(e: React.ChangeEvent<HTMLInputElement>) {
     const input = e.target;
@@ -112,9 +112,7 @@ function VerifyEmail() {
       const randVal = Math.round(Math.random() * 10);
       _otp += randVal;
     }
-    setOTP({ ...otp, dummyOtp: _otp });
-    alert(`Code Resent.\
-      \nPaste Code again`);
+    setOTP({ ...otp, dummyOtp: _otp, value: "" });
   }
 
   function changeEmail() {
@@ -122,8 +120,7 @@ function VerifyEmail() {
   }
 
   function verifyEmail() {
-    if (otp.value === "") {
-      alert("Input OTP");
+    if (otp.value === "" || otp.value.length !== 6) {
       return;
     }
     setOTP({ ...otp, verified: true });

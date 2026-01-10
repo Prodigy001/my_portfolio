@@ -78,8 +78,8 @@ function Settings() {
         isOpen={isPersonalDetailsModalOpen}
         onClose={() => setIsPersonalDetailsModalOpen(false)}
         onSaved={() => {
-          // Optionally show a success message or update UI
-          console.log("Personal details saved successfully");
+          // In production, show a success toast notification
+          setIsPersonalDetailsModalOpen(false);
         }}
       />
     </main>
