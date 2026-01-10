@@ -112,7 +112,10 @@ const Carousel = () => {
               </li>
             ))}
           </ul>
+
         </div>
+
+      
 
         {/* Indicators */}
         <div className="flex gap-1 items-center justify-center mt-4">

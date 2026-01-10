@@ -57,7 +57,7 @@ const Referral = () => {
   return (
     <div className="bg-[#EBF0FF] shadow-[0px_1.25px_4px_0px_rgba(26,26,26,0.08)] overflow-hidden rounded-xl">
       <header className="flex items-center justify-between gap-4 p-4 bg-[#7099FF]">
-        <h4 className="flex items-center gap-1.5">
+        <h4 className="flex items-center gap-1.5 font-bold text-xl leading-[124%] -tracking-[1.2%] text-white">
           <IconFlatCoins /> Refer and Earn
         </h4>
 
@@ -77,7 +77,7 @@ const Referral = () => {
 
       <div className="p-4">
         <p className="text-zabira text-lg font-medium text-zabira-dark/70 mb-6">
-          Invite 10 people and get 100 points to use in amazing rewards! T&C
+          Invite 10 people and get 100 points to use in amazing rewards!<br/> T&C
           Apply.
         </p>
 

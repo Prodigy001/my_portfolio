@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -6,8 +7,11 @@
   --color-zabira-green: #00dd77;
 }
 
+* {
+  font-family: "Geist", system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   color-scheme: light dark;
   background-color: #ffffff;
   font-synthesis: none;
@@ -131,4 +135,33 @@ button {
 .custom-select {
   background-image: url(./assets/icon-caret.svg);
   background-position: right 12px center;
+}
+
+#half-circle {
+  animation: spin 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite ;
+  transform-origin: center;
+
+}
+
+#check-mark {
+  animation: grow 3s linear infinite ;
+  transform-origin: center;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scale(0.7);
+  }
+  to {
+    transform: rotate(1);
+  }
 }

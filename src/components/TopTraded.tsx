@@ -27,7 +27,7 @@ const TopTraded = () => {
 
       <ul className="flex items-center  gap-3 w-full overflow-scroll no-scrollbar ">
         {tradedAssets.map(({ id, name, icon, code, change, isPositive }) => (
-          <li key={id} className="p-4 rounded-xl bg-[#F4F4F5] flex-none w-34">
+          <li key={id} className="p-4 rounded-xl bg-[#F4F4F5] flex-none w-[25%]">
             <img
               src={icon}
               alt={name}

@@ -16,7 +16,7 @@ const BecomeMerchantCta = () => {
         </p>
         <Link
           to="#"
-          className="custom-button text-sm leading-5.5 inline-flex items-center justify-center gap-2"
+          className="custom-button bg-[#FCFCFC] border border-[#E1E1E2] text-sm text-[#1A1A1A] leading-5.5 inline-flex items-center justify-center gap-2"
         >
           Apply Now
           <span className="text-[1.25rem] -rotate-135">

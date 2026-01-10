@@ -29,18 +29,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // Load user from localStorage on mount
-  useEffect(() => {
+  if (!user) {
     const savedUser = localStorage.getItem("zabira_user");
     if (savedUser) {
       try {
-        const parsedUser = JSON.parse(savedUser);
+        const parsedUser = JSON.parse(savedUser) as User;
         setUserState(parsedUser);
         setIsAuthenticated(true);
       } catch (error) {
         console.error("Failed to parse saved user:", error);
       }
     }
-  }, []);
+  }
 
   const toggleSidebar = () => {
     setSidebarOpen((prev) => !prev);
@@ -52,7 +52,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
     // Save to localStorage (excluding password)
     const userToSave = { ...newUser };
     delete userToSave.password;
+
+    const otp_resend_countdown = 5; // in minutes
     localStorage.setItem("zabira_user", JSON.stringify(userToSave));
+    localStorage.setItem(
+      "zabira_resend_otp_countdown",
+      JSON.stringify(Date.now() + otp_resend_countdown * 60 * 1000)
+    );
   };
 
   const logout = () => {
