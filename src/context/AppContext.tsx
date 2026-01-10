@@ -25,22 +25,24 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [user, setUserState] = useState<User | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // Load user from localStorage on mount
-  if (!user) {
+  
+  // Load user from localStorage on initialization using lazy state
+  const [user, setUserState] = useState<User | null>(() => {
     const savedUser = localStorage.getItem("zabira_user");
     if (savedUser) {
       try {
-        const parsedUser = JSON.parse(savedUser) as User;
-        setUserState(parsedUser);
-        setIsAuthenticated(true);
+        return JSON.parse(savedUser) as User;
       } catch (error) {
         console.error("Failed to parse saved user:", error);
+        return null;
       }
     }
-  }
+    return null;
+  });
+  
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return !!localStorage.getItem("zabira_user");
+  });
 
   const toggleSidebar = () => {
     setSidebarOpen((prev) => !prev);

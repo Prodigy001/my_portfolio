@@ -216,7 +216,7 @@ function Login() {
 
               <div className="flex w-full items-center justify-between gap-6">
                 <div className="w-full">
-                  <button className="h-11 w-full bg-[#FCFCFC] hover:bg-[#1a1a1a09] border border-[#E1E1E2] rounded-md flex items-center justify-center gap-2">
+                  <button type="button" className="h-11 w-full bg-[#FCFCFC] hover:bg-[#1a1a1a09] border border-[#E1E1E2] rounded-md flex items-center justify-center gap-2">
                     <div className="size-6 min-w-6 flex items-center justify-center">
                       <IconGoogle />
                     </div>
@@ -226,7 +226,7 @@ function Login() {
                   </button>
                 </div>
                 <div className="w-full">
-                  <button className="h-11 w-full bg-[#1A1A1A] hover:bg-[#1a1a1aea] border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2">
+                  <button type="button" className="h-11 w-full bg-[#1A1A1A] hover:bg-[#1a1a1aea] border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2">
                     <div className="size-6 min-w-6 flex items-center justify-center">
                       <IconApple />
                     </div>

@@ -7,6 +7,8 @@ import IconShield from "../icons/IconShield";
 import IconNDPR from "../icons/IconNDPR";
 import IconVerifyEmail from "../icons/IconVerifyEmail";
 
+const OTP_LENGTH = 6;
+
 interface UserState {
   email: string;
   password: string;
@@ -37,6 +39,7 @@ function VerifyEmail() {
         otpCoolDownStartTime = Number(JSON.parse(otpCoolDownStartTime));
       } else {
         navigate("/auth/sign-up");
+        return;
       }
       const diff = Number(otpCoolDownStartTime) - Date.now();
 
@@ -53,14 +56,13 @@ function VerifyEmail() {
       if (formattedTime === "00:00") {
         clearInterval(timerId);
       }
-      setOTP({ ...otp, formattedTime });
+      setOTP((prev) => ({ ...prev, formattedTime }));
     }, 1000);
 
     return () => {
       clearInterval(timerId);
     };
-    // const now = new Date(); // Or new Date(Date.now())
-  }, []);
+  }, [navigate]);
 
   function focusInput(e: React.ChangeEvent<HTMLInputElement>) {
     const input = e.target;
@@ -103,18 +105,16 @@ function VerifyEmail() {
   }
 
   function pasteCode() {
-    setOTP({ ...otp, value: otp.dummyOtp, activeInput: "6" });
+    setOTP({ ...otp, value: otp.dummyOtp, activeInput: String(OTP_LENGTH) });
   }
 
   function resendCode() {
     let _otp = "";
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < OTP_LENGTH; i++) {
       const randVal = Math.round(Math.random() * 10);
       _otp += randVal;
     }
-    setOTP({ ...otp, dummyOtp: _otp });
-    alert(`Code Resent.\
-      \nPaste Code again`);
+    setOTP({ ...otp, dummyOtp: _otp, value: "" });
   }
 
   function changeEmail() {
@@ -122,8 +122,7 @@ function VerifyEmail() {
   }
 
   function verifyEmail() {
-    if (otp.value === "") {
-      alert("Input OTP");
+    if (otp.value === "" || otp.value.length !== OTP_LENGTH) {
       return;
     }
     setOTP({ ...otp, verified: true });
@@ -211,7 +210,7 @@ function VerifyEmail() {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                {[1, 2, 3, 4, 5, 6].map((item, idx) => {
+                {Array.from({ length: OTP_LENGTH }, (_, i) => i + 1).map((item, idx) => {
                   return (
                     <div key={item}>
                       <input
