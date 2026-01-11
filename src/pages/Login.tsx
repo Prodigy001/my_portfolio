@@ -91,7 +91,7 @@ function Login() {
   }
 
   return (
-    <div className="bg-bg-app xs:max-md:bg-white h-screen w-full p-4 flex gap-4 overflow-auto">
+    <div className="bg-bg-app xs:max-md:bg-white h-screen xs:max-md:h-auto w-full p-4 flex gap-4 overflow-auto">
       <main className="relative h-full w-full flex items-center justify-center">
         <div className=" max-h-[80vh] w-125 overflow-auto no-scrollbar space-y-6">
           {/* inner form */}
@@ -246,12 +246,12 @@ function Login() {
                 Or continue with
               </p>
 
-              <div className="flex w-full items-center justify-between gap-6">
-                <div className="w-full">
+               <div className="flex w-full items-center justify-between xs:max-md:justify-center gap-6">
+                <div className="w-full xs:max-md:w-auto">
                   <button
                     type="button"
-                    className="h-11 w-full bg-white hover:bg-[#F4F4F5] border border-[#E1E1E2] rounded-md flex items-center justify-center gap-2"
-                    aria-label="Login with Google"
+                    className="h-11 xs:max-md:h-auto w-full xs:max-md:w-auto xs:max-md:p-4 bg-bg-card-secondary hover:bg-bg-btn-hover-dark border  border-border-default rounded-md flex items-center justify-center gap-2 shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14]"
+                    aria-label="Sign up with Google"
                   >
                     <div
                       className="size-6 min-w-6 flex items-center justify-center"
@@ -259,16 +259,16 @@ function Login() {
                     >
                       <IconGoogle />
                     </div>
-                    <span className="font-semibold leading-[124%] text-base text-[#1A1A1A]">
+                    <span className="font-semibold leading-[124%] text-base text-text-primary xs:max-md:hidden">
                       Google
                     </span>
                   </button>
                 </div>
-                <div className="w-full">
+                <div className="w-full xs:max-md:w-auto">
                   <button
                     type="button"
-                    className="h-11 w-full custom-button border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2"
-                    aria-label="Login with Apple"
+                    className="h-11 xs:max-md:h-auto w-full xs:max-md:w-auto xs:max-md:p-4 custom-button border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2"
+                    aria-label="Sign up with Apple"
                   >
                     <div
                       className="size-6 min-w-6 flex items-center justify-center"
@@ -276,7 +276,7 @@ function Login() {
                     >
                       <IconApple />
                     </div>
-                    <span className="font-semibold leading-[124%] text-base text-neutral-50">
+                    <span className="font-semibold leading-[124%] text-base text-neutral-50 xs:max-md:hidden">
                       Apple
                     </span>
                   </button>

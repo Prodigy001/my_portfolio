@@ -279,14 +279,14 @@ function AuthLayout() {
           />
         </div>
       </aside>
-      <main className="relative h-full w-full flex items-center justify-center ">
+      <main className="relative h-full w-full flex items-center xs:max-md:items-start xs:max-md:pt-10 justify-center ">
         <div className="absolute top-0 right-0 w-full flex justify-end xs:max-md:justify-between xs:max-md:items-center z-10">
           <div className="md:hidden">
              <IconZabira2 width="90" textFill="#1A1A1A" />
           </div>
           <nav className="flex" aria-label="Quick actions">
             <button
-              className="text-[#1A1A1A] xs:max-md:text-sm font-medium flex items-center gap-1 bg-white xs:max-md:bg-bg-app pl-4 pr-3 xs:max-md:p-2 rounded-l-[50px] border border-[#E1E1E2] h-9 hover:bg-[#F4F4F5] xs:max-md:hover:bg-[#f4f4f52a] transition-colors"
+              className="text-[#1A1A1A] xs:max-md:text-sm font-medium flex items-center gap-1 bg-white xs:max-md:bg-bg-app pl-4 pr-3 xs:max-md:p-2 rounded-l-[50px] border border-[#E1E1E2] h-9 hover:bg-bg-btn-hover-dark xs:max-md:hover:bg-[#f4f4f52a] transition-colors"
               aria-label="Check exchange rates"
             >
               <div
@@ -299,7 +299,7 @@ function AuthLayout() {
             </button>
             <a
               href="mailto:hello@ayoosota.com"
-              className="text-[#1A1A1A] xs:max-md:text-sm font-medium flex items-center gap-1 bg-white xs:max-md:bg-bg-app p-3 xs:max-md:p-2 rounded-r-[50px] border border-[#E1E1E2] border-l-transparent h-9 hover:bg-[#F4F4F5] xs:max-md:hover:bg-[#f4f4f52a] transition-colors"
+              className="text-[#1A1A1A] xs:max-md:text-sm font-medium flex items-center gap-1 bg-white xs:max-md:bg-bg-app p-3 xs:max-md:p-2 rounded-r-[50px] border border-[#E1E1E2] border-l-transparent h-9 hover:bg-bg-btn-hover-dark xs:max-md:hover:bg-[#f4f4f52a] transition-colors"
               aria-label="Get help and support"
             >
               <div

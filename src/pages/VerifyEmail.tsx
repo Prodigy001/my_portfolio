@@ -76,7 +76,7 @@ function VerifyEmail() {
   };
 
   return (
-    <div className="relative bg-[#F4F4F5] xs:max-md:bg-white h-screen w-full p-4 flex gap-4 overflow-auto">
+    <div className="relative bg-[#F4F4F5] xs:max-md:bg-white h-screen xs:max-md:h-auto w-full p-4 flex gap-4 overflow-auto">
       {/* Modal */}
       {verified && (
         <div className="absolute z-10 size-full top-0 left-0 bg-[#F4F4F5] xs:max-md:bg-white flex items-center justify-center">
