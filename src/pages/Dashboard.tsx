@@ -9,6 +9,11 @@ function Dashboard() {
 
   return (
     <div className="flex h-screen bg-neutral-200">
+      {/* Skip to main content link for keyboard users */}
+      <a href="#main-content" className="skip-to-main">
+        Skip to main content
+      </a>
+      
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
         <div
