@@ -115,10 +115,14 @@ const VerifyPhoneModal = ({
   const [isConfirmed, setIsConfirmed] = useState(false);
 
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const previousIsOpenRef = useRef(false);
+  const previousStepRef = useRef<"phone" | "code">("phone");
 
   // Reset state when modal closes
   useEffect(() => {
-    if (!isOpen) {
+    if (previousIsOpenRef.current && !isOpen) {
+      // Modal just closed, reset all state
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setStep("phone");
       setPhoneNumber("");
       setCode(["", "", "", "", "", ""]);
@@ -128,23 +132,29 @@ const VerifyPhoneModal = ({
       setIsChanging(false);
       setIsConfirmed(false);
     }
+    previousIsOpenRef.current = isOpen;
   }, [isOpen]);
+
+  // Initialize countdown when entering code step
+  useEffect(() => {
+    if (previousStepRef.current !== "code" && step === "code") {
+      // Just entered code step, initialize countdown
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setResendCountdown(60);
+    }
+    previousStepRef.current = step;
+  }, [step]);
 
   // Countdown timer effect
   useEffect(() => {
-    if (step === "code" && resendCountdown === 0) {
-      setResendCountdown(60);
-    }
-  }, [step]);
-
-  useEffect(() => {
     if (resendCountdown > 0) {
       const timer = setTimeout(() => {
-        setResendCountdown(resendCountdown - 1);
+        setResendCountdown((prev) => prev - 1);
       }, 1000);
       return () => clearTimeout(timer);
     } else if (resendCountdown === 0 && step === "code") {
       // When timer reaches 0, reset verification method to none
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setVerificationMethod("none");
     }
   }, [resendCountdown, step]);
@@ -166,7 +176,7 @@ const VerifyPhoneModal = ({
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     // Allow only numbers and common phone formatting characters
-    let cleanValue = value.replace(/[^\d\s\-\(\)]/g, "");
+    const cleanValue = value.replace(/[^\d\s\-()]/g, "");
     // Limit to 10 digits only
     const digitsOnly = cleanValue.replace(/\D/g, "").slice(0, 10);
     setPhoneNumber(digitsOnly);
@@ -178,10 +188,7 @@ const VerifyPhoneModal = ({
       return;
     }
 
-    // Simulate sending verification code
-    const fullPhone = `${selectedCountry.code} ${phoneNumber}`;
-    console.log(`Sending ${verificationMethod} code to ${fullPhone}`);
-
+    // Simulate sending verification code - in production, call API here
     // Move to code verification step
     setStep("code");
     // Focus first input
@@ -247,10 +254,8 @@ const VerifyPhoneModal = ({
 
     setIsVerifying(true);
 
-    // Simulate API call
+    // Simulate API call - in production, send verificationCode to backend
     setTimeout(() => {
-      console.log("Verifying code:", verificationCode);
-
       // Update user phone in context
       if (user) {
         setUser({
@@ -273,9 +278,7 @@ const VerifyPhoneModal = ({
   };
 
   const handleResend = () => {
-    console.log(
-      `Resending ${verificationMethod} code to ${selectedCountry.code} ${phoneNumber}`
-    );
+    // In production, call API to resend verification code
     setCode(["", "", "", "", "", ""]);
     setResendCountdown(60);
     inputRefs.current[0]?.focus();

@@ -19,7 +19,11 @@ const ModalWrapper = ({
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-y-auto py-4">
       {/* Backdrop */}
-      <div className="fixed inset-0 bg-[#0A18204D] backdrop-blur-[10px]" />
+      <div
+        className="absolute inset-0 bg-overlay backdrop-blur-[10px]"
+        onClick={onClose}
+        aria-hidden="true"
+      />
 
       {/* Modal content */}
       <div className="relative max-w-md w-full mx-4 my-auto">
@@ -28,15 +32,14 @@ const ModalWrapper = ({
             type="button"
             onClick={onClose}
             aria-label="Close modal"
-            title="close modal"
-            className="text-[#0A1820] text-2xl z-50 w-8 mb-2.5 aspect-square flex items-center justify-center rounded-full bg-[#F9F9FB] transition-colors"
+            className="text-overlay-dark text-2xl z-50 w-8 mb-2.5 aspect-square flex items-center justify-center rounded-full bg-neutral-150 transition-colors hover:bg-neutral-300"
           >
             <span className="sr-only">Close modal</span>
             <IconRemove />
           </button>
         </div>
         <div
-          className={`bg-white rounded-2xl shadow-2xl max-h-[calc(100vh-8rem)] overflow-y-auto ${className}`}
+          className={`bg-bg-card rounded-2xl shadow-2xl ${className}`}
           role="dialog"
           aria-modal="true"
         >

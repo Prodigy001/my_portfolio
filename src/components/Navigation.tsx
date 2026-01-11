@@ -34,18 +34,15 @@ const Navigation = () => {
   };
 
   return (
-    <div className="h-screen overflow-y-auto no-scrollbar flex flex-col bg-white px-4 py-6 border-r border-[#EDEDED]">
-      <button
-        onClick={() => handleNavigation("dashboard")}
-        className="cursor-pointer"
-      >
+    <div className="h-screen overflow-y-auto no-scrollbar flex flex-col bg-bg-card px-4 py-6 border-r border-border-light">
+      <div className="">
         <h1>
-          <img src={logo} alt="zabira" />
+          <img src={logo} alt="Zabira - Your trusted payment platform" />
         </h1>
       </button>
 
       {/* Navigation Items */}
-      <nav className="flex-1 mb-5 mt-9">
+      <nav className="flex-1 mb-5 mt-9" aria-label="Main navigation">
         <ul className="space-y-0.5 flex flex-col h-full">
           {navigationItems.map((item) => {
             const Icon = item.icon;
@@ -55,11 +52,13 @@ const Navigation = () => {
                   onClick={() => handleNavigation(item.id)}
                   className={`w-full flex items-center gap-3 p-3 rounded-md transition-colors ${
                     isActive(item.id)
-                      ? "bg-[#EBF0FF] text-[#0044EE]"
-                      : "text-[#1A1A1A5C] hover:bg-gray-50"
+                      ? "bg-primary-light text-primary"
+                      : "text-text-tertiary hover:bg-neutral-200"
                   }`}
+                  aria-current={isActive(item.id) ? "page" : undefined}
+                  aria-label={`Navigate to ${item.label}`}
                 >
-                  <span className="text-xl">
+                  <span className="text-xl" aria-hidden="true">
                     <Icon />
                   </span>
                   <span className="text-sm font-medium">{item.label}</span>
@@ -70,28 +69,28 @@ const Navigation = () => {
         </ul>
       </nav>
 
-      <div className=" bg-[url('./assets/CardRow.png')] bg-[#0044EE] bg-no-repeat bg-cover rounded-lg mb-5 text-white text-center">
+      <section className="bg-[url('./assets/CardRow.png')] bg-primary bg-no-repeat bg-cover rounded-lg mb-5 text-neutral-50 text-center" aria-label="Referral program">
         <h3 className="text-xs font-semibold mb-2 mt-14">REFER & EARN</h3>
         <p className="text-sm font-bold mb-3">Start Earning Rewards!</p>
-      </div>
+      </section>
 
-      <div className="px-6">
-        <h5 className="text-sm font-semibold text-zabira text-[#819099] mb-3">
+      <section className="px-6" aria-label="Download app">
+        <h5 className="text-sm font-semibold text-zabira text-text-muted mb-3">
           Download the Zabira App
         </h5>
 
-        <img src={qrCode} alt="Download zabira QR Code" className=" mx-auto" />
-      </div>
+        <img src={qrCode} alt="QR Code to download Zabira mobile app" className="mx-auto" />
+      </section>
 
       {/* Footer */}
-      <div className="px-6 mt-3">
-        <p className="font-semibold text-zabira text-sm mb-2 text-[#1A1A1AB2]">
+      <footer className="px-6 mt-3">
+        <p className="font-semibold text-zabira text-sm mb-2 text-text-secondary">
           Zabira Technologies
         </p>
-        <p className="text-zabira text-sm text-[#1A1A1A5C]">
+        <p className="text-zabira text-sm text-text-tertiary">
           © 2027 All Rights Reserved
         </p>
-      </div>
+      </footer>
     </div>
   );
 };
