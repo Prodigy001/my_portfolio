@@ -13,7 +13,7 @@ function VerifyEmail() {
   const { user } = useApp();
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [verified, setVerified] = useState(false);
-  const [resendCountdown, setResendCountdown] = useState(60);
+  const [resendCountdown, setResendCountdown] = useState(300);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   // Countdown timer effect
@@ -76,10 +76,10 @@ function VerifyEmail() {
   };
 
   return (
-    <div className="relative bg-[#F4F4F5] h-screen w-full p-4 flex gap-4 overflow-auto">
+    <div className="relative bg-[#F4F4F5] xs:max-md:bg-white h-screen xs:max-md:h-auto w-full p-4 flex gap-4 overflow-auto">
       {/* Modal */}
       {verified && (
-        <div className="absolute z-10 size-full top-0 left-0 bg-[#F4F4F5] flex items-center justify-center">
+        <div className="absolute z-10 size-full top-0 left-0 bg-[#F4F4F5] xs:max-md:bg-white flex items-center justify-center">
           <div className=" max-h-[80vh] w-125 overflow-auto no-scrollbar space-y-6">
             {/* inner form */}
             <div className=" text-black p-9 rounded-2xl bg-white shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
@@ -125,7 +125,7 @@ function VerifyEmail() {
       <main className="relative h-full w-full flex items-center justify-center">
         <div className=" max-h-[80vh] w-125 overflow-auto no-scrollbar space-y-6">
           {/* inner form */}
-          <div className=" text-black p-9 rounded-2xl bg-white shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
+          <div className=" text-black p-9 xs:max-md:px-0 rounded-2xl bg-white shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
             {/* text */}
             <div className="space-y-4">
               <h1 className="font-bold leading-[124%] -tracking-[1.2%] text-2xl text-[#1A1A1A]">
@@ -213,7 +213,7 @@ function VerifyEmail() {
                 <button
                   onClick={() => {
                     setCode(["", "", "", "", "", ""]);
-                    setResendCountdown(60);
+                    setResendCountdown(300);
                     inputRefs.current[0]?.focus();
                   }}
                 >

@@ -46,15 +46,15 @@ function ChangeEmail() {
   }
 
   return (
-    <div className="bg-[#F4F4F5] h-screen w-full p-4 flex gap-4 overflow-auto">
+    <div className="bg-[#F4F4F5] xs:max-md:bg-white h-screen xs:max-md:h-auto w-full p-4 flex gap-4 overflow-auto">
       <main className="relative h-full w-full flex items-center justify-center">
         <form
           onSubmit={(e) => e.preventDefault()}
           noValidate
-          className=" max-h-[80vh] w-125 overflow-auto no-scrollbar space-y-6"
+          className=" max-h-[80vh] w-125 overflow-auto no-scrollbar space-y-6 "
         >
           {/* inner form */}
-          <div className=" text-black p-9 rounded-2xl bg-white shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
+          <div className=" text-black p-9 xs:max-md:px-0 rounded-2xl bg-white shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
             {/* text */}
             <div className="space-y-4">
               <h1 className="font-bold leading-[124%] -tracking-[1.2%] text-2xl text-[#1A1A1A]">

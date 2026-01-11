@@ -57,6 +57,7 @@
   --color-bg-card-secondary: #fcfcfc;
   --color-bg-hover: #e1e1e2;
   --color-bg-hover-dark: #1a1a1a09;
+  --color-bg-btn-hover-dark: #e1e1e2;
   --color-bg-hover-blue: #22a0fc;
   --color-bg-disabled: #f4f4f5;
 
@@ -71,6 +72,9 @@
 
   /* Interactive Colors */
   --color-interactive-text: #323232;
+
+  --breakpoint-xs: 300px;
+
 }
 
 * {
@@ -235,12 +239,12 @@ button {
 }
 
 #half-circle {
-  animation: spin 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+  animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
   transform-origin: center;
 }
 
 #check-mark {
-  animation: grow 3s linear infinite;
+  animation: grow 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
   transform-origin: center;
 }
 

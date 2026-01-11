@@ -231,9 +231,9 @@ function AuthLayout() {
     acceptTerms: false,
     showPassword: true,
   });
-  const [error, setError] = useState("");
+  
   const BG_STORE = [<BgOne />, <BgTwo />, <BgThree />, <BgFour />, <BgFive />];
-  const strengthIndicatorText = ["Weak", "Average", "Good", "Strong"];
+  
   const bgStoreLength = BG_STORE.length;
 
   useEffect(() => {
@@ -247,141 +247,20 @@ function AuthLayout() {
     };
   }, [bgStoreLength]);
 
-  const PASSWORD_VISUALS = [
-    {
-      label: "minimumLength",
-      text: "Must be at least 8 characters",
-    },
-    {
-      label: "lowercase|uppercase",
-      text: " Capital letters and lower case, e.g. A and a",
-    },
-    {
-      label: "number",
-      text: "Numbers, e.g. 1234567890",
-    },
-    {
-      label: "specialCharacter",
-      text: "Special characters, e.g. !@#$%^&*()_+{}",
-    },
-  ];
 
-  const PASSWORD_VALIDATOR: Record<string, (password: string) => string> = {
-    minimumLength: (password: string) => {
-      return /.{8,}/.test(password) ? "" : "minimumLength";
-    },
-    lowercase: (password: string) => {
-      return /(?=.*[a-z])/.test(password) ? "" : "lowercase";
-    },
-    uppercase: (password: string) => {
-      return /(?=.*[A-Z])/.test(password) ? "" : "uppercase";
-    },
-    number: (password: string) => {
-      return /(?=.*\d)/.test(password) ? "" : "number";
-    },
-    specialCharacter: (password: string) => {
-      return /(?=.*[!@#$%^&*()_+{}])/.test(password) ? "" : "specialCharacter";
-    },
-  };
 
-  const enableSignupBtn =
-    Boolean(user.email) &&
-    Boolean(user.password) &&
-    user.passwordStrength > 2 &&
-    user.acceptTerms;
 
-  const beginTyping = Boolean(user.email) || Boolean(user.password);
 
-  function acceptTerms() {
-    setUserData({
-      ...user,
-      acceptTerms: !user.acceptTerms,
-    });
-  }
+ 
 
-  function showPassword() {
-    setUserData({
-      ...user,
-      showPassword: !user.showPassword,
-    });
-  }
 
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const name = e.target.name;
-    const value = e.target.value;
-    let failedMatches: string[] = [];
-    let strength = 4;
-    if (name === "password") {
-      for (const validator in PASSWORD_VALIDATOR) {
-        failedMatches.push(PASSWORD_VALIDATOR[validator](value));
-      }
-      failedMatches = failedMatches.filter((match) => Boolean(match));
-      if (failedMatches.length === 0) {
-        strength = 4;
-      } else if (
-        !["minimumLength", "lowercase", "uppercase", "number"].some((item) =>
-          failedMatches.includes(item)
-        )
-      ) {
-        strength = 3;
-      } else if (
-        !["minimumLength", "number"].some((item) =>
-          failedMatches.includes(item)
-        ) &&
-        ["lowercase", "uppercase"].some((item) => failedMatches.includes(item))
-      ) {
-        strength = 2;
-      } else {
-        strength = 1;
-      }
-    }
 
-    setUserData({
-      ...user,
-      [name]: value,
-      failedPasswordMatches: failedMatches,
-      passwordStrength: strength,
-    });
-  }
+ 
 
-  function handleSignUp(e: React.FormEvent) {
-    e.preventDefault();
-    setError("");
 
-    // Validate inputs
-    if (!user.email || !user.password) {
-      setError("Please fill in all required fields");
-      return;
-    }
-
-    if (user.passwordStrength < 3) {
-      setError("Password is not strong enough");
-      return;
-    }
-
-    // Check if user already exists
-    const existingUser = localStorage.getItem("zabira_user");
-    if (existingUser) {
-      const parsed = JSON.parse(existingUser);
-      if (parsed.email === user.email) {
-        setError("Email already registered. Please login instead.");
-        return;
-      }
-    }
-
-    // Store user data
-    const newUser = {
-      email: user.email,
-      password: user.password,
-      referralCode: user.referralCode,
-    };
-
-    saveUserToContext(newUser);
-    navigate("/dashboard");
-  }
 
   return (
-    <div className="bg-bg-app h-screen w-full p-4 flex gap-4 overflow-auto">
+    <div className="bg-bg-app xs:max-md:bg-white h-screen w-full p-4 flex gap-4 xs:max-md:gap-0 overflow-auto">
       <aside
         className="h-full overflow-hidden w-[30%] max-w-md sticky top-0 rounded-2xl bg-linear-to-b from-primary-blue-darker to-neutral-950"
         aria-label="Zabira features showcase"
@@ -400,15 +279,18 @@ function AuthLayout() {
           />
         </div>
       </aside>
-      <main className="relative h-full w-full flex items-center justify-center">
-        <div className="absolute top-0 right-0 w-full flex justify-end z-10">
+      <main className="relative h-full w-full flex items-center xs:max-md:items-start xs:max-md:pt-10 justify-center ">
+        <div className="absolute top-0 right-0 w-full flex justify-end xs:max-md:justify-between xs:max-md:items-center z-10">
+          <div className="md:hidden">
+             <IconZabira2 width="90" textFill="#1A1A1A" />
+          </div>
           <nav className="flex" aria-label="Quick actions">
             <button
-              className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white pl-4 pr-3 rounded-l-[50px] border border-[#E1E1E2] h-9 hover:bg-[#F4F4F5] transition-colors"
+              className="text-[#1A1A1A] xs:max-md:text-sm font-medium flex items-center gap-1 bg-white xs:max-md:bg-bg-app pl-4 pr-3 xs:max-md:p-2 rounded-l-[50px] border border-[#E1E1E2] h-9 hover:bg-bg-btn-hover-dark xs:max-md:hover:bg-[#f4f4f52a] transition-colors"
               aria-label="Check exchange rates"
             >
               <div
-                className="size-5 min-w-5 flex items-center justify-center"
+                className="size-5 min-w-5 flex items-center justify-center xs:max-md:size-4 xs:max-md:min-w-4"
                 aria-hidden="true"
               >
                 <IconCheckRates />
@@ -417,11 +299,11 @@ function AuthLayout() {
             </button>
             <a
               href="mailto:hello@ayoosota.com"
-              className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white p-3 rounded-r-[50px] border border-[#E1E1E2] border-l-transparent h-9 hover:bg-[#F4F4F5] transition-colors"
+              className="text-[#1A1A1A] xs:max-md:text-sm font-medium flex items-center gap-1 bg-white xs:max-md:bg-bg-app p-3 xs:max-md:p-2 rounded-r-[50px] border border-[#E1E1E2] border-l-transparent h-9 hover:bg-bg-btn-hover-dark xs:max-md:hover:bg-[#f4f4f52a] transition-colors"
               aria-label="Get help and support"
             >
               <div
-                className="size-5 min-w-5 flex items-center justify-center"
+                className="size-5 min-w-5 flex items-center justify-center xs:max-md:size-4 xs:max-md:min-w-4"
                 aria-hidden="true"
               >
                 <IconGetHelp />
