@@ -91,13 +91,13 @@ function Login() {
   }
 
   return (
-    <div className="bg-bg-app h-screen w-full p-4 flex gap-4 overflow-auto">
+    <div className="bg-bg-app xs:max-md:bg-white h-screen w-full p-4 flex gap-4 overflow-auto">
       <main className="relative h-full w-full flex items-center justify-center">
         <div className=" max-h-[80vh] w-125 overflow-auto no-scrollbar space-y-6">
           {/* inner form */}
           <form
             onSubmit={handleLogin}
-            className=" text-neutral-950 p-9 rounded-2xl bg-bg-card shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6"
+            className=" text-neutral-950 p-9 xs:max-md:px-0 rounded-2xl bg-bg-card shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6"
           >
             {/* section 1 */}
             <div className="space-y-6">

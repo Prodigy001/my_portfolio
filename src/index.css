@@ -71,6 +71,9 @@
 
   /* Interactive Colors */
   --color-interactive-text: #323232;
+
+  --breakpoint-xs: 300px;
+
 }
 
 * {
@@ -235,12 +238,12 @@ button {
 }
 
 #half-circle {
-  animation: spin 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+  animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
   transform-origin: center;
 }
 
 #check-mark {
-  animation: grow 3s linear infinite;
+  animation: grow 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
   transform-origin: center;
 }
 
