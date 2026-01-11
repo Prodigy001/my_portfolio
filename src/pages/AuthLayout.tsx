@@ -231,9 +231,9 @@ function AuthLayout() {
     acceptTerms: false,
     showPassword: true,
   });
-  const [error, setError] = useState("");
+  
   const BG_STORE = [<BgOne />, <BgTwo />, <BgThree />, <BgFour />, <BgFive />];
-  const strengthIndicatorText = ["Weak", "Average", "Good", "Strong"];
+  
   const bgStoreLength = BG_STORE.length;
 
   useEffect(() => {
@@ -247,138 +247,17 @@ function AuthLayout() {
     };
   }, [bgStoreLength]);
 
-  const PASSWORD_VISUALS = [
-    {
-      label: "minimumLength",
-      text: "Must be at least 8 characters",
-    },
-    {
-      label: "lowercase|uppercase",
-      text: " Capital letters and lower case, e.g. A and a",
-    },
-    {
-      label: "number",
-      text: "Numbers, e.g. 1234567890",
-    },
-    {
-      label: "specialCharacter",
-      text: "Special characters, e.g. !@#$%^&*()_+{}",
-    },
-  ];
 
-  const PASSWORD_VALIDATOR: Record<string, (password: string) => string> = {
-    minimumLength: (password: string) => {
-      return /.{8,}/.test(password) ? "" : "minimumLength";
-    },
-    lowercase: (password: string) => {
-      return /(?=.*[a-z])/.test(password) ? "" : "lowercase";
-    },
-    uppercase: (password: string) => {
-      return /(?=.*[A-Z])/.test(password) ? "" : "uppercase";
-    },
-    number: (password: string) => {
-      return /(?=.*\d)/.test(password) ? "" : "number";
-    },
-    specialCharacter: (password: string) => {
-      return /(?=.*[!@#$%^&*()_+{}])/.test(password) ? "" : "specialCharacter";
-    },
-  };
 
-  const enableSignupBtn =
-    Boolean(user.email) &&
-    Boolean(user.password) &&
-    user.passwordStrength > 2 &&
-    user.acceptTerms;
 
-  const beginTyping = Boolean(user.email) || Boolean(user.password);
 
-  function acceptTerms() {
-    setUserData({
-      ...user,
-      acceptTerms: !user.acceptTerms,
-    });
-  }
+ 
 
-  function showPassword() {
-    setUserData({
-      ...user,
-      showPassword: !user.showPassword,
-    });
-  }
 
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const name = e.target.name;
-    const value = e.target.value;
-    let failedMatches: string[] = [];
-    let strength = 4;
-    if (name === "password") {
-      for (const validator in PASSWORD_VALIDATOR) {
-        failedMatches.push(PASSWORD_VALIDATOR[validator](value));
-      }
-      failedMatches = failedMatches.filter((match) => Boolean(match));
-      if (failedMatches.length === 0) {
-        strength = 4;
-      } else if (
-        !["minimumLength", "lowercase", "uppercase", "number"].some((item) =>
-          failedMatches.includes(item)
-        )
-      ) {
-        strength = 3;
-      } else if (
-        !["minimumLength", "number"].some((item) =>
-          failedMatches.includes(item)
-        ) &&
-        ["lowercase", "uppercase"].some((item) => failedMatches.includes(item))
-      ) {
-        strength = 2;
-      } else {
-        strength = 1;
-      }
-    }
 
-    setUserData({
-      ...user,
-      [name]: value,
-      failedPasswordMatches: failedMatches,
-      passwordStrength: strength,
-    });
-  }
+ 
 
-  function handleSignUp(e: React.FormEvent) {
-    e.preventDefault();
-    setError("");
 
-    // Validate inputs
-    if (!user.email || !user.password) {
-      setError("Please fill in all required fields");
-      return;
-    }
-
-    if (user.passwordStrength < 3) {
-      setError("Password is not strong enough");
-      return;
-    }
-
-    // Check if user already exists
-    const existingUser = localStorage.getItem("zabira_user");
-    if (existingUser) {
-      const parsed = JSON.parse(existingUser);
-      if (parsed.email === user.email) {
-        setError("Email already registered. Please login instead.");
-        return;
-      }
-    }
-
-    // Store user data
-    const newUser = {
-      email: user.email,
-      password: user.password,
-      referralCode: user.referralCode,
-    };
-
-    saveUserToContext(newUser);
-    navigate("/dashboard");
-  }
 
   return (
     <div className="bg-bg-app h-screen w-full p-4 flex gap-4 overflow-auto">
