@@ -180,32 +180,34 @@ function Signup() {
   }
 
   return (
-    <div className="bg-[#F4F4F5] h-screen w-full p-4 flex gap-4 overflow-auto">
+    <div className="bg-bg-app h-screen w-full p-4 flex gap-4 overflow-auto">
       <main className="relative h-full w-full flex items-center justify-center">
         <div className=" max-h-[80vh] w-125 overflow-auto no-scrollbar space-y-6">
           {/* inner form */}
-          <div className=" text-black p-9 rounded-2xl bg-white shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
+          <form onSubmit={handleSignUp} className=" text-neutral-950 p-9 rounded-2xl bg-bg-card shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
             {/* section 1 */}
             <div className="space-y-6">
-              <h1 className="font-bold leading-[124%] -tracking-[1.2%] text-2xl text-[#1A1A1A]">
+              <h1 className="font-bold leading-[124%] -tracking-[1.2%] text-2xl text-text-primary">
                 Create an account in 2 minutes!
               </h1>
 
               {beginTyping ? (
                 <div
-                  className={`relative bg-gradient-purple bg-cover p-4 overflow-hidden rounded-xl border-2 border-[#FFFFFF2E] flex gap-3 items-start justify-around w-full shrink-0`}
+                  className={`relative bg-gradient-purple bg-cover p-4 overflow-hidden rounded-xl border-2 border-border-white flex gap-3 items-start justify-around w-full shrink-0`}
+                  aria-hidden="true"
                 >
                   <div className="absolute right-0 top-0 h-full aspect-square flex items-center justify-center">
                     <IconRocket />
                   </div>
 
-                  <p className="font-bold leading-[124%] -tracking-[1.2%] text-lg text-[#FFFFFF]">
+                  <p className="font-bold leading-[124%] -tracking-[1.2%] text-lg text-neutral-50">
                     Speed UP Your Crypto, Giftcard & Bill Payments
                   </p>
                 </div>
               ) : (
                 <div
-                  className={`bg-gradient-green bg-cover p-4 border-2 overflow-hidden rounded-xl border-[#FFFFFF2E] flex gap-3 items-start justify-around w-full shrink-0`}
+                  className={`bg-gradient-green bg-cover p-4 border-2 overflow-hidden rounded-xl border-border-white flex gap-3 items-start justify-around w-full shrink-0`}
+                  aria-hidden="true"
                 >
                   <div className="w-24 aspect-[1/0.5]">
                     <img
@@ -215,7 +217,7 @@ function Signup() {
                     />
                   </div>
 
-                  <p className="font-bold leading-[124%] -tracking-[1.2%] text-lg text-[#FFFFFF]">
+                  <p className="font-bold leading-[124%] -tracking-[1.2%] text-lg text-neutral-50">
                     SELL & GAIN up to ₦50 on every $ Crypto Trade
                   </p>
                 </div>
@@ -223,46 +225,50 @@ function Signup() {
 
               {/* Error Message */}
               {error && (
-                <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                <div className="p-3 bg-red-50 border border-red-200 rounded-lg" role="alert">
                   <p className="text-red-600 text-sm">{error}</p>
                 </div>
               )}
 
               {/* Email */}
-              <div className="border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+              <div className="border border-border-default rounded-lg p-4">
+                <label htmlFor="email-input" className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-text-secondary">
                   Email
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                  <div className="size-6 min-w-6 flex items-center justify-center">
+                  <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
                     <IconEmail stroke={user.email ? "#0044EE" : "#819099"} />
                   </div>
                   <input
+                    id="email-input"
                     name="email"
                     type="email"
                     value={user.email}
                     onChange={handleInputChange}
                     placeholder="Type your email"
                     autoFocus={true}
-                    className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
+                    autoComplete="email"
+                    className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-text-tertiary w-full"
                   />
                 </div>
               </div>
               {/* Password */}
-              <div className=" border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+              <div className=" border border-border-default rounded-lg p-4">
+                <label htmlFor="password" className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-text-secondary">
                   Password
                 </label>
                 <div className="relative flex items-center gap-2 mt-2 ">
                   <div className="absolute h-full aspect-square right-0">
                     <button
+                      type="button"
                       onClick={showPassword}
                       className="size-full flex items-center justify-center"
+                      aria-label={user.showPassword ? "Hide password" : "Show password"}
                     >
                       {user.showPassword ? <EyeDisable /> : <Eye />}
                     </button>
                   </div>
-                  <div className="size-6 min-w-6 flex items-center justify-center">
+                  <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
                     <IconPassword
                       stroke={user.password ? "#0044EE" : "#819099"}
                     />
@@ -274,14 +280,15 @@ function Signup() {
                     value={user.password}
                     onChange={handleInputChange}
                     placeholder="Enter your password"
-                    className="outline-none leading-[140%] -tracking-[1%]   placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
+                    autoComplete="new-password"
+                    className="outline-none leading-[140%] -tracking-[1%]   placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-text-tertiary w-full"
                   />
                 </div>
               </div>
               {/* Password Validator */}
               {user.password && (
-                <div className="space-y-3">
-                  <div className="flex gap-4 items-center bg-[#F9F9FB] rounded-lg py-1 px-3">
+                <div className="space-y-3" role="status" aria-label="Password strength indicator">
+                  <div className="flex gap-4 items-center bg-neutral-150 rounded-lg py-1 px-3">
                     <p>
                       {strengthIndicatorText[user.passwordStrength - 1] ??
                         "Weak"}
@@ -309,7 +316,7 @@ function Signup() {
                           return (
                             <div
                               key={level}
-                              className={`h-1 bg-[#E1E1E2] rounded-sm w-full`}
+                              className={`h-1 bg-border-default rounded-sm w-full`}
                             ></div>
                           );
                         })}
@@ -321,7 +328,7 @@ function Signup() {
                         key={visual.label}
                         className="flex items-center gap-3"
                       >
-                        <div className="size-4 min-w-4  rounded-full overflow-hidden">
+                        <div className="size-4 min-w-4  rounded-full overflow-hidden" aria-hidden="true">
                           {visual.label
                             .split("|")
                             .some((item) =>
@@ -333,14 +340,14 @@ function Signup() {
                           )}
                         </div>
                         <p
-                          className={`leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1A] ${
+                          className={`leading-[124%] -tracking-[1.2%] text-sm text-text-primary ${
                             visual.label
                               .split("|")
                               .some((item) =>
                                 user.failedPasswordMatches.includes(item)
                               )
-                              ? "text-[#E92F15]"
-                              : "text-[#819099]"
+                              ? "text-error"
+                              : "text-text-muted"
                           }`}
                         >
                           {visual.text}
@@ -351,22 +358,23 @@ function Signup() {
                 </div>
               )}
               {/* Referral */}
-              <div className="border border-[#E1E1E2] rounded-lg p-4">
-                <label className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]">
+              <div className="border border-border-default rounded-lg p-4">
+                <label htmlFor="referral-code" className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-text-secondary">
                   Referral Code (Optional)
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                  <div className="size-6 min-w-6 flex items-center justify-center">
+                  <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
                     <IconReferralCode
                       stroke={user.referralCode ? "#0044EE" : "#819099"}
                     />
                   </div>
                   <input
+                    id="referral-code"
                     name="referralCode"
                     value={user.referralCode}
                     onChange={handleInputChange}
                     placeholder="Enter referral code"
-                    className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
+                    className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-text-tertiary w-full"
                   />
                 </div>
               </div>
@@ -374,12 +382,17 @@ function Signup() {
               <div className="flex items-start gap-3">
                 <div className="">
                   <button
+                    type="button"
                     onClick={acceptTerms}
                     className={`${
                       user.acceptTerms
                         ? "bg-zabira-blue border-zabira-blue"
-                        : "bg-transparent border-[#1A1A1A5C]"
+                        : "bg-transparent border-text-tertiary"
                     } size-5 min-w-5 border-2 rounded-md`}
+                    aria-label={user.acceptTerms ? "Terms accepted" : "Accept terms"}
+                    aria-pressed={user.acceptTerms}
+                    role="checkbox"
+                    aria-checked={user.acceptTerms}
                   >
                     {user.acceptTerms && (
                       <IconCorrectPasswordMatch rectFill="#0044ee" />
@@ -387,15 +400,15 @@ function Signup() {
                   </button>
                 </div>
 
-                <p className="leading-[140%] -tracking-[1%] text-sm text-[#1A1A1A]">
+                <p className="leading-[140%] -tracking-[1%] text-sm text-text-primary">
                   By clicking 'Sign Up', I agree to Zabira's{" "}
-                  <span className="font-medium text-zabira-blue">
+                  <button type="button" className="font-medium text-zabira-blue hover:underline">
                     Terms of Service
-                  </span>{" "}
+                  </button>{" "}
                   and{" "}
-                  <span className="font-medium text-zabira-blue">
+                  <button type="button" className="font-medium text-zabira-blue hover:underline">
                     Privacy Policy
-                  </span>
+                  </button>
                 </p>
               </div>
             </div>
@@ -403,58 +416,59 @@ function Signup() {
             <div className="space-y-5">
               <div>
                 <button
+                  type="submit"
                   disabled={!enableSignupBtn}
-                  onClick={handleSignUp}
-                  className="h-11 w-full flex items-center gap-2 justify-center bg-[#1A1A1A] text-white rounded-md font-medium hover:bg-[#1a1a1aea] transition-colors disabled:bg-[#F4F4F5] disabled:text-[#1A1A1A2E] disabled:cursor-not-allowed "
+                  className="h-11 w-full flex items-center gap-2 justify-center bg-zabira-dark text-neutral-50 rounded-md font-medium hover:bg-[#1a1a1aea] transition-colors disabled:bg-bg-disabled disabled:text-text-disabled disabled:cursor-not-allowed "
                 >
                   {enableSignupBtn && <IconShield />}
                   Sign Up
                 </button>
               </div>
-              <p className="text-center leading-[124%] -tracking-[1.2%] text-[#1A1A1AB2]">
+              <p className="text-center leading-[124%] -tracking-[1.2%] text-text-secondary">
                 Or continue with
               </p>
 
               <div className="flex w-full items-center justify-between gap-6">
                 <div className="w-full">
-                  <button className="h-11 w-full bg-[#FCFCFC] hover:bg-[#1a1a1a09] border border-[#E1E1E2] rounded-md flex items-center justify-center gap-2">
-                    <div className="size-6 min-w-6 flex items-center justify-center">
+                  <button type="button" className="h-11 w-full bg-bg-card-secondary hover:bg-bg-hover-dark border border-border-default rounded-md flex items-center justify-center gap-2" aria-label="Sign up with Google">
+                    <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
                       <IconGoogle />
                     </div>
-                    <p className="font-semibold leading-[124%] text-base text-[#1A1A1A]">
+                    <span className="font-semibold leading-[124%] text-base text-text-primary">
                       Google
-                    </p>
+                    </span>
                   </button>
                 </div>
                 <div className="w-full">
-                  <button className="h-11 w-full bg-[#1A1A1A] hover:bg-[#1a1a1aea] border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2">
-                    <div className="size-6 min-w-6 flex items-center justify-center">
+                  <button type="button" className="h-11 w-full bg-zabira-dark hover:bg-[#1a1a1aea] border border-border-muted rounded-md flex items-center justify-center gap-2" aria-label="Sign up with Apple">
+                    <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
                       <IconApple />
                     </div>
-                    <p className="font-semibold leading-[124%] text-base text-white">
+                    <span className="font-semibold leading-[124%] text-base text-neutral-50">
                       Apple
-                    </p>
+                    </span>
                   </button>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
           {/* outer form */}
           <div className="flex flex-col items-center gap-6">
-            <p className="font-medium leading-[124%] -tracking-[1.2%] text-[#1A1A1A] text-center">
+            <p className="font-medium leading-[124%] -tracking-[1.2%] text-text-primary text-center">
               Already have an account?{" "}
-              <span
-                className=" text-zabira-blue cursor-pointer hover:underline"
+              <button
+                type="button"
+                className="text-zabira-blue cursor-pointer hover:underline"
                 onClick={() => navigate("/auth/login")}
               >
                 Login
-              </span>
+              </button>
             </p>
-            <div className="bg-white p-2 flex items-center rounded-md gap-1">
-              <div className="size-5 min-w-5 flex items-center justify-center">
+            <div className="bg-bg-card p-2 flex items-center rounded-md gap-1">
+              <div className="size-5 min-w-5 flex items-center justify-center" aria-hidden="true">
                 <IconNDPR />
               </div>
-              <p className="font-medium text-sm leading-[124%] -tracking-[1.2%] text-[#1A1A1AB2]">
+              <p className="font-medium text-sm leading-[124%] -tracking-[1.2%] text-text-secondary">
                 NDPR Compliant
               </p>
             </div>
