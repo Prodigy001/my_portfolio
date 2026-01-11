@@ -30,7 +30,7 @@ import { Outlet } from "react-router-dom";
 const asideBannerMainText =
   "font-extrabold text-2xl leading-[124%] -tracking-[1.2%] relative z-10 text-white";
 const asideBannerSubText =
-  "font-light text-xl leading-[140%] -tracking-[1%] text-[#FFFFFFB2] relative z-10";
+  "font-light text-xl leading-[140%] -tracking-[1%] text-text-white-secondary relative z-10";
 
 interface ProgressBarProps {
   tabsLength?: number;
@@ -82,7 +82,7 @@ function BgTwo() {
   return (
     <div className="relative h-full flex flex-col justify-between fade_In">
       <div className="absolute size-full px-7 pt-20">
-        <div className="w-full h-[70%] bg-[#00102680] rounded-xl flex items-center justify-center px-9">
+        <div className="w-full h-[70%] bg-overlay-darker rounded-xl flex items-center justify-center px-9">
           <div className="relative w-full aspect-square">
             <img
               alt="Vector Illustration of a man looking at his alt coins wallet portfolio"
@@ -381,8 +381,8 @@ function AuthLayout() {
   }
 
   return (
-    <div className="bg-[#F4F4F5] h-screen w-full p-4 flex gap-4 overflow-auto">
-      <aside className=" h-full overflow-hidden w-[30%] max-w-md sticky top-0 rounded-2xl bg-linear-to-b from-[#003B8D] to-[#000000]">
+    <div className="bg-bg-app h-screen w-full p-4 flex gap-4 overflow-auto">
+      <aside className="h-full overflow-hidden w-[30%] max-w-md sticky top-0 rounded-2xl bg-linear-to-b from-primary-blue-darker to-neutral-950" aria-label="Zabira features showcase">
         <div className="absolute h-full w-full">
           {BG_STORE[backgroundProgress]}
         </div>
@@ -399,31 +399,31 @@ function AuthLayout() {
       </aside>
       <main className="relative h-full w-full flex items-center justify-center">
         <div className="absolute top-0 right-0 w-full flex justify-end">
-          <nav className="flex">
-            <div className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white pl-4 pr-3 rounded-l-[50px] border border-[#E1E1E2] h-9">
-              <div className="size-5 min-w-5 flex items-center justify-center">
+          <nav className="flex" aria-label="Quick actions">
+            <button className="text-text-primary font-medium flex items-center gap-1 bg-bg-card pl-4 pr-3 rounded-l-[50px] border border-border-default h-9 hover:bg-bg-hover transition-colors" aria-label="Check exchange rates">
+              <div className="size-5 min-w-5 flex items-center justify-center" aria-hidden="true">
                 <IconCheckRates />
               </div>
-              <p>Check Rates</p>
-            </div>
-            <div className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white p-3 rounded-r-[50px] border border-[#E1E1E2] border-l-transparent h-9">
-              <div className="size-5 min-w-5 flex items-center justify-center">
+              <span>Check Rates</span>
+            </button>
+            <button className="text-text-primary font-medium flex items-center gap-1 bg-bg-card p-3 rounded-r-[50px] border border-border-default border-l-transparent h-9 hover:bg-bg-hover transition-colors" aria-label="Get help and support">
+              <div className="size-5 min-w-5 flex items-center justify-center" aria-hidden="true">
                 <IconGetHelp />
               </div>
-              <p>Get Help</p>
-            </div>
+              <span>Get Help</span>
+            </button>
           </nav>
         </div>
 
         <Outlet />
 
-        <div className="absolute bottom-0 w-full bg-ed-50 px-4 text-[#1A1A1AB2] font-medium text-sm leading-4 flex items-center justify-between">
+        <footer className="absolute bottom-0 w-full px-4 text-text-secondary font-medium text-sm leading-4 flex items-center justify-between">
           <p>&#169; Zabira, {new Date().getFullYear()}</p>
-          <nav className="flex gap-9 items-center">
-            <p>Privacy Policy</p>
-            <p>Terms of Service</p>
+          <nav className="flex gap-9 items-center" aria-label="Legal">
+            <button type="button" className="hover:underline">Privacy Policy</button>
+            <button type="button" className="hover:underline">Terms of Service</button>
           </nav>
-        </div>
+        </footer>
       </main>
     </div>
   );
