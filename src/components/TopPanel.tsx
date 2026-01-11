@@ -30,49 +30,41 @@ const TopPanel = ({ onMenuClick }: TopPanelProps) => {
         <h4 className="font-bold text-base text-zabira-dark mb-1">
           Hi <span className="capitalize">{userName}</span> 👋🏽
         </h4>
-        <p className="text-text-tertiary font-medium text-zabira text-sm">
+        <p className="text-text-tertiary font-medium text-sm">
           Buy/Sell BTC, ETH. Start trading now on Zabira
         </p>
       </article>
 
       <div className="flex items-center gap-12">
-        <nav className="flex justify-end" aria-label="Quick actions">
-          <div className="flex">
-            <button 
-              className="text-text-primary font-medium flex items-center gap-1 bg-bg-card pl-4 pr-3 rounded-l-[50px] border border-border-default h-9 hover:bg-bg-hover transition-colors"
-              aria-label="Check exchange rates"
+        <nav className="max-xl:hidden flex justify-end">
+          <button
+            className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white pl-4 pr-3 rounded-l-[50px] border border-[#E1E1E2] h-9 hover:bg-[#F4F4F5] transition-colors"
+            aria-label="Check exchange rates"
+          >
+            <div
+              className="size-5 min-w-5 flex items-center justify-center"
+              aria-hidden="true"
             >
-              <span className="size-5 min-w-5 flex items-center justify-center" aria-hidden="true">
-      <div className="flex items-center gap-12 ">
-        <div className="max-xl:hidden flex justify-end">
-          <nav className="flex">
-            <button className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white pl-4 pr-3 rounded-l-[50px] border border-[#E1E1E2] h-9">
-              <div className="size-5 min-w-5 flex items-center justify-center">
-                <IconCheckRates />
-              </span>
-              <span>Check Rates</span>
-            </button>
-            <button 
-              className="text-text-primary font-medium flex items-center gap-1 bg-bg-card p-3 rounded-r-[50px] border border-border-default border-l-transparent h-9 hover:bg-bg-hover transition-colors"
-              aria-label="Get help and support"
+              <IconCheckRates />
+            </div>
+            <span>Check Rates</span>
+          </button>
+          <a
+            href="mailto:hello@ayoosota.com"
+            className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white p-3 rounded-r-[50px] border border-[#E1E1E2] border-l-transparent h-9 hover:bg-[#F4F4F5] transition-colors"
+            aria-label="Get help and support"
+          >
+            <div
+              className="size-5 min-w-5 flex items-center justify-center"
+              aria-hidden="true"
             >
-              <span className="size-5 min-w-5 flex items-center justify-center" aria-hidden="true">
-              </div>
-              <p>Check Rates</p>
-            </button>
-            <a
-              href="mailto:hello@ayoosota.com"
-              className="text-[#1A1A1A] font-medium flex items-center gap-1 bg-white p-3 rounded-r-[50px] border border-[#E1E1E2] border-l-transparent h-9"
-            >
-              <div className="size-5 min-w-5 flex items-center justify-center">
-                <IconGetHelp />
-              </span>
-              <span>Get Help</span>
-            </button>
+              <IconGetHelp />
+            </div>
+            <span>Get Help</span>
           </a>
         </nav>
-        <button 
-          className="p-2 relative md:bg-bg-card-secondary hover:bg-[#E1E1E2] text-neutral-700 rounded-full transition-colors md:shadow-[0px_1px_2px_0px_rgba(26,26,26,0.08)] hover:bg-bg-hover"
+        <button
+          className="p-2 relative bg-transparent hover:bg-[#E1E1E2] text-neutral-700 rounded-full transition-colors md:shadow-[0px_1px_2px_0px_rgba(26,26,26,0.08)]"
           aria-label="Notifications - 8 unread"
         >
           <span className="text-[1.625rem] md:text-xl text-[#52525B]">
@@ -85,7 +77,7 @@ const TopPanel = ({ onMenuClick }: TopPanelProps) => {
             </p>
           </div>
         </button>
-        <button 
+        <button
           className="p-1 border border-secondary rounded-full hover:bg-neutral-200 transition-colors"
           aria-label="User profile"
         >

@@ -95,7 +95,10 @@ function Login() {
       <main className="relative h-full w-full flex items-center justify-center">
         <div className=" max-h-[80vh] w-125 overflow-auto no-scrollbar space-y-6">
           {/* inner form */}
-          <form onSubmit={handleLogin} className=" text-neutral-950 p-9 rounded-2xl bg-bg-card shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
+          <form
+            onSubmit={handleLogin}
+            className=" text-neutral-950 p-9 rounded-2xl bg-bg-card shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6"
+          >
             {/* section 1 */}
             <div className="space-y-6">
               <h1 className="font-bold leading-[124%] -tracking-[1.2%] text-2xl text-text-primary">
@@ -135,14 +138,15 @@ function Login() {
 
               {/* Error Message */}
               {loginData.error && (
-                <div className="p-3 bg-red-50 border border-red-200 rounded-lg" role="alert">
+                <div
+                  className="p-3 bg-red-50 border border-red-200 rounded-lg"
+                  role="alert"
+                >
                   <p className="text-red-600 text-sm">{loginData.error}</p>
                 </div>
               )}
 
               {/* Email */}
-              <div className="border border-border-default rounded-lg p-4">
-                <label htmlFor="email-input" className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-text-secondary">
               <div className="border border-[#E1E1E2] rounded-lg p-4">
                 <label
                   htmlFor="login-email"
@@ -151,13 +155,15 @@ function Login() {
                   Email
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                  <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
+                  <div
+                    className="size-6 min-w-6 flex items-center justify-center"
+                    aria-hidden="true"
+                  >
                     <IconEmail
                       stroke={loginData.email ? "#0044EE" : "#819099"}
                     />
                   </div>
                   <input
-                    id="email-input"
                     id="login-email"
                     name="email"
                     type="email"
@@ -172,8 +178,6 @@ function Login() {
               </div>
 
               {/* Password */}
-              <div className=" border border-border-default rounded-lg p-4">
-                <label htmlFor="password" className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-text-secondary">
               <div className=" border border-[#E1E1E2] rounded-lg p-4">
                 <label
                   htmlFor="login-password"
@@ -187,12 +191,19 @@ function Login() {
                       type="button"
                       onClick={showPassword}
                       className="size-full flex items-center justify-center"
-                      aria-label={loginData.showPassword ? "Hide password" : "Show password"}
+                      aria-label={
+                        loginData.showPassword
+                          ? "Hide password"
+                          : "Show password"
+                      }
                     >
                       {loginData.showPassword ? <EyeDisable /> : <Eye />}
                     </button>
                   </div>
-                  <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
+                  <div
+                    className="size-6 min-w-6 flex items-center justify-center"
+                    aria-hidden="true"
+                  >
                     <IconPassword
                       stroke={loginData.password ? "#0044EE" : "#819099"}
                     />
@@ -212,7 +223,10 @@ function Login() {
 
               {/* Forgot Password Link */}
               <div className="text-right">
-                <button type="button" className="text-zabira-blue font-medium text-sm cursor-pointer hover:underline">
+                <button
+                  type="button"
+                  className="text-zabira-blue font-medium text-sm cursor-pointer hover:underline"
+                >
                   Forgot password?
                 </button>
               </div>
@@ -223,9 +237,8 @@ function Login() {
               <div>
                 <button
                   type="submit"
-                  className="h-11 w-full bg-primary text-neutral-50 rounded-md font-medium hover:bg-primary-hover transition-colors"
+                  className="h-11 w-full custom-button text-white rounded-md font-medium transition-colors"
                 >
-                <button onClick={handleLogin} className="custom-button w-full">
                   Login
                 </button>
               </div>
@@ -235,20 +248,32 @@ function Login() {
 
               <div className="flex w-full items-center justify-between gap-6">
                 <div className="w-full">
-                  <button type="button" className="h-11 w-full bg-bg-card-secondary hover:bg-bg-hover-dark border border-border-default rounded-md flex items-center justify-center gap-2" aria-label="Login with Google">
-                    <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
+                  <button
+                    type="button"
+                    className="h-11 w-full bg-white hover:bg-[#F4F4F5] border border-[#E1E1E2] rounded-md flex items-center justify-center gap-2"
+                    aria-label="Login with Google"
+                  >
+                    <div
+                      className="size-6 min-w-6 flex items-center justify-center"
+                      aria-hidden="true"
+                    >
                       <IconGoogle />
                     </div>
-                    <span className="font-semibold leading-[124%] text-base text-text-primary">
+                    <span className="font-semibold leading-[124%] text-base text-[#1A1A1A]">
                       Google
                     </span>
                   </button>
                 </div>
                 <div className="w-full">
-                  <button type="button" className="h-11 w-full bg-zabira-dark hover:bg-[#1a1a1aea] border border-border-muted rounded-md flex items-center justify-center gap-2" aria-label="Login with Apple">
-                    <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
-                  <button className="h-11 w-full custom-button  border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2">
-                    <div className="size-6 min-w-6 flex items-center justify-center">
+                  <button
+                    type="button"
+                    className="h-11 w-full custom-button border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2"
+                    aria-label="Login with Apple"
+                  >
+                    <div
+                      className="size-6 min-w-6 flex items-center justify-center"
+                      aria-hidden="true"
+                    >
                       <IconApple />
                     </div>
                     <span className="font-semibold leading-[124%] text-base text-neutral-50">
@@ -273,7 +298,10 @@ function Login() {
               </button>
             </p>
             <div className="bg-bg-card p-2 flex items-center rounded-md gap-1">
-              <div className="size-5 min-w-5 flex items-center justify-center" aria-hidden="true">
+              <div
+                className="size-5 min-w-5 flex items-center justify-center"
+                aria-hidden="true"
+              >
                 <IconNDPR />
               </div>
               <p className="font-medium text-sm leading-[124%] -tracking-[1.2%] text-text-secondary">

@@ -1,23 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import { useEffect, useState, useRef } from "react";
-import IconSwap from "../icons/IconSwap";
 import IconRepeat from "../icons/IconRepeat";
 import IconShield from "../icons/IconShield";
 import IconNDPR from "../icons/IconNDPR";
 import IconVerifyEmail from "../icons/IconVerifyEmail";
 
 const OTP_LENGTH = 6;
-
-interface UserState {
-  email: string;
-  password: string;
-  referralCode: string;
-  failedPasswordMatches: string[];
-  passwordStrength: number;
-  acceptTerms: boolean;
-  showPassword: boolean;
-}
 
 function VerifyEmail() {
   const navigate = useNavigate();
@@ -27,92 +16,6 @@ function VerifyEmail() {
   const [resendCountdown, setResendCountdown] = useState(60);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  // Initialize resend countdown on mount
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      let otpCoolDownStartTime: string | number | null = localStorage.getItem(
-        "zabira_resend_otp_countdown"
-      );
-      if (otpCoolDownStartTime) {
-        otpCoolDownStartTime = Number(JSON.parse(otpCoolDownStartTime));
-      } else {
-        navigate("/auth/sign-up");
-        return;
-      }
-      const diff = Number(otpCoolDownStartTime) - Date.now();
-
-      const minutes = new Date(diff).getMinutes().toString().padStart(2, "0");
-      const seconds = new Date(diff).getSeconds().toString().padStart(2, "0");
-
-      if (Number(minutes) > 4) {
-        // navigate("/auth/sign-up");
-        return;
-      }
-
-      const formattedTime = `${minutes}:${seconds}`;
-
-      if (formattedTime === "00:00") {
-        clearInterval(timerId);
-      }
-      setOTP((prev) => ({ ...prev, formattedTime }));
-    }, 1000);
-
-    return () => {
-      clearInterval(timerId);
-    };
-  }, [navigate]);
-    setResendCountdown(60);
-  }, []);
-
-  function focusInput(e: React.ChangeEvent<HTMLInputElement>) {
-    const input = e.target;
-    const inputKey = input.name;
-    setOTP({ ...otp, activeInput: inputKey });
-  }
-
-  function fillOTP(e: React.ChangeEvent<HTMLInputElement>) {
-    const input = e.target;
-    const inputValue = input.value;
-    const inputKey = Number(input.name);
-
-    let otpValue;
-    let nextActiveInput;
-
-    if (inputKey === 1 && inputValue === "") {
-      otpValue = "";
-    }
-    if (inputValue === "") {
-      otpValue = otp.value.slice(0, inputKey - 1);
-      nextActiveInput = otpValue.length.toString();
-      const nextInput = document.getElementById(
-        `otp-${nextActiveInput}`
-      ) as HTMLInputElement;
-      if (nextInput) {
-        nextInput.focus();
-      }
-    } else {
-      otpValue = otp.value + inputValue;
-      nextActiveInput = (otpValue.length + 1).toString();
-      const nextInput = document.getElementById(
-        `otp-${nextActiveInput}`
-      ) as HTMLInputElement;
-      if (nextInput) {
-        nextInput.focus();
-      }
-    }
-
-    setOTP({ ...otp, value: otpValue, activeInput: nextActiveInput });
-  }
-
-  function pasteCode() {
-    setOTP({ ...otp, value: otp.dummyOtp, activeInput: String(OTP_LENGTH) });
-  }
-
-  function resendCode() {
-    let _otp = "";
-    for (let i = 0; i < OTP_LENGTH; i++) {
-      const randVal = Math.round(Math.random() * 10);
-      _otp += randVal;
   // Countdown timer effect
   useEffect(() => {
     if (resendCountdown > 0) {
@@ -128,15 +31,6 @@ function VerifyEmail() {
     if (value.length > 1) {
       value = value[value.length - 1];
     }
-    setOTP({ ...otp, dummyOtp: _otp, value: "" });
-  }
-
-  function changeEmail() {
-    navigate("/auth/change-email");
-  }
-
-  function verifyEmail() {
-    if (otp.value === "" || otp.value.length !== OTP_LENGTH) {
 
     // Only allow numbers
     if (value && !/^\d$/.test(value)) {
@@ -249,7 +143,7 @@ function VerifyEmail() {
               <div className="flex items-center justify-between mb-3">
                 <label
                   htmlFor="verify-email-code"
-                  className="block text-sm font-semibold text-zabira text-zabira-dark"
+                  className="block text-sm font-semibold text-zabira-dark"
                 >
                   Enter Code
                 </label>
@@ -271,33 +165,11 @@ function VerifyEmail() {
                       inputRefs.current[focusIndex]?.focus();
                     });
                   }}
-                  className="text-xs font-medium text-zabira text-zabira-dark transition-colors py-1 px-1.5 bg-[#F4F4F5] rounded-sm hover:bg-[#E1E1E2] "
+                  className="text-xs font-medium text-zabira-dark transition-colors py-1 px-1.5 bg-[#F4F4F5] rounded-sm hover:bg-[#E1E1E2]"
                 >
                   Paste Code
                 </button>
               </div>
-              <div className="flex items-center justify-between">
-                {Array.from({ length: OTP_LENGTH }, (_, i) => i + 1).map((item, idx) => {
-                  return (
-                    <div key={item}>
-                      <input
-                        id={`otp-${item}`}
-                        // disabled={otp.activeInput !== item.toString()}
-                        value={otp.value.split("")[idx]}
-                        onChange={fillOTP}
-                        onFocus={focusInput}
-                        name={item.toString()}
-                        maxLength={1}
-                        autoFocus={otp.activeInput === item.toString()}
-                        className={`rounded-lg w-12 h-11 border ${
-                          otp.activeInput === item.toString()
-                            ? "border-[#1A1A1A] text-[#1A1A1A]"
-                            : "border-[#d8d8d891] text-[1A1A1A91]"
-                        } text-center font-medium text-2xl leading-[124%] -tracking-[1.2%]`}
-                      />
-                    </div>
-                  );
-                })}
               <div className="flex gap-2 justify-between">
                 {code.map((digit, index) => (
                   <input
@@ -323,7 +195,7 @@ function VerifyEmail() {
               <div>
                 <button
                   onClick={() => navigate("/auth/change-email")}
-                  className="flex items-center p-2 gap-1 border border-[#E1E1E2] bg-[#FCFCFC] hover:bg-[#1a1a1a09] rounded-md text-sm leading-5.5 tracking-[0%] text-[#1A1A1A]"
+                  className="flex items-center p-2 gap-1 border border-[#E1E1E2] bg-[#FCFCFC] hover:bg-bg-hover-dark rounded-md text-sm leading-5.5 tracking-[0%] text-[#1A1A1A]"
                 >
                   <IconRepeat />
                   <p>Change Email</p>

@@ -39,7 +39,7 @@ const Navigation = () => {
         <h1>
           <img src={logo} alt="Zabira - Your trusted payment platform" />
         </h1>
-      </button>
+      </div>
 
       {/* Navigation Items */}
       <nav className="flex-1 mb-5 mt-9" aria-label="Main navigation">
@@ -69,7 +69,10 @@ const Navigation = () => {
         </ul>
       </nav>
 
-      <section className="bg-[url('./assets/CardRow.png')] bg-primary bg-no-repeat bg-cover rounded-lg mb-5 text-neutral-50 text-center" aria-label="Referral program">
+      <section
+        className="bg-[url('./assets/CardRow.png')] bg-primary bg-no-repeat bg-cover rounded-lg mb-5 text-neutral-50 text-center"
+        aria-label="Referral program"
+      >
         <h3 className="text-xs font-semibold mb-2 mt-14">REFER & EARN</h3>
         <p className="text-sm font-bold mb-3">Start Earning Rewards!</p>
       </section>
@@ -79,7 +82,11 @@ const Navigation = () => {
           Download the Zabira App
         </h5>
 
-        <img src={qrCode} alt="QR Code to download Zabira mobile app" className="mx-auto" />
+        <img
+          src={qrCode}
+          alt="QR Code to download Zabira mobile app"
+          className="mx-auto"
+        />
       </section>
 
       {/* Footer */}

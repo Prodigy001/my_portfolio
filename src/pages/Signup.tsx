@@ -184,7 +184,10 @@ function Signup() {
       <main className="relative h-full w-full flex items-center justify-center">
         <div className=" max-h-[80vh] w-125 overflow-auto no-scrollbar space-y-6">
           {/* inner form */}
-          <form onSubmit={handleSignUp} className=" text-neutral-950 p-9 rounded-2xl bg-bg-card shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6">
+          <form
+            onSubmit={handleSignUp}
+            className=" text-neutral-950 p-9 rounded-2xl bg-bg-card shadow-[0px_2px_4px_-1px_#FFFFFF14,0px_1px_0px_0px_#FFFFFF14] space-y-6"
+          >
             {/* section 1 */}
             <div className="space-y-6">
               <h1 className="font-bold leading-[124%] -tracking-[1.2%] text-2xl text-text-primary">
@@ -225,14 +228,15 @@ function Signup() {
 
               {/* Error Message */}
               {error && (
-                <div className="p-3 bg-red-50 border border-red-200 rounded-lg" role="alert">
+                <div
+                  className="p-3 bg-red-50 border border-red-200 rounded-lg"
+                  role="alert"
+                >
                   <p className="text-red-600 text-sm">{error}</p>
                 </div>
               )}
 
               {/* Email */}
-              <div className="border border-border-default rounded-lg p-4">
-                <label htmlFor="email-input" className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-text-secondary">
               <div className="border border-[#E1E1E2] rounded-lg p-4">
                 <label
                   htmlFor="signup-email"
@@ -241,11 +245,13 @@ function Signup() {
                   Email
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                  <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
+                  <div
+                    className="size-6 min-w-6 flex items-center justify-center"
+                    aria-hidden="true"
+                  >
                     <IconEmail stroke={user.email ? "#0044EE" : "#819099"} />
                   </div>
                   <input
-                    id="email-input"
                     id="signup-email"
                     name="email"
                     type="email"
@@ -259,8 +265,6 @@ function Signup() {
                 </div>
               </div>
               {/* Password */}
-              <div className=" border border-border-default rounded-lg p-4">
-                <label htmlFor="password" className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-text-secondary">
               <div className=" border border-[#E1E1E2] rounded-lg p-4">
                 <label
                   htmlFor="signup-password"
@@ -274,12 +278,17 @@ function Signup() {
                       type="button"
                       onClick={showPassword}
                       className="size-full flex items-center justify-center"
-                      aria-label={user.showPassword ? "Hide password" : "Show password"}
+                      aria-label={
+                        user.showPassword ? "Hide password" : "Show password"
+                      }
                     >
                       {user.showPassword ? <EyeDisable /> : <Eye />}
                     </button>
                   </div>
-                  <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
+                  <div
+                    className="size-6 min-w-6 flex items-center justify-center"
+                    aria-hidden="true"
+                  >
                     <IconPassword
                       stroke={user.password ? "#0044EE" : "#819099"}
                     />
@@ -298,7 +307,11 @@ function Signup() {
               </div>
               {/* Password Validator */}
               {user.password && (
-                <div className="space-y-3" role="status" aria-label="Password strength indicator">
+                <div
+                  className="space-y-3"
+                  role="status"
+                  aria-label="Password strength indicator"
+                >
                   <div className="flex gap-4 items-center bg-neutral-150 rounded-lg py-1 px-3">
                     <p>
                       {strengthIndicatorText[user.passwordStrength - 1] ??
@@ -339,7 +352,10 @@ function Signup() {
                         key={visual.label}
                         className="flex items-center gap-3"
                       >
-                        <div className="size-4 min-w-4  rounded-full overflow-hidden" aria-hidden="true">
+                        <div
+                          className="size-4 min-w-4  rounded-full overflow-hidden"
+                          aria-hidden="true"
+                        >
                           {visual.label
                             .split("|")
                             .some((item) =>
@@ -369,8 +385,6 @@ function Signup() {
                 </div>
               )}
               {/* Referral */}
-              <div className="border border-border-default rounded-lg p-4">
-                <label htmlFor="referral-code" className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-text-secondary">
               <div className="border border-[#E1E1E2] rounded-lg p-4">
                 <label
                   htmlFor="referral-code"
@@ -379,7 +393,10 @@ function Signup() {
                   Referral Code (Optional)
                 </label>
                 <div className="flex items-center gap-2 mt-2">
-                  <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
+                  <div
+                    className="size-6 min-w-6 flex items-center justify-center"
+                    aria-hidden="true"
+                  >
                     <IconReferralCode
                       stroke={user.referralCode ? "#0044EE" : "#819099"}
                     />
@@ -405,7 +422,9 @@ function Signup() {
                         ? "bg-zabira-blue border-zabira-blue"
                         : "bg-transparent border-text-tertiary"
                     } size-5 min-w-5 border-2 rounded-md`}
-                    aria-label={user.acceptTerms ? "Terms accepted" : "Accept terms"}
+                    aria-label={
+                      user.acceptTerms ? "Terms accepted" : "Accept terms"
+                    }
                     aria-pressed={user.acceptTerms}
                     role="checkbox"
                     aria-checked={user.acceptTerms}
@@ -418,11 +437,17 @@ function Signup() {
 
                 <p className="leading-[140%] -tracking-[1%] text-sm text-text-primary">
                   By clicking 'Sign Up', I agree to Zabira's{" "}
-                  <button type="button" className="font-medium text-zabira-blue hover:underline">
+                  <button
+                    type="button"
+                    className="font-medium text-zabira-blue hover:underline"
+                  >
                     Terms of Service
                   </button>{" "}
                   and{" "}
-                  <button type="button" className="font-medium text-zabira-blue hover:underline">
+                  <button
+                    type="button"
+                    className="font-medium text-zabira-blue hover:underline"
+                  >
                     Privacy Policy
                   </button>
                 </p>
@@ -434,9 +459,7 @@ function Signup() {
                 <button
                   type="submit"
                   disabled={!enableSignupBtn}
-                  className="h-11 w-full flex items-center gap-2 justify-center bg-zabira-dark text-neutral-50 rounded-md font-medium hover:bg-[#1a1a1aea] transition-colors disabled:bg-bg-disabled disabled:text-text-disabled disabled:cursor-not-allowed "
-                  onClick={handleSignUp}
-                  className="h-11 w-full flex items-center gap-2 justify-center custom-button text-white rounded-md font-medium  transition-colors disabled:bg-[#F4F4F5] disabled:text-[#1A1A1A2E] disabled:cursor-not-allowed "
+                  className="h-11 w-full flex items-center gap-2 justify-center custom-button text-white rounded-md font-medium transition-colors disabled:bg-[#F4F4F5] disabled:text-[#1A1A1A2E] disabled:cursor-not-allowed"
                 >
                   {enableSignupBtn && <IconShield />}
                   Sign Up
@@ -448,8 +471,15 @@ function Signup() {
 
               <div className="flex w-full items-center justify-between gap-6">
                 <div className="w-full">
-                  <button type="button" className="h-11 w-full bg-bg-card-secondary hover:bg-bg-hover-dark border border-border-default rounded-md flex items-center justify-center gap-2" aria-label="Sign up with Google">
-                    <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
+                  <button
+                    type="button"
+                    className="h-11 w-full bg-bg-card-secondary hover:bg-bg-hover-dark border border-border-default rounded-md flex items-center justify-center gap-2"
+                    aria-label="Sign up with Google"
+                  >
+                    <div
+                      className="size-6 min-w-6 flex items-center justify-center"
+                      aria-hidden="true"
+                    >
                       <IconGoogle />
                     </div>
                     <span className="font-semibold leading-[124%] text-base text-text-primary">
@@ -458,10 +488,15 @@ function Signup() {
                   </button>
                 </div>
                 <div className="w-full">
-                  <button type="button" className="h-11 w-full bg-zabira-dark hover:bg-[#1a1a1aea] border border-border-muted rounded-md flex items-center justify-center gap-2" aria-label="Sign up with Apple">
-                    <div className="size-6 min-w-6 flex items-center justify-center" aria-hidden="true">
-                  <button className="h-11 w-full custom-button  border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2">
-                    <div className="size-6 min-w-6 flex items-center justify-center">
+                  <button
+                    type="button"
+                    className="h-11 w-full custom-button border border-[#1A1A1A1F] rounded-md flex items-center justify-center gap-2"
+                    aria-label="Sign up with Apple"
+                  >
+                    <div
+                      className="size-6 min-w-6 flex items-center justify-center"
+                      aria-hidden="true"
+                    >
                       <IconApple />
                     </div>
                     <span className="font-semibold leading-[124%] text-base text-neutral-50">
@@ -485,7 +520,10 @@ function Signup() {
               </button>
             </p>
             <div className="bg-bg-card p-2 flex items-center rounded-md gap-1">
-              <div className="size-5 min-w-5 flex items-center justify-center" aria-hidden="true">
+              <div
+                className="size-5 min-w-5 flex items-center justify-center"
+                aria-hidden="true"
+              >
                 <IconNDPR />
               </div>
               <p className="font-medium text-sm leading-[124%] -tracking-[1.2%] text-text-secondary">

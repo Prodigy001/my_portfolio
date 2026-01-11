@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 
 export interface User {
@@ -25,7 +25,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  
+
   // Load user from localStorage on initialization using lazy state
   const [user, setUserState] = useState<User | null>(() => {
     const savedUser = localStorage.getItem("zabira_user");
@@ -39,7 +39,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
     return null;
   });
-  
+
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return !!localStorage.getItem("zabira_user");
   });
@@ -82,10 +82,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
 
-export function useApp() {
+const useApp = () => {
   const context = useContext(AppContext);
   if (context === undefined) {
     throw new Error("useApp must be used within an AppProvider");
   }
   return context;
-}
+};
+
+export { useApp };

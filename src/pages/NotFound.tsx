@@ -10,7 +10,7 @@ function NotFound() {
         <section className="bg-white rounded-2xl p-8 text-center space-y-6">
           {/* 404 Display */}
           <div className="space-y-2">
-            <h1 className="text-7xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-zabira-blue to-[#22A0FC]">
+            <h1 className="text-7xl md:text-8xl font-bold text-transparent bg-clip-text bg-linear-to-r from-zabira-blue to-[#22A0FC]">
               404
             </h1>
             <p className="text-sm tracking-widest uppercase text-[#52525B] font-semibold">
