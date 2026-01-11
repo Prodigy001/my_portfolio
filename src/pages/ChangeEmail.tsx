@@ -66,7 +66,7 @@ function ChangeEmail() {
               </p>
             </div>
             {/* Email */}
-            <div className="border border-[#E1E1E2] rounded-lg p-4">
+            <div className="border border-[#E1E1E2] focus-within:border-zabira-blue rounded-lg p-4">
               <label
                 htmlFor="change-email"
                 className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"

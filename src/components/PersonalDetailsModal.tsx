@@ -246,7 +246,7 @@ const PersonalDetailsModal = ({
           <div className="space-y-4">
             {/* Username */}
             <div>
-              <div className="border border-[#E1E1E2] rounded-lg p-4">
+              <div className="border border-[#E1E1E2] focus-within:border-zabira-blue rounded-lg p-4">
                 <label
                   htmlFor="personal-username"
                   className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
@@ -309,7 +309,7 @@ const PersonalDetailsModal = ({
 
             {/* Firstname */}
             <div>
-              <div className="border border-[#E1E1E2] rounded-lg p-4">
+              <div className="border border-[#E1E1E2]  focus-within:border-zabira-blue rounded-lg p-4">
                 <label
                   htmlFor="personal-firstname"
                   className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
@@ -340,7 +340,7 @@ const PersonalDetailsModal = ({
 
             {/* Lastname */}
             <div>
-              <div className="border border-[#E1E1E2] rounded-lg p-4">
+              <div className="border border-[#E1E1E2] focus-within:border-zabira-blue rounded-lg p-4">
                 <label
                   htmlFor="personal-lastname"
                   className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
@@ -371,7 +371,7 @@ const PersonalDetailsModal = ({
 
             {/* Date of Birth (Optional) */}
             <div>
-              <div className="border border-[#E1E1E2] rounded-lg p-4">
+              <div className="border border-[#E1E1E2] focus-within:border-zabira-blue rounded-lg p-4">
                 <label
                   htmlFor="personal-dob"
                   className="font-semibold leading-[124%] -tracking-[1.2%] text-sm text-[#1A1A1AB2]"
