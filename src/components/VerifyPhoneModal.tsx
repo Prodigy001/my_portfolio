@@ -509,7 +509,7 @@ const VerifyPhoneModal = ({
                 type="tel"
                 value={phoneNumber}
                 onChange={handlePhoneChange}
-                className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
+                className="outline-none focus:ring-0 focus:border-transparent placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
               />
             </div>
           </div>

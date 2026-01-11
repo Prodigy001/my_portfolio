@@ -260,7 +260,7 @@ function Signup() {
                     placeholder="Type your email"
                     autoFocus={true}
                     autoComplete="email"
-                    className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-text-tertiary w-full"
+                    className="outline-none focus:ring-0 focus:border-transparent placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-text-tertiary w-full"
                   />
                 </div>
               </div>
@@ -301,7 +301,7 @@ function Signup() {
                     onChange={handleInputChange}
                     placeholder="Enter your password"
                     autoComplete="new-password"
-                    className="outline-none leading-[140%] -tracking-[1%]   placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-text-tertiary w-full"
+                    className="outline-none focus:ring-0 focus:border-transparent leading-[140%] -tracking-[1%]   placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-text-tertiary w-full"
                   />
                 </div>
               </div>

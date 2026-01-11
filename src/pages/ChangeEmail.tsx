@@ -85,7 +85,7 @@ function ChangeEmail() {
                   onChange={handleInputChange}
                   placeholder="Type your email"
                   autoFocus={true}
-                  className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
+                  className="outline-none focus:ring-0 focus:border-transparent placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
                 />
               </div>
               {emailError && (

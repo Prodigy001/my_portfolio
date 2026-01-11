@@ -266,7 +266,7 @@ const PersonalDetailsModal = ({
                     value={formData.username}
                     onChange={handleInputChange}
                     placeholder="Choose a username"
-                    className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
+                    className="outline-none focus:ring-0 focus:border-transparent placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
                   />
                 </div>
               </div>
@@ -329,7 +329,7 @@ const PersonalDetailsModal = ({
                     value={formData.firstname}
                     onChange={handleInputChange}
                     placeholder="Enter firstname"
-                    className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
+                    className="outline-none focus:ring-0 focus:border-transparent placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
                   />
                 </div>
               </div>
@@ -360,7 +360,7 @@ const PersonalDetailsModal = ({
                     value={formData.lastname}
                     onChange={handleInputChange}
                     placeholder="Enter lastname"
-                    className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
+                    className="outline-none focus:ring-0 focus:border-transparent placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
                   />
                 </div>
               </div>
@@ -391,7 +391,7 @@ const PersonalDetailsModal = ({
                     value={formData.dateOfBirth}
                     onChange={handleInputChange}
                     placeholder="Choose date of birth"
-                    className="outline-none placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
+                    className="outline-none focus:ring-0 focus:border-transparent placeholder:leading-[140%] placeholder:-tracking-[1%] placeholder:text-[#1A1A1A5C] w-full"
                   />
                 </div>
               </div>

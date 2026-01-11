@@ -5,7 +5,7 @@
   --color-zabira-blue: #0044ee;
   --color-zabira-dark: #1a1a1a;
   --color-zabira-green: #00dd77;
-  
+
   /* Primary Colors */
   --color-primary: #0044ee;
   --color-primary-hover: #0035bb;
@@ -18,10 +18,10 @@
   --color-primary-blue-accent-dark: #2084d6;
   --color-primary-blue-dark: #00298f;
   --color-primary-blue-darker: #003b8d;
-  
+
   /* Secondary Colors */
   --color-secondary: #00dd77;
-  
+
   /* Neutral Colors */
   --color-neutral-50: #ffffff;
   --color-neutral-100: #fcfcfc;
@@ -35,7 +35,7 @@
   --color-neutral-800: #2a2a2a;
   --color-neutral-900: #1a1a1a;
   --color-neutral-950: #000000;
-  
+
   /* Text Colors */
   --color-text-primary: #1a1a1a;
   --color-text-secondary: #1a1a1ab2;
@@ -44,13 +44,13 @@
   --color-text-disabled: #1a1a1a2e;
   --color-text-on-primary: #ffffff;
   --color-text-white-secondary: #ffffffb2;
-  
+
   /* Border Colors */
   --color-border-default: #e1e1e2;
   --color-border-light: #ededed;
   --color-border-muted: #1a1a1a1f;
   --color-border-white: #ffffff2e;
-  
+
   /* Background Colors */
   --color-bg-app: #f4f4f5;
   --color-bg-card: #ffffff;
@@ -59,7 +59,7 @@
   --color-bg-hover-dark: #1a1a1a09;
   --color-bg-hover-blue: #22a0fc;
   --color-bg-disabled: #f4f4f5;
-  
+
   /* Utility Colors */
   --color-success-bg: #f0fbf9;
   --color-success-light: #d1f5e8;
@@ -68,7 +68,7 @@
   --color-overlay: #0a18204d;
   --color-overlay-dark: #0a1820;
   --color-overlay-darker: #001026;
-  
+
   /* Interactive Colors */
   --color-interactive-text: #323232;
 }
@@ -102,10 +102,7 @@ body {
 }
 
 /* Accessibility: Keyboard focus styles */
-*:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
+/*     */
 
 /* Accessibility: Skip to main content link */
 .skip-to-main {
@@ -238,13 +235,12 @@ button {
 }
 
 #half-circle {
-  animation: spin 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite ;
+  animation: spin 3s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
   transform-origin: center;
-
 }
 
 #check-mark {
-  animation: grow 3s linear infinite ;
+  animation: grow 3s linear infinite;
   transform-origin: center;
 }
 
