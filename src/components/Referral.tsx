@@ -77,8 +77,8 @@ const Referral = () => {
 
       <div className="p-4">
         <p className="text-zabira text-lg font-medium text-zabira-dark/70 mb-6">
-          Invite 10 people and get 100 points to use in amazing rewards!<br/> T&C
-          Apply.
+          Invite 10 people and get 100 points to use in amazing rewards!
+          <br /> T&C Apply.
         </p>
 
         <Link

@@ -20,6 +20,7 @@ const Navigation = () => {
       settings: "/dashboard/settings",
     };
     navigate(pathMap[id]);
+    setSidebarOpen(false);
   };
 
   const isActive = (id: string): boolean => {
