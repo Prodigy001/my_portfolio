@@ -1,11 +1,13 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { navigationItems } from "../data";
+import { useApp } from "../context/AppContext";
 import logo from "../assets/logo.png";
 import qrCode from "../assets/qr-code.png";
 
 const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { setSidebarOpen } = useApp();
 
   const handleNavigation = (id: string) => {
     const pathMap: Record<string, string> = {
@@ -35,10 +37,38 @@ const Navigation = () => {
 
   return (
     <div className="h-screen overflow-y-auto no-scrollbar flex flex-col bg-bg-card px-4 py-6 border-r border-border-light">
-      <div className="">
-        <h1>
-          <img src={logo} alt="Zabira - Your trusted payment platform" />
-        </h1>
+      <div className="flex items-center justify-between">
+        <button
+          onClick={() => handleNavigation("dashboard")}
+          className="hover:opacity-80 transition-opacity"
+          aria-label="Go to dashboard home"
+        >
+          <h1>
+            <img src={logo} alt="Zabira - Your trusted payment platform" />
+          </h1>
+        </button>
+        {/* Close button for mobile */}
+        <button
+          onClick={() => setSidebarOpen(false)}
+          className="md:hidden p-2 hover:bg-neutral-200 rounded-md transition-colors"
+          aria-label="Close navigation menu"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6L6 18M6 6L18 18"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
       </div>
 
       {/* Navigation Items */}

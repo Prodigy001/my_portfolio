@@ -17,14 +17,26 @@ const TopPanel = ({ onMenuClick }: TopPanelProps) => {
   const userName = userEmail.split("@")[0];
 
   return (
-    <div className="flex items-center justify-between pl-12 pr-5.5 py-4">
-      <button
-        onClick={onMenuClick}
-        className="md:hidden text-interactive-text hover:text-zabira-dark transition-colors text-[1.625rem]"
-        aria-label="Toggle navigation menu"
-      >
-        <IconHamburger />
-      </button>
+    <div className="flex items-center justify-between md:pl-12 px-5.5 py-4">
+      <div className="md:hidden flex items-center gap-4">
+        <button
+          onClick={onMenuClick}
+          className=" text-interactive-text hover:text-zabira-dark transition-colors text-[1.625rem]"
+          aria-label="Toggle navigation menu"
+        >
+          <IconHamburger />
+        </button>
+
+        <Link
+          to="/dashboard"
+          className="hover:opacity-80 transition-opacity"
+          aria-label="Go to dashboard home"
+        >
+          <h1>
+            <img src={logo} alt="Zabira - Your trusted payment platform" />
+          </h1>
+        </Link>
+      </div>
 
       <article className="max-md:hidden">
         <h4 className="font-bold text-base text-zabira-dark mb-1">

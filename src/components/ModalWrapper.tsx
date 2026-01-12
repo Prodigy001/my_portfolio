@@ -39,7 +39,7 @@ const ModalWrapper = ({
           </button>
         </div>
         <div
-          className={`bg-bg-card rounded-2xl shadow-2xl ${className}`}
+          className={`bg-bg-card rounded-2xl mx-4 shadow-2xl ${className}`}
           role="dialog"
           aria-modal="true"
         >
