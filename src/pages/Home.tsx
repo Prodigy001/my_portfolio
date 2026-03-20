@@ -1,194 +1,150 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import ActionButtons from "../components/ActionButtons";
-import BecomeMerchantCta from "../components/BecomeMerchantCta";
-import Carousel from "../components/Carousel";
-import PaymentMethods from "../components/PaymentMethods";
-import ProgressCircle from "../components/ProgressCircle";
-import Referral from "../components/Referral";
-import TopTraded from "../components/TopTraded";
-import TotalBalance from "../components/TotalBalance";
-import TransactionsTable from "../components/TransactionsTable";
-import WelcomeModal from "../components/WelcomeModal";
-import VerifyPhoneModal from "../components/VerifyPhoneModal";
-import PersonalDetailsModal from "../components/PersonalDetailsModal";
-import IconArrow from "../icons/IconArrow";
-import IconCaret from "../icons/IconCaret";
-import IconCoins from "../icons/IconCoins";
-import IconLighting from "../icons/IconLighting";
-import { onboardingSteps } from "../data";
+// className="relative h-screen w-full  items-center justify-center bg-black900-004 p-5 space-y-5"
 
-const Home = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isPhoneModalOpen, setIsPhoneModalOpen] = useState(false);
-  const [isPersonalDetailsModalOpen, setIsPersonalDetailsModalOpen] =
-    useState(false);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [steps, setSteps] = useState(onboardingSteps);
+import Button from "../components/Button";
+import Chat from "../icons/Chat";
 
-  // Calculate completed steps for progress circle
-  const completedSteps = steps.filter((step) => step.completed).length;
-  const totalSteps = steps.length;
+const metrics = [
+  {
+    label: "Processed through beta payment platforms",
+    result: "₦100M+",
+  },
+  {
+    label: "Users impacted across Fintech & SAAS products",
+    result: "10,000",
+  },
+  {
+    label: "Product Design Bounty Winner (Web3)",
+    result: "3x",
+  },
+  {
+    label: "End‑to‑end ownership , research to shipped(Live) Product",
+    result: "10",
+  },
+];
 
-  const handleStepClick = (stepIndex: number) => {
-    setCurrentStep(stepIndex);
-
-    // Close welcome modal
-    setIsModalOpen(false);
-
-    // Open specific modal based on step
-    const step = steps[stepIndex];
-    if (step.id === "verify-phone") {
-      setIsPhoneModalOpen(true);
-    } else if (step.id === "personal-info") {
-      setIsPersonalDetailsModalOpen(true);
-    }
-    // Add more conditions for other steps as needed
-  };
-
-  const handlePhoneVerified = () => {
-    // Update the verify-phone step as completed
-    const updatedSteps = [...steps];
-    const phoneStepIndex = updatedSteps.findIndex(
-      (step) => step.id === "verify-phone"
-    );
-    if (phoneStepIndex !== -1) {
-      updatedSteps[phoneStepIndex].completed = true;
-      setSteps(updatedSteps);
-    }
-  };
-
-  const handlePersonalDetailsSaved = () => {
-    // Update the personal-info step as completed
-    const updatedSteps = [...steps];
-    const detailsStepIndex = updatedSteps.findIndex(
-      (step) => step.id === "personal-info"
-    );
-    if (detailsStepIndex !== -1) {
-      updatedSteps[detailsStepIndex].completed = true;
-      setSteps(updatedSteps);
-    }
-  };
-
-  const handleCompleteProfile = () => {
-    setIsModalOpen(true);
-  };
-
+const selectedWorks = [
+  {
+    image: "../../images/airbills.png",
+    mainText: "Airbills Pay Mobile app",
+    subText:
+      "Airbills pay is a web3 platform that allows you buy crypto from your wallet",
+  },
+  {
+        image: "../../images/byClick.png",
+    mainText: "By Click Downloader Redesign",
+    subText:
+      "Revitalizing Byclick Downloader: A Usability Test and Redesign to Improve User Experience",
+  },
+  {
+        image: "../../images/kero.png",
+    mainText: "Kero mobile app design",
+    subText:
+      "Airbills pay is a web3 platform that allows you buy crypto from your wallet",
+  },
+  {
+        image: "../../images/airbills.png",
+    mainText: "Airbills Pay Mobile app",
+    subText:
+      "Airbills pay is a web3 platform that allows you buy crypto from your wallet",
+  },
+];
+function Splash() {
   return (
-    <main>
-      <section className="bg-bg-card max-md:hidden max-xl:space-y-6 xl:grid p-6 rounded-2xl gap-6  grid-flow-col grid-cols-10 grid-rows-[auto_auto]" aria-label="Dashboard overview">
-        <TotalBalance />
-
-        <ActionButtons />
-        <TopTraded />
-
-        <div className=" self-end col-span-6 flex justify-end">
-          <Link
-            to="/dashboard/rewards"
-            className="hover:bg-bg-hover  rounded-md inline-flex items-center justify-center gap-2"
-            aria-label="Navigate to rewards page to earn rewards"
-          >
-            <span className="text-primary text-2xl" aria-hidden="true">
-              <IconCoins />
-            </span>{" "}
-            Earn Rewards{" "}
-            <span className="-rotate-135 text-2xl text-neutral-700" aria-hidden="true">
-              <IconArrow />
-            </span>
-          </Link>
-        </div>
-      </section>
-      <div className="md:hidden">
-        <TotalBalance />
-      </div>
-
-      <section className="bg-primary-blue-light border-2 border-primary-blue-border p-4 rounded-xl my-6 flex gap-6 justify-between items-start lg:items-center" aria-label="Profile completion">
-        <div className="flex gap-6 items-center">
-          <ProgressCircle
-            current={completedSteps}
-            total={totalSteps}
-            size={60}
-            strokeWidth={7}
-          />
-
-          <article>
-            <h4 className="text-primary-blue-dark font-bold text-xl text-zabira mb-1.5">
-              You’re almost done!
-            </h4>
-            <p className="text-zabira-dark/36 text-zabira font-medium text-base">
-              Finish setting up your account to enjoy benefits
+    <div className="relative bg-black900-004 space-y-20">
+      {/* Introduction */}
+      <section className="h-svh w-[80%] mx-auto tw-all-center pt-20">
+        <div className="flex gap-20">
+          <div className=" w-1/2  space-y-6">
+            <figure className="size-60  rounded-3xl overflow-hidden">
+              <img src="../../images/profile.png" className="size-full object-cover" />
+            </figure>
+            <p className="text-title-lg text-black50-E6">
+              Product Designer with 5+ years of experience designing Fintech,
+              SAAS, web3 and data‑driven products , from concept to live systems
+              used by real users.
             </p>
-          </article>
-        </div>
-
-        <button
-          type="button"
-          className="custom-button max-lg:hidden"
-          onClick={handleCompleteProfile}
-          aria-label="Complete your profile setup"
-        >
-          Complete Profile Setup
-          <span className="-rotate-135 text-2xl" aria-hidden="true">
-            <IconArrow />
-          </span>
-        </button>
-        <button
-          type="button"
-          className="text-base text-text-tertiary lg:hidden"
-          onClick={handleCompleteProfile}
-          aria-label="Complete your profile setup"
-        >
-          <IconCaret />
-        </button>
-      </section>
-
-      <PaymentMethods />
-
-      <Carousel />
-      <div className="md:hidden mb-6">
-        <TopTraded />
-      </div>
-
-      <TransactionsTable />
-
-      <section className="md:bg-bg-card md:p-6 md:rounded-2xl" aria-label="Additional features">
-        <h4 className="flex max-md:hidden items-center gap-2 font-semibold text-lg text-zabira text-text-primary mb-6">
-          <span className="text-zabira-green text-[1.25rem]" aria-hidden="true">
-            <IconLighting />
-          </span>
-          Do more on Zabira!
-        </h4>
-
-        <div className="xl:flex max-xl:space-y-6 gap-6">
-          <BecomeMerchantCta />
-          <Referral />
+            <div className="flex items-center gap-2">
+              <Button
+                text="Let's Talk"
+                bgColor="bg-yellow500-F0"
+                color="text-black500-00A"
+                Icon={Chat}
+              />
+              <Button
+                text="Download Resume"
+                bgColor="bg-black400-33"
+                color="text-white"
+              />
+            </div>
+          </div>
+          <div className=" h-full w-1/2">
+            <ul className="space-y-4">
+              {metrics.map((data) => {
+                return (
+                  <li
+                    key={data.label}
+                    className="py-2  space-y-4 border-b border-black400-33"
+                  >
+                    <p className="text-body-md text-black300-54">
+                      {data.label}
+                    </p>
+                    <p className="text-headline-lg text-yellow50-FE">
+                      {data.result}
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* Welcome Modal */}
-      <WelcomeModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        steps={steps}
-        currentStep={currentStep}
-        onStepClick={handleStepClick}
-      />
-
-      {/* Phone Verification Modal */}
-      <VerifyPhoneModal
-        isOpen={isPhoneModalOpen}
-        onClose={() => setIsPhoneModalOpen(false)}
-        onVerified={handlePhoneVerified}
-      />
-
-      {/* Personal Details Modal */}
-      <PersonalDetailsModal
-        isOpen={isPersonalDetailsModalOpen}
-        onClose={() => setIsPersonalDetailsModalOpen(false)}
-        onSaved={handlePersonalDetailsSaved}
-      />
-    </main>
+      {/* Selected Works */}
+      <section className=" w-[80%] mx-auto">
+        <div className="size-full pt-20 pb-40 space-y-10">
+          <h2 className="text-headline-lg text-black50-E6">SELECTED WORK</h2>
+          <div className="grid grid-cols-2 gap-10">
+            {selectedWorks.map((work) => {
+              return (
+                <div className="space-y-6">
+                  <figure className="w-full aspect-[1/0.7] max-h-120 rounded-lg  overflow-hidden">
+                   <img src={work.image} className="size-full object-contain" />
+                  </figure>
+                  <div className="flex items-center justify-between">
+                    <div className="space-y-2 w-[60%]">
+                      <p className="text-title-md text-black50-E6">
+                        {work.mainText}
+                      </p>
+                      <p className="text-body-sm text-black300-54">
+                        {work.subText}
+                      </p>
+                    </div>
+                    <Button
+                      text="View"
+                      color="text-white"
+                      bgColor="bg-black400-33"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="flex items-center justify-center gap-5 ">
+            <Button
+              text="View More"
+              bgColor="bg-yellow500-F0"
+              color="text-black500-00A"
+            />
+            <Button
+              text="See Behance"
+              bgColor="bg-black400-33"
+              color="text-white"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
   );
-};
+}
 
-export default Home;
+export default Splash;
