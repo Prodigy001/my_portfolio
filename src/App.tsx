@@ -26,56 +26,79 @@ const headerLinks = [
 const footerSocials = [
   {
     Icon: LinkedIn,
-    path: "/",
+    path: "/linkedIn",
   },
   {
     Icon: Twitter,
-    path: "/",
+    path: "/twitter",
   },
   {
     Icon: TikTok,
-    path: "/",
+    path: "/tiktok",
   },
 ];
 
 function App() {
   const [currentPage, setCurrentPage] = useState("Home");
   const location = useLocation();
+  const [section, setSection] = useState("Hi");
+
+  function isElementInViewPort(el: HTMLElement) {
+    let elementTop = el.getBoundingClientRect().top;
+    let screenHeight = window.innerHeight;
+    return elementTop > 0 && elementTop < screenHeight;
+  }
 
   function changePage(page: string) {
     setCurrentPage(page);
   }
 
-  // function useThrottledScroll(limit = 10000) {
+  function useThrottledScroll(limit = 10000) {
+    const pathname = location.pathname;
+    if (!pathname.includes("about")) {
+      return;
+    }
+    let lastCall = 0;
 
-  //   const pathname = location.pathname;
-  //   if (!pathname.includes("about")) {
-  //     return;
-  //   }
-  //   let lastCall = 0;
+    return function onScroll() {
+      const now = Date.now();
+      if (now - lastCall >= limit) {
+        lastCall = now;
+        checkSectionPosition();
+      }
+    };
+  }
 
-  //   return function onScroll() {
-  //     const now = Date.now();
-  //     if (now - lastCall >= limit) {
-  //       lastCall = now;
-  //       checkSectionPosition();
-  //     }
-  //   };
-  // }
+  function checkSectionPosition() {
+    const sections = [
+      "Hi",
+      "Experience",
+      "BehindTheScreen",
+      "DesignPhilosophy",
+    ];
 
-  // function checkSectionPosition() {
-  //   console.log("optiu")
-  // }
+    for (const _section of sections) {
+      const element = document.getElementById(_section);
 
-  // function onScrollCb() {
-  //   const callback = useThrottledScroll()
-  //   if (callback) {
-  //     callback()
-  //   }
-  // }
+      if (element && isElementInViewPort(element)) {
+        setSection(_section);
+        break;
+      }
+    }
+  }
+
+  function onScrollCb() {
+    const callback = useThrottledScroll();
+    if (callback) {
+      callback();
+    }
+  }
 
   return (
-    <section className="h-screen w-full overflow-auto no-scrollbar bg-black900-004">
+    <section
+      onScroll={onScrollCb}
+      className="h-screen w-full overflow-auto no-scrollbar bg-black900-004"
+    >
       <header className="top-0 fixed z-10 w-full  p-5 flex items-center justify-between">
         <div className="bg-black900-004 p-1">
           <h1 className="font-medium text-title-md  text-yellow50-FE">
@@ -105,7 +128,7 @@ function App() {
         </nav>
       </header>
       <p>{location.pathname}</p>
-      <Outlet />;
+      <Outlet context={{ section }} />;
       <footer className="pb-10">
         <div className="w-[80%] mx-auto flex items-center justify-between">
           <div className="space-y-6">
@@ -124,7 +147,10 @@ function App() {
               <nav className="flex items-center gap-6">
                 {footerSocials.map(({ Icon, path }) => {
                   return (
-                    <figure className="size-5 bg-black50-E bg-black900-004">
+                    <figure
+                      key={path}
+                      className="size-5 bg-black50-E bg-black900-004"
+                    >
                       <Link to={path}>
                         <Icon />
                       </Link>
@@ -138,7 +164,10 @@ function App() {
             <ul className="space-y-10">
               {headerLinks.map((link) => {
                 return (
-                  <li className="text-title-md text-black50-E6  hover:text-yellow500-F0">
+                  <li
+                    key={link.label}
+                    className="text-title-md text-black50-E6  hover:text-yellow500-F0"
+                  >
                     <Link to={link.path}>{link.label}</Link>
                   </li>
                 );

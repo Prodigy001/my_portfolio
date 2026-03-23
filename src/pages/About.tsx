@@ -1,23 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Location from "../icons/Location";
 import Graduation from "../icons/Graduation";
+import { useOutletContext } from "react-router-dom";
+
+type ContextType = {
+  section: string;
+};
 
 const sections = [
   {
     label: "Hi!",
     path: "",
+    id: "Hi",
   },
   {
     label: "Experience",
     path: "",
+    id: "Experience",
   },
   {
     label: "Behind the Screen",
     path: "",
+    id: "BehindTheScreen",
   },
   {
     label: "Design Philosophy",
     path: "",
+    id: "DesignPhilosophy",
   },
 ];
 
@@ -28,7 +37,6 @@ const experiences = [
     subText:
       "Led and redesigned critical operational and payment flows used by 1,000+ auto service businesses. Worked on discount and tax management, payout setup (including Stripe), and work‑bay redesign to remove friction from incomplete steps",
   },
-
   {
     image: "../images/exp-2.png",
     mainText: "Product Designer (Contract) — PayUrDues 2",
@@ -36,33 +44,42 @@ const experiences = [
       "Designed and collaborated with developers to build a dues‑collection platform for associations. The product processed ₦10M+ in transactions during beta and is preparing for public launch.",
   },
   {
-   image: "../images/exp-2.png",
+    image: "../images/exp-2.png",
     mainText: "Product Designer (Contract) — PayUrDues 3",
     subText:
       "Designed and collaborated with developers to build a dues‑collection platform for associations. The product processed ₦10M+ in transactions during beta and is preparing for public launch.",
   },
   {
-   image: "../images/exp-2.png",
+    image: "../images/exp-2.png",
     mainText: "Product Designer (Contract) — PayUrDues 4",
     subText:
       "Designed and collaborated with developers to build a dues‑collection platform for associations. The product processed ₦10M+ in transactions during beta and is preparing for public launch.",
   },
 ];
 
+function isElementInViewPort(el: HTMLElement) {
+  let elementTop = el.getBoundingClientRect().top;
+  let screenHeight = window.innerHeight;
+  return elementTop > 0 && elementTop < screenHeight;
+}
+
 function About() {
+  // const [section, setSection] = useState("Hi");
+  const { section } = useOutletContext<ContextType>();
+
   return (
-    <div  className="relative w-full flex bg-black900-004 space-y-20 py-40 px-5">
+    <div className="relative w-full flex bg-black900-004 space-y-20 py-40 px-5">
       <div className="w-[30%] max-w-80 h-40 sticky top-24 space-y-20  pr-10">
         <p className="text-black50-E6 text-headline-lg">ABOUT ME</p>
         <nav className="flex justify-end">
           <ul className="p-6 border-r border-black400-33 space-y-3">
-            {sections.map((section) => {
+            {sections.map((s) => {
               return (
                 <li
-                  key={section.label}
-                  className={` hover:text-yellow500-F0 text-label-md  text-black200-8A`}
+                  key={s.label}
+                  className={` ${s.id === section ? "text-yellow500-F0" : "text-black200-8A"} hover:text-yellow500-F0 text-label-md  `}
                 >
-                  {section.label}
+                  {s.label}
                 </li>
               );
             })}
@@ -70,12 +87,19 @@ function About() {
         </nav>
       </div>
       <div className="mt-28 w-full space-y-28">
-        <section className="flex gap-10">
+        <section id="Hi" className="flex gap-10">
           <figure className="size-40 min-w-40 overflow-hidden rounded-lg">
-            <img src="../images/profile.png" className="size-full object-cover" />
+            <img
+              src="../images/profile.png"
+              className="size-full object-cover"
+            />
           </figure>
           <div className="space-y-6">
-            <h1 className="text-white">Hi! I am Promise Orimadegun</h1>
+            <h1
+              className={`${section === "Hi" && "text-yellow500-F0 animate-pulse"} text-white`}
+            >
+              Hi! I am Promise Orimadegun
+            </h1>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1">
                 <div className="size-5 tw-all-center">
@@ -111,16 +135,23 @@ function About() {
           </div>
         </section>
 
-        <section className="flex gap-10">
+        <section id="Experience" className="flex gap-10">
           <div className="size-40 min-w-40">
-            <h2 className="text-title-lg text-black50-E6">Experience</h2>
+            <h2
+              className={` ${section === "Experience" && "text-yellow500-F0 animate-pulse"} text-title-lg text-black50-E6`}
+            >
+              Experience
+            </h2>
           </div>
           <div className="space-y-6">
             {experiences.map((experience) => {
               return (
                 <div key={experience.mainText} className="flex gap-6">
                   <figure className="w-[20%] max-w-96 aspect-1/0.5 rounded-lg overflow-hidden">
-                    <img src={experience.image} className="sizze-full object-cover" />
+                    <img
+                      src={experience.image}
+                      className="sizze-full object-cover"
+                    />
                   </figure>
                   <div className="space-y-2 w-[90%]">
                     <p className="font-medium text-title-md text-black50-E6">
@@ -136,9 +167,13 @@ function About() {
           </div>
         </section>
 
-        <section className="space-y-20">
+        <section id="BehindTheScreen" className="space-y-20">
           <div className="space-y-2">
-            <p className="text-title-lg text-black50-E6">Behind The Screen</p>
+            <p
+              className={`${section === "BehindTheScreen" && "text-yellow500-F0 animate-pulse"} text-title-lg text-black50-E6`}
+            >
+              Behind The Screen
+            </p>
             <p className="text-body-lg text-black200-8A">
               Design, to me, is also about conversations, shared learning, and
               showing up where products are being built
@@ -231,9 +266,13 @@ function About() {
           </div>
         </section>
 
-        <section className="space-y-20">
+        <section id="DesignPhilosophy" className="space-y-20">
           <div className="space-y-2">
-            <p className="text-title-lg text-black50-E6">Design Philosophy</p>
+            <p
+              className={` ${section === "DesignPhilosophy" && "text-yellow500-F0 animate-pulse"} text-title-lg text-black50-E6`}
+            >
+              Design Philosophy
+            </p>
             <p className="text-body-lg text-black200-8A">
               How I think about systems, responsibility, and product design.
             </p>

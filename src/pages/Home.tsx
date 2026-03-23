@@ -49,10 +49,11 @@ const selectedWorks = [
   },
 ];
 function Splash() {
+  
   return (
     <div className="relative bg-black900-004 space-y-20">
       {/* Introduction */}
-      <section className="h-svh w-[80%] mx-auto tw-all-center pt-20">
+      <section className="h-svh w-[80%] mx-auto tw-all-center pt-10">
         <div className="flex gap-20">
           <div className=" w-1/2  space-y-6">
             <figure className="size-60  rounded-3xl overflow-hidden">
