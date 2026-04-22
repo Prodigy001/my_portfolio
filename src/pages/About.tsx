@@ -102,8 +102,7 @@ function About() {
           </div>
         </div>
 
-        {/* ── Content ─────────────────────────────────────────────── */}
-        <div className="flex-1 space-y-20 lg:space-y-28 mt-10 lg:mt-28">
+        <div className="space-y-20 lg:space-y-28 mt-10 lg:mt-28">
           {/* Hi section */}
           <section
             id="Hi"
@@ -115,7 +114,7 @@ function About() {
                 className="size-full object-cover"
               />
             </figure>
-            <div className="space-y-4 lg:space-y-6">
+            <div className="space-y-4 items-center lg:space-y-6">
               <h1
                 className={`${
                   section === "Hi"
@@ -176,13 +175,13 @@ function About() {
                 Experience
               </h2>
             </div>
-            <div className="space-y-6 flex-1">
+            <div className="space-y-6">
               {experiences.map((experience) => (
                 <div
                   key={experience.mainText}
                   className="flex flex-col sm:flex-row gap-4 lg:gap-6"
                 >
-                  <figure className="w-full sm:w-[20%] max-w-full sm:max-w-96 aspect-video sm:aspect-[1/0.5] rounded-lg overflow-hidden shrink-0">
+                  <figure className="w-full sm:w-[20%] max-w-full sm:max-w-96 aspect-video sm:aspect-1/0.5 rounded-lg overflow-hidden shrink-0">
                     <img
                       src={experience.image}
                       className="size-full object-cover"
@@ -202,7 +201,10 @@ function About() {
           </section>
 
           {/* Behind The Screen section */}
-          <section id="BehindTheScreen" className="space-y-10 lg:space-y-20">
+          <section
+            id="BehindTheScreen"
+            className="space-y-10 items-center lg:space-y-20"
+          >
             <div className="space-y-2">
               <p
                 className={`${
@@ -220,7 +222,7 @@ function About() {
             </div>
 
             {/* Startup Village */}
-            <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-5">
+            <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-5">
               <div className="w-full lg:w-[40%] lg:max-w-80 space-y-4 lg:space-y-5">
                 <p className="text-title-lg text-black50-E6">
                   Startup Village Nigeria;
@@ -261,7 +263,7 @@ function About() {
             </div>
 
             {/* Design Bounties */}
-            <div className="flex flex-col-reverse lg:flex-row-reverse items-start gap-6 lg:gap-5">
+            <div className="flex flex-col-reverse lg:flex-row-reverse items-center gap-6 lg:gap-5">
               <div className="w-full lg:w-[40%] lg:max-w-80 space-y-4 lg:space-y-5">
                 <p className="text-title-lg text-black50-E6">
                   Design Bounties & Hackathons
