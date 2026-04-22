@@ -76,10 +76,8 @@ function App() {
       onScroll={onScrollCb}
       className="h-screen w-full overflow-auto no-scrollbar bg-black900-004"
     >
-      {/* ── Header ───────────────────────────────────────────────────── */}
-      <header className="top-0 fixed z-20 w-full p-5 flex items-center justify-between">
-        {/* Name + title */}
-        <div className="bg-transparent p-1">
+      <header className="top-0 fixed z-20 backdrop-blur-sm lg:backdrop-blur-none w-full p-5 flex items-center justify-between md:bg-transparent lg:bg-transparent">
+        <div className="py-2 px-4 lg:border lg:border-black400-33 lg:backdrop-blur-sm lg:rounded-lg">
           <h1 className="font-medium text-title-md text-yellow50-FE">
             PROMISE ORIMADEGUN
           </h1>
@@ -112,7 +110,7 @@ function App() {
           </ul>
         </nav>
 
-        {/* Hamburger button — mobile only */}
+        {/* Hamburger button (mobile only) */}
         <button
           className="md:hidden flex flex-col justify-center items-center gap-1.5 p-2 rounded-lg border border-black400-33 bg-[#F0CB030D] backdrop-blur-sm"
           onClick={() => setMenuOpen((o) => !o)}
@@ -138,14 +136,14 @@ function App() {
 
       {/* Mobile dropdown menu */}
       {menuOpen && (
-        <div className="fixed top-[72px] left-0 right-0 z-10 md:hidden bg-black900-004 border-b border-black400-33">
+        <div className="fixed top-30 w-[50%] right-5 z-20 border border-black400-33 bg-[#F0CB030D] backdrop-blur-sm py-2 px-4 rounded-lg md:hidden">
           <ul className="flex flex-col px-6 py-4 gap-1">
             {headerLinks.map((link) => (
               <li key={link.label}>
                 <Link
                   to={link.path}
                   onClick={() => changePage(link.label)}
-                  className={`block py-3 px-4 rounded-lg text-label-md font-medium transition-colors ${
+                  className={`block py-3 px-4 text-center rounded-lg text-label-md font-medium transition-colors ${
                     link.label === currentPage
                       ? "bg-yellow500-F0 text-black500-00A"
                       : "text-yellow50-FE hover:bg-yellow500-F0/10"
@@ -159,7 +157,7 @@ function App() {
         </div>
       )}
 
-      {/* About page — mobile section indicator strip */}
+      {/* About page (mobile section indicator strip) */}
       {isAboutPage && (
         <div className="md:hidden fixed bottom-0 left-0 right-0 z-20 bg-black900-004/90 backdrop-blur-sm border-t border-black400-33">
           <ul className="flex items-center justify-around px-4 py-3">
@@ -181,7 +179,6 @@ function App() {
                     section === s.id ? "text-yellow500-F0" : "text-black200-8A"
                   }`}
                 >
-                  {/* Active dot indicator */}
                   <span
                     className={`block w-1 h-1 rounded-full transition-all ${
                       section === s.id
@@ -199,7 +196,6 @@ function App() {
 
       <Outlet context={{ section }} />
 
-      {/* ── Footer ───────────────────────────────────────────────────── */}
       <footer className="pb-10">
         <CallToAction />
         <div className="w-[80%] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
