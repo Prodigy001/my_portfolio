@@ -1,9 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 @import "tailwindcss";
 
-html {
+html,
+body {
+  margin: 0;
+  padding: 0;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  @apply bg-black900-004;
 }
 
 @theme {

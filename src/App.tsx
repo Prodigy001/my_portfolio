@@ -74,7 +74,7 @@ function App() {
   return (
     <section
       onScroll={onScrollCb}
-      className="h-screen w-full overflow-auto no-scrollbar bg-black900-004"
+      className="min-h-screen w-full no-scrollbar bg-black900-004"
     >
       <header className="top-0 fixed z-20 backdrop-blur-sm lg:backdrop-blur-none w-full p-5 flex items-center justify-between md:bg-transparent lg:bg-transparent">
         <div className="py-2 px-4 lg:border lg:border-black400-33 lg:backdrop-blur-sm lg:rounded-lg">
