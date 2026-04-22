@@ -68,8 +68,8 @@ function About() {
   const { section } = useOutletContext<ContextType>();
 
   return (
-    <div className="relative w-full flex bg-black900-004 space-y-20 py-40 px-5">
-      <div className="w-[30%] max-w-80 h-40 sticky top-24 space-y-20  pr-10">
+    <div className="relative w-full flex flex-col lg:flex-row bg-black900-004 space-y-10 lg:space-y-20 py-20 lg:py-40 px-4 lg:px-5">
+      <div className="w-full lg:w-[30%] max-w-full lg:max-w-80 h-auto lg:h-40 lg:sticky lg:top-24 space-y-6 lg:space-y-20 pr-0 lg:pr-10">
         <p className="text-black50-E6 text-headline-lg">ABOUT ME</p>
         <nav className="flex justify-end">
           <ul className="p-6 border-r border-black400-33 space-y-3">

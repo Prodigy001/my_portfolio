@@ -19,6 +19,14 @@ const router = createBrowserRouter([
         path: "about",
         element: <About />,
       },
+      {
+        path: "work/:slug/:type",
+        element: (
+          <div className="p-5 text-center text-white">
+            Work Details in progress...
+          </div>
+        ),
+      },
     ],
   },
 ]);

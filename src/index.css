@@ -20,7 +20,7 @@ html {
   --color-black900-004: #000204;
 
   --color-yellow50-FE: #fefae6;
-  --color-yellow100-FA: #fefae6;
+  --color-yellow100-FA: #faefb1;
   --color-yellow200-F8: #fefae6;
   --color-yellow300-F5: #fefae6;
   --color-yellow400-F3: #f3d535;
@@ -29,7 +29,11 @@ html {
   --color-yellow700-AA: #aa9002;
   --color-yellow800-84: #847002;
   --color-yellow900-65: #655501;
+  --color-yellow900-99: #999909;
 
+  --color-green50-008: #008000;
+
+  --color-blue50-000: #0000ff;
   /* connvertig the "px" to "rem" was making the texts extra smalll but i stilll choose to leave the connversion code */
   /*
   --text-display-lg: calc(57px / 16);
@@ -96,7 +100,6 @@ html {
   --text-body-xs--line-height: calc(12px / 16);
   --text-body-xs--letter-spacing: calc(0.4px / 16);
   */
-
   --text-display-lg: 57px;
   --text-display-lg--line-height: 64px;
   --text-display-lg--letter-spacing: -0.25px;
@@ -124,6 +127,7 @@ html {
   --text-title-lg: 22px;
   --text-title-lg--line-height: 28px;
   --text-title-lg--letter-spacing: 0;
+  --text-title-lg--font-weight: 400;
 
   --text-title-md: 16px;
   --text-title-md--line-height: 24px;
@@ -160,6 +164,7 @@ html {
   --text-body-xs: 10px;
   --text-body-xs--line-height: 12px;
   --text-body-xs--letter-spacing: 0.4px;
+  --text-body-xs--font-weight: 400;
 }
 
 @layer utilities {
@@ -260,6 +265,7 @@ html {
     font-size: var(--text-body-xs);
     line-height: var(--text-body-xs--line-height);
     letter-spacing: var(--text-body-xs--letter-spacing);
+    font-weight: var(--text-body-xs--font-weight);
   }
 
   .no-scrollbar {
