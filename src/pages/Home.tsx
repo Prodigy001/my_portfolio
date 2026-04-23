@@ -142,7 +142,7 @@ function Splash() {
     <div className="relative bg-black900-004 space-y-16 md:space-y-20">
       {/* Introduction */}
       <section className="min-h-screen w-[90%] md:w-[85%] lg:w-[80%] mx-auto flex items-center pt-10">
-        <div className="flex flex-col pt-20 md:pt-20 space-y-8 md:space-y-10 lg:pt-40 lg:flex-row gap-10 lg:gap-20 w-full">
+        <div className="flex flex-col pt-20 md:pt-20 space-y-8 md:space-y-10 lg:pt-40 lg:flex-row gap-30 lg:gap-20 w-full">
           <div className="w-full lg:w-1/2 space-y-6">
             <figure className="size-40 md:size-52 lg:size-60 rounded-3xl overflow-hidden">
               <img
@@ -151,10 +151,14 @@ function Splash() {
               />
             </figure>
 
-            <p className="text-base md:text-lg lg:text-title-lg text-black50-E6">
-              Product Designer with 5+ years of experience designing Fintech,
-              SAAS, web3 and data-driven products , from concept to live systems
-              used by real users.
+            <h1 className="text-headline-lg md:text-headline-lg lg:text-headline-lg text-black50-E6">
+              I design products people actually use From 0 → launch → scale.
+            </h1>
+
+            <p className="text-body-sm md:text-body-sm lg:text-body-sm text-black300-54">
+              I’m Promise, a Product Designer helping startups ship high-impact
+              fintech, SaaS, and Web3 products — from early ideas to live
+              systems used by real users.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -179,10 +183,10 @@ function Splash() {
                   key={data.label}
                   className="py-2 space-y-2 md:space-y-4 border-b border-black400-33"
                 >
-                  <p className="text-sm md:text-body-md text-black300-54">
+                  <p className="text-body-md md:text-body-md text-black300-54">
                     {data.label}
                   </p>
-                  <p className="text-lg md:text-headline-lg text-yellow50-FE">
+                  <p className="text-headline-lg md:text-headline-lg text-yellow50-FE">
                     {data.result}
                   </p>
                 </li>
@@ -196,7 +200,7 @@ function Splash() {
       <section className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto">
         <div className="pt-10 md:pt-10 pb-10 md:pb-10 space-y-2 md:space-y-5">
           <div className="space-y-0 md:space-y-4">
-            <h2 className="text-lg md:text-headline-lg text-black50-E6">
+            <h2 className="text-headline-lg md:text-headline-lg text-black50-E6">
               SELECTED WORK
             </h2>
           </div>
@@ -254,7 +258,7 @@ function Splash() {
       <section className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto">
         <div className="pt-10 md:pt-10 pb-10 md:pb-10 space-y-2 md:space-y-5">
           <div className="space-y-4">
-            <h2 className="text-lg md:text-headline-lg text-black50-E6 font-light">
+            <h2 className="text-headline-lg md:text-headline-lg text-black50-E6">
               Live Products I've Built With Framer
             </h2>
             <p className="text-body-sm text-black300-54">
@@ -294,7 +298,7 @@ function Splash() {
       {/* Design Process */}
       <section className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto space-y-2">
         <div className="space-y-4">
-          <h2 className="text-headline-lg md:text-headline-lg text-black50-E6 font-light">
+          <h2 className="text-headline-lg md:text-headline-lg text-black50-E6">
             How I Design Products
           </h2>
           <p className="text-body-sm text-black300-54">
