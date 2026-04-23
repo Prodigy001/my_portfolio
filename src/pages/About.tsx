@@ -46,8 +46,13 @@ function About() {
 
   return (
     <div className="relative w-full bg-black900-004 pt-24 pb-40">
-      <div className="lg:hidden sticky top-20 z-10 bg-transparent backdrop-blur-sm border-b border-black400-33 px-4 py-3 flex items-center justify-between">
-        <h1 className="text-black50-E6 text-title-lg font-medium">ABOUT ME</h1>
+      <div className="lg:hidden sticky top-20 z-10 backdrop-blur-sm border-b border-black400-33 space-y-2 px-4 py-3 flex items-center justify-between">
+        <div className="space-y-1">
+          <h1 className="text-black50-E6 text-title-lg font-medium">
+            ABOUT ME
+          </h1>
+        </div>
+
         {/* Section dot indicators */}
         <div className="flex items-center gap-3">
           {sections.map((s) => (
@@ -72,7 +77,6 @@ function About() {
         </div>
       </div>
 
-      {/* ── Main layout ─────────────────────────────────────────────── */}
       <div className="flex flex-col lg:flex-row w-full px-4 lg:px-5">
         {/* ── Desktop: sticky sidebar ──────────────────────────────── */}
         <div className="hidden lg:flex w-[30%] max-w-80 shrink-0">
@@ -184,7 +188,7 @@ function About() {
                   <figure className="w-full sm:w-[20%] max-w-full sm:max-w-96 aspect-video sm:aspect-1/0.5 rounded-lg overflow-hidden shrink-0">
                     <img
                       src={experience.image}
-                      className="size-full object-cover"
+                      className="size-full object-contain"
                     />
                   </figure>
                   <div className="space-y-2 flex-1">

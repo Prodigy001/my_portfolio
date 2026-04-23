@@ -194,8 +194,8 @@ function Splash() {
 
       {/* Selected Works */}
       <section className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto">
-        <div className="pt-16 md:pt-20 pb-20 md:pb-20 space-y-5 md:space-y-5">
-          <div className="space-y-2">
+        <div className="pt-10 md:pt-10 pb-10 md:pb-10 space-y-2 md:space-y-5">
+          <div className="space-y-0 md:space-y-4">
             <h2 className="text-lg md:text-headline-lg text-black50-E6">
               SELECTED WORK
             </h2>
@@ -203,7 +203,7 @@ function Splash() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
             {selectedWorks.map((work) => (
-              <div key={work.slug} className="space-y-6">
+              <div key={work.slug} className="space-y-5">
                 <figure className="w-full aspect-[1/0.7] rounded-lg overflow-hidden">
                   <img src={work.image} className="size-full object-contain" />
                 </figure>
@@ -252,7 +252,7 @@ function Splash() {
 
       {/* Live Products */}
       <section className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto">
-        <div className="pt-16 md:pt-20 pb-20 md:pb-20 space-y-5 md:space-y-5">
+        <div className="pt-10 md:pt-10 pb-10 md:pb-10 space-y-2 md:space-y-5">
           <div className="space-y-4">
             <h2 className="text-lg md:text-headline-lg text-black50-E6 font-light">
               Live Products I've Built With Framer
@@ -292,7 +292,7 @@ function Splash() {
       </section>
 
       {/* Design Process */}
-      <section className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto py-20 space-y-2">
+      <section className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto space-y-2">
         <div className="space-y-4">
           <h2 className="text-headline-lg md:text-headline-lg text-black50-E6 font-light">
             How I Design Products
