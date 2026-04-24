@@ -26,6 +26,12 @@ function App() {
 
   const isAboutPage = location.pathname.includes("about");
 
+  // ── Scroll to top on every route change ──────────────────────────
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [location.pathname]);
+
+  // ── Section detection ─────────────────────────────────────────────
   function isElementInViewPort(el: HTMLElement) {
     const top = el.getBoundingClientRect().top;
     const height = window.innerHeight;
@@ -59,7 +65,9 @@ function App() {
 
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    checkSectionPosition();
+    requestAnimationFrame(() => {
+      checkSectionPosition();
+    });
 
     return () => {
       window.removeEventListener("scroll", onScroll);
@@ -67,7 +75,7 @@ function App() {
   }, [isAboutPage, checkSectionPosition]);
 
   function changePage(page: string) {
-    if (page !== "about") {
+    if (page !== "About") {
       setSection("Hi");
     }
 
@@ -188,10 +196,8 @@ function App() {
         </div>
       )}
 
-      {/* Page content */}
       <Outlet context={{ section }} />
 
-      {/* ── Footer ─────────────────────────────────────────────────── */}
       <footer className="pb-10">
         <CallToAction />
         <div className="w-[80%] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-10">

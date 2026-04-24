@@ -44,26 +44,33 @@ const experiences = [
 function About() {
   const { section } = useOutletContext<ContextType>();
 
-  return (
-    <div className="relative w-full bg-black900-004 pt-24 pb-40">
-      <div className="lg:hidden sticky top-20 z-10 backdrop-blur-sm border-b border-black400-33 space-y-2 px-4 py-3 flex items-center justify-between">
-        <div className="space-y-1">
-          <h1 className="text-black50-E6 text-title-lg font-medium">
-            ABOUT ME
-          </h1>
-        </div>
+  // Total sticky offset:
+  // Mobile  → main header (~80px) + "ABOUT ME" bar (~52px) = ~132px
+  // Desktop → main header (~80px) only
+  const MOBILE_OFFSET = 132;
+  const DESKTOP_OFFSET = 80;
 
-        {/* Section dot indicators */}
+  function scrollToSection(id: string) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const isMobile = window.innerWidth < 1024;
+    const offset = isMobile ? MOBILE_OFFSET : DESKTOP_OFFSET;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset - 16;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+
+  return (
+    <div className="relative w-full bg-black900-004 pb-40">
+      {/* Mobile: sticky "ABOUT ME" + dots */}
+      <div className="lg:hidden sticky top-20 z-10 bg-transparent backdrop-blur-sm border-b border-black400-33 px-4 py-3 flex items-center justify-between">
+        <h1 className="text-black50-E6 text-title-lg font-medium">ABOUT ME</h1>
         <div className="flex items-center gap-3">
           {sections.map((s) => (
             <button
               key={s.id}
-              onClick={() =>
-                document
-                  .getElementById(s.id)
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
+              onClick={() => scrollToSection(s.id)}
               className="flex flex-col items-center gap-1"
+              aria-label={s.label}
             >
               <span
                 className={`block rounded-full transition-all duration-300 ${
@@ -77,8 +84,14 @@ function About() {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row w-full px-4 lg:px-5">
-        {/* ── Desktop: sticky sidebar ──────────────────────────────── */}
+      {/*
+        pt values:
+        Mobile  → pt-37  (header 80 + about-bar 52 + 16 breathing room)
+        Desktop → pt-24   (header 80 + 16 breathing room)
+      */}
+
+      <div className="flex flex-col lg:flex-row w-full px-4 lg:px-5 pt-37 lg:pt-24">
+        {/* Desktop sticky sidebar */}
         <div className="hidden lg:flex w-[30%] max-w-80 shrink-0">
           <div className="sticky top-24 h-fit space-y-20 pr-10 w-full">
             <p className="text-black50-E6 text-headline-lg">ABOUT ME</p>
@@ -92,11 +105,7 @@ function About() {
                         ? "text-yellow500-F0"
                         : "text-black200-8A"
                     } hover:text-yellow500-F0 text-label-md cursor-pointer transition-colors`}
-                    onClick={() =>
-                      document
-                        .getElementById(s.id)
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
+                    onClick={() => scrollToSection(s.id)}
                   >
                     {s.label}
                   </li>
@@ -106,11 +115,14 @@ function About() {
           </div>
         </div>
 
-        <div className="space-y-20 lg:space-y-28 mt-10 lg:mt-28">
-          {/* Hi section */}
+        {/* Content */}
+        <div className="flex-1 space-y-20 lg:space-y-28">
+          {/* scroll-mt accounts for sticky bars so the section title
+              is always visible just below them when scrolled into view  */}
+
           <section
             id="Hi"
-            className="flex flex-col sm:flex-row gap-6 lg:gap-10"
+            className="flex flex-col sm:flex-row gap-6 lg:gap-10 scroll-mt-33 lg:scroll-mt-24"
           >
             <figure className="size-28 sm:size-40 min-w-28 sm:min-w-40 overflow-hidden rounded-lg shrink-0">
               <img
@@ -118,7 +130,7 @@ function About() {
                 className="size-full object-cover"
               />
             </figure>
-            <div className="space-y-4 items-center lg:space-y-6">
+            <div className="space-y-4 lg:space-y-6">
               <h1
                 className={`${
                   section === "Hi"
@@ -163,10 +175,9 @@ function About() {
             </div>
           </section>
 
-          {/* Experience section */}
           <section
             id="Experience"
-            className="flex flex-col sm:flex-row gap-6 lg:gap-10"
+            className="flex flex-col sm:flex-row gap-6 lg:gap-10 scroll-mt-33 lg:scroll-mt-24"
           >
             <div className="sm:w-40 sm:min-w-40 shrink-0">
               <h2
@@ -179,7 +190,7 @@ function About() {
                 Experience
               </h2>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-6 flex-1">
               {experiences.map((experience) => (
                 <div
                   key={experience.mainText}
@@ -204,18 +215,13 @@ function About() {
             </div>
           </section>
 
-          {/* Behind The Screen section */}
           <section
             id="BehindTheScreen"
-            className="space-y-10 items-center lg:space-y-20"
+            className="space-y-10 lg:space-y-20 scroll-mt-33 lg:scroll-mt-24"
           >
             <div className="space-y-2">
               <p
-                className={`${
-                  section === "BehindTheScreen"
-                    ? "text-yellow500-F0 animate-pulse"
-                    : "text-black50-E6"
-                } text-title-lg`}
+                className={`${section === "BehindTheScreen" ? "text-yellow500-F0 animate-pulse" : "text-black50-E6"} text-title-lg`}
               >
                 Behind The Screen
               </p>
@@ -309,15 +315,13 @@ function About() {
             </div>
           </section>
 
-          {/* Design Philosophy section */}
-          <section id="DesignPhilosophy" className="space-y-10 lg:space-y-20">
+          <section
+            id="DesignPhilosophy"
+            className="space-y-10 lg:space-y-20 scroll-mt-33 lg:scroll-mt-24"
+          >
             <div className="space-y-2">
               <p
-                className={`${
-                  section === "DesignPhilosophy"
-                    ? "text-yellow500-F0 animate-pulse"
-                    : "text-black50-E6"
-                } text-title-lg`}
+                className={`${section === "DesignPhilosophy" ? "text-yellow500-F0 animate-pulse" : "text-black50-E6"} text-title-lg`}
               >
                 Design Philosophy
               </p>
