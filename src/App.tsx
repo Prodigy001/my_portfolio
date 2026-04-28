@@ -201,7 +201,7 @@ function App() {
 
       <Outlet context={{ section }} />
 
-      <footer className="pb-10">
+      <footer className="pb-5">
         <CallToAction />
         <div className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto flex flex-col md:flex-row items-center md:items-center justify-between gap-10">
           <div className="space-y-6">
@@ -239,7 +239,7 @@ function App() {
             </ul>
           </nav>
         </div>
-        <p className="text-body-md text-black200-8A text-center mt-10 pb-5">
+        <p className="text-body-md text-black200-8A text-center mt-10">
           Copyright &#169; {new Date().getFullYear()}
         </p>
       </footer>

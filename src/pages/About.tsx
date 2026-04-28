@@ -132,7 +132,7 @@ function About() {
   }
 
   return (
-    <div className="relative w-full bg-black900-004 pb-30">
+    <div className="relative w-full bg-black900-004 pb-20">
       <div className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto">
         {/*  (Mobile + tablet) : sticky "ABOUT ME" + dots  */}
         <div className="lg:hidden sticky top-20 z-10 bg-transparent backdrop-blur-sm border-b border-black400-33 px-4 py-3 flex items-center justify-between">
@@ -437,7 +437,7 @@ function About() {
 
             <section
               id="DesignPhilosophy"
-              className="space-y-10 lg:space-y-20 scroll-mt-33 lg:scroll-mt-24"
+              className="space-y-10 lg:space-y-10 scroll-mt-33 lg:scroll-mt-24"
             >
               <div className="space-y-4">
                 <p
@@ -449,7 +449,7 @@ function About() {
                 >
                   Design Philosophy
                 </p>
-                <p className="text-body-md lg:text-body-lg text-black200-8A">
+                <p className="text-body-sm lg:text-body-sm text-black200-8A">
                   How I think about systems, responsibility, and product design.
                 </p>
               </div>
