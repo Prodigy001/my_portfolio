@@ -77,7 +77,7 @@ const selectedWorks = [
     mainText: "Solana DEX - Simplifying Token Swaps",
     subText:
       "Swapping tokens shouldn’t feel like a technical task. I designed a cleaner DEX interface that reduces cognitive load and helps users understand exactly what’s happening before they confirm a transaction.",
-    link: "https://play.google.com/store/apps/details?id=com.user.Kero",
+    link: "https://www.behance.net/gallery/204428569/Solana-DEX-UI",
     slug: "kero-mobile",
     tags: [
       {
@@ -86,9 +86,9 @@ const selectedWorks = [
         color: "bg-yellow900-99/20 text-yellow900-99",
       },
       {
-        label: "Case Study",
+        label: "UI Design",
         path: "/work/kero-mobile/case-study",
-        color: "bg-green50-008/20 text-green50-008",
+        color: "bg-black900-8E/20 text-black900-8E",
       },
     ],
   },
@@ -97,7 +97,7 @@ const selectedWorks = [
     mainText: "Slice to Earn - Designing for Engagement",
     subText:
       "An exploration into how simple interactions can drive engagement. I designed a lightweight game experience focused on reward loops, feedback, and keeping users coming back.",
-    link: "https://www.behance.net/gallery/238968431/Airbills-Pay-(Mobile-app-redesign)",
+    link: "https://www.behance.net/gallery/207140493/Play-to-Earn-design-Exploration",
     slug: "airbills-pay-2",
     tags: [
       {
@@ -106,9 +106,9 @@ const selectedWorks = [
         color: "bg-yellow900-99/20 text-yellow900-99",
       },
       {
-        label: "Framer Build",
+        label: "Prototype",
         path: "/work/airbills-pay-2/framer-build",
-        color: "bg-blue50-000/20 text-blue50-000",
+        color: "bg-red50-000/20 text-red50-000",
       },
     ],
   },
@@ -217,13 +217,13 @@ function Splash() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-15">
             {selectedWorks.map((work) => (
-              <div key={work.slug} className="space-y-5 lg:space-y-5">
+              <div key={work.slug} className="space-y-5 lg:space-y-6">
                 <figure className="w-full aspect-1/0.7 rounded-lg overflow-hidden">
                   <img src={work.image} className="size-full object-contain" />
                 </figure>
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                  <div className="space-y-2 sm:w-[60%]">
+                  <div className="space-y-2 lg:space-y-4 sm:w-[60%]">
                     <p className="text-title-md text-black50-E6">
                       {work.mainText}
                     </p>
