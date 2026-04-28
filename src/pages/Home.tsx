@@ -34,9 +34,10 @@ const designProcess = [
 const selectedWorks = [
   {
     image: "../../images/airbills.png",
-    mainText: "Airbills Pay Mobile app",
+    mainText: "Airbills Pay - Crypto for Everyday Payments",
     subText:
-      "Designing a seamless crypto payment experience for everyday users",
+      "Designed a payment experience that lets users pay for airtime, data, and electricity using crypto. Focused on simplifying flows and making transactions feel clear, fast, and trustworthy.",
+    link: "https://www.behance.net/gallery/238968431/Airbills-Pay-(Mobile-app-redesign)",
     slug: "airbills-pay",
     tags: [
       {
@@ -55,7 +56,8 @@ const selectedWorks = [
     image: "../../images/byClick.png",
     mainText: "By Click Downloader Redesign",
     subText:
-      "Redesigning the ByClick Downloader experience through usability testing.",
+      "The product worked, but the experience didn’t. I ran usability tests, identified where users got stuck, and redesigned the interface to make downloading faster, clearer, and less confusing.",
+    link: "https://www.behance.net/gallery/167093787/Revitalizing-Byclick-Downloader",
     slug: "byclick-downloader",
     tags: [
       {
@@ -71,10 +73,11 @@ const selectedWorks = [
     ],
   },
   {
-    image: "../../images/kero.png",
-    mainText: "Kero mobile app design",
+    image: "../../images/solana-dex.png",
+    mainText: "Solana DEX - Simplifying Token Swaps",
     subText:
-      "Simplifying ride-hailing in low trust, high-variabilty environments",
+      "Swapping tokens shouldn’t feel like a technical task. I designed a cleaner DEX interface that reduces cognitive load and helps users understand exactly what’s happening before they confirm a transaction.",
+    link: "https://play.google.com/store/apps/details?id=com.user.Kero",
     slug: "kero-mobile",
     tags: [
       {
@@ -90,10 +93,11 @@ const selectedWorks = [
     ],
   },
   {
-    image: "../../images/airbills.png",
-    mainText: "Airbills Pay Mobile app",
+    image: "../../images/slice-to-earn.png",
+    mainText: "Slice to Earn - Designing for Engagement",
     subText:
-      "Airbills pay is a web3 platform that allows you buy crypto from your wallet",
+      "An exploration into how simple interactions can drive engagement. I designed a lightweight game experience focused on reward loops, feedback, and keeping users coming back.",
+    link: "https://www.behance.net/gallery/238968431/Airbills-Pay-(Mobile-app-redesign)",
     slug: "airbills-pay-2",
     tags: [
       {
@@ -116,31 +120,34 @@ const liveProducts = [
     mainText: "Kero mobile app design",
     subText:
       "Simplifying ride-hailing in low trust, high-variabilty environments",
+    link: "https://kero.framer.website",
   },
   {
     image: "../../images/airbills.png",
     mainText: "Airbills Pay Mobile app",
     subText:
       "Airbills pay is a web3 platform that allows you buy crypto from your wallet",
+    link: "https://kero.framer.website",
   },
   {
     image: "../../images/kero.png",
     mainText: "Kero mobile app design",
     subText:
       "Simplifying ride-hailing in low trust, high-variabilty environments",
+    link: "https://kero.framer.website",
   },
   {
     image: "../../images/airbills.png",
     mainText: "Airbills Pay Mobile app",
     subText:
       "Airbills pay is a web3 platform that allows you buy crypto from your wallet",
+    link: "https://kero.framer.website",
   },
 ];
 
 function Splash() {
   return (
     <div className="relative bg-black900-004 space-y-16 md:space-y-20">
-      {/* Introduction */}
       <section className="min-h-screen w-[90%] md:w-[85%] lg:w-[80%] mx-auto flex items-center pt-10">
         <div className="flex flex-col pt-20 md:pt-20 space-y-8 md:space-y-10 lg:pt-40 lg:flex-row gap-30 lg:gap-20 w-full">
           <div className="w-full lg:w-1/2 space-y-6">
@@ -167,11 +174,15 @@ function Splash() {
                 bgColor="bg-yellow500-F0"
                 color="text-black500-00A"
                 Icon={Chat}
+                href="https://calendly.com/promise-orimadegun/30min"
+                target="_blank"
               />
               <Button
                 text="Download Resume"
                 bgColor="bg-black400-33"
                 color="text-white"
+                href="https://docs.google.com/document/d/1IVAdEew4oZp-9LthlHcyu6W6LTcG_fPz7EY-EGAZBN4/edit?usp=sharing"
+                target="_blank"
               />
             </div>
           </div>
@@ -196,19 +207,18 @@ function Splash() {
         </div>
       </section>
 
-      {/* Selected Works */}
       <section className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto">
-        <div className="pt-10 md:pt-10 pb-10 md:pb-10 space-y-2 md:space-y-5">
-          <div className="space-y-0 md:space-y-4">
+        <div className="pt-10 md:pt-10 pb-10 md:pb-10 space-y-4 md:space-y-9">
+          <div className="space-y-4 md:space-y-4">
             <h2 className="text-headline-lg md:text-headline-lg text-black50-E6">
               SELECTED WORK
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-15">
             {selectedWorks.map((work) => (
-              <div key={work.slug} className="space-y-5">
-                <figure className="w-full aspect-[1/0.7] rounded-lg overflow-hidden">
+              <div key={work.slug} className="space-y-5 lg:space-y-5">
+                <figure className="w-full aspect-1/0.7 rounded-lg overflow-hidden">
                   <img src={work.image} className="size-full object-contain" />
                 </figure>
 
@@ -226,6 +236,8 @@ function Splash() {
                     text="View Project"
                     color="text-white"
                     bgColor="bg-black400-33"
+                    href={work.link}
+                    target="_blank"
                   />
                 </div>
 
@@ -255,7 +267,7 @@ function Splash() {
       </section>
 
       {/* Live Products */}
-      <section className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto">
+      {/* <section className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto">
         <div className="pt-10 md:pt-10 pb-10 md:pb-10 space-y-2 md:space-y-5">
           <div className="space-y-4">
             <h2 className="text-headline-lg md:text-headline-lg text-black50-E6">
@@ -287,13 +299,15 @@ function Splash() {
                     text="View Live"
                     color="text-white"
                     bgColor="bg-black400-33"
+                    href={prod.link}
+                    target="_blank"
                   />
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Design Process */}
       <section className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto space-y-2">

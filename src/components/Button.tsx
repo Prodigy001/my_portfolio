@@ -3,26 +3,52 @@ import React from "react";
 interface ButtonProps {
   text: string;
   bgColor: "bg-yellow500-F0" | "bg-black400-33" | "bg-yellow100-FA";
-  color: "text-black500-00A" | "text-black400-33" | "text-white";
-  Icon?: () => React.ReactNode;
+  color: "text-black500-00A" | "text-white" | "text-black400-33";
+  Icon?: React.ComponentType;
+  onClick?: () => void;
+  href?: string;
+  target?: "_blank" | "_self" | "_parent" | "_top";
 }
 
-function Button({ text, bgColor, color, Icon }: ButtonProps) {
-  return (
-    <div>
-      <button
-        className={`p-4 h-12 flex items-center gap-2 rounded-lg hover:opacity-60 cursor-pointer ${bgColor}`}
+const Button: React.FC<ButtonProps> = ({
+  text,
+  bgColor,
+  color,
+  Icon,
+  onClick,
+  href,
+  target = "_self",
+}) => {
+  const sharedClasses = `w-36 md:w-auto lg:w-auto p-4 h-12 tw-all-center text-center gap-2 rounded-lg hover:opacity-60 cursor-pointer ${bgColor}`;
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target={target}
+        rel="noopener noreferrer"
+        className={sharedClasses}
       >
         {Icon && (
           <div className="size-5 tw-all-center">
             <Icon />
           </div>
         )}
-
         <p className={`font-medium text-label-md ${color}`}>{text}</p>
-      </button>
-    </div>
+      </a>
+    );
+  }
+
+  return (
+    <button type="button" onClick={onClick} className={sharedClasses}>
+      {Icon && (
+        <div className="size-5 tw-all-center">
+          <Icon />
+        </div>
+      )}
+      <p className={`font-medium text-label-md ${color}`}>{text}</p>
+    </button>
   );
-}
+};
 
 export default Button;

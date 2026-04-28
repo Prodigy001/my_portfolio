@@ -13,9 +13,9 @@ const headerLinks = [
 ];
 
 const footerSocials = [
-  { Icon: LinkedIn, path: "/linkedIn" },
-  { Icon: Twitter, path: "/twitter" },
-  { Icon: TikTok, path: "/tiktok" },
+  { Icon: LinkedIn, path: "https://www.linkedin.com/in/orimadegun-promise/" },
+  { Icon: Twitter, path: "https://x.com/Extricator_UX" },
+  { Icon: TikTok, path: "https://www.tiktok.com/@kyng_prodigy" },
 ];
 
 function App() {
@@ -26,12 +26,10 @@ function App() {
 
   const isAboutPage = location.pathname.includes("about");
 
-  // ── Scroll to top on every route change ──────────────────────────
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [location.pathname]);
 
-  // ── Section detection ─────────────────────────────────────────────
   function isElementInViewPort(el: HTMLElement) {
     const top = el.getBoundingClientRect().top;
     const height = window.innerHeight;
@@ -39,7 +37,13 @@ function App() {
   }
 
   const checkSectionPosition = React.useCallback(() => {
-    const ids = ["Hi", "Experience", "BehindTheScreen", "DesignPhilosophy"];
+    const ids = [
+      "Hi",
+      "Stacks",
+      "Experience",
+      "BeyondTheScreen",
+      "DesignPhilosophy",
+    ];
     for (const id of ids) {
       const el = document.getElementById(id);
       if (el && isElementInViewPort(el)) {
@@ -64,7 +68,6 @@ function App() {
     }
 
     window.addEventListener("scroll", onScroll, { passive: true });
-
     requestAnimationFrame(() => {
       checkSectionPosition();
     });
@@ -75,66 +78,65 @@ function App() {
   }, [isAboutPage, checkSectionPosition]);
 
   function changePage(page: string) {
-    if (page !== "About") {
-      setSection("Hi");
-    }
-
+    if (page !== "About") setSection("Hi");
     setCurrentPage(page);
     setMenuOpen(false);
   }
 
   return (
     <div className="min-h-screen w-full bg-black900-004 no-scrollbar">
-      <header className="top-0 fixed z-20 backdrop-blur-sm lg:backdrop-blur-none w-full p-5 flex items-center justify-between md:bg-transparent lg:bg-transparent">
-        <div className="py-2 px-4 lg:border lg:border-black400-33 lg:backdrop-blur-sm lg:rounded-lg">
-          <h1 className="font-medium text-title-md text-yellow50-FE">
-            PROMISE ORIMADEGUN
-          </h1>
-          <h2 className="text-body-sm text-black700-A3">
-            Product designer & UX Strategist
-          </h2>
-        </div>
+      <header className="top-0 fixed z-20 w-full backdrop-blur-sm lg:backdrop-blur-none md:bg-transparent lg:bg-transparent">
+        <div className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto flex items-center justify-between py-5">
+          <div className="py-2 px-4 lg:border lg:border-black400-33 lg:backdrop-blur-sm lg:rounded-lg">
+            <h1 className="font-medium text-title-md text-yellow50-FE">
+              PROMISE ORIMADEGUN
+            </h1>
+            <h2 className="text-body-sm text-black700-A3">
+              Product designer & UX Strategist
+            </h2>
+          </div>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:block">
-          <ul className="border border-black400-33 bg-[#F0CB030D] backdrop-blur-sm py-2 px-4 rounded-lg flex gap-8">
-            {headerLinks.map((link) => (
-              <li
-                key={link.label}
-                className={`${
-                  link.label === currentPage
-                    ? "bg-yellow500-F0 border-black300-54 text-black500-00A"
-                    : "border-transparent text-yellow50-FE hover:bg-yellow500-F0/10"
-                } rounded-sm border font-medium text-label-md`}
-              >
-                <Link
-                  to={link.path}
-                  onClick={() => changePage(link.label)}
-                  className="block p-2 size-full"
+          {/* Desktop nav */}
+          <nav className="hidden md:block">
+            <ul className="border border-black400-33 bg-[#F0CB030D] backdrop-blur-sm py-2 px-4 rounded-lg flex gap-8">
+              {headerLinks.map((link) => (
+                <li
+                  key={link.label}
+                  className={`${
+                    link.label === currentPage
+                      ? "bg-yellow500-F0 border-black300-54 text-black500-00A"
+                      : "border-transparent text-yellow50-FE hover:bg-yellow500-F0/10"
+                  } rounded-sm border font-medium text-label-md`}
                 >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+                  <Link
+                    to={link.path}
+                    onClick={() => changePage(link.label)}
+                    className="block p-2 size-full"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        {/* Hamburger — mobile */}
-        <button
-          className="md:hidden flex flex-col justify-center items-center gap-1.5 p-2 rounded-lg border border-black400-33 bg-[#F0CB030D] backdrop-blur-sm"
-          onClick={() => setMenuOpen((o) => !o)}
-          aria-label="Toggle menu"
-        >
-          <span
-            className={`block w-5 h-0.5 bg-yellow50-FE transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
-          />
-          <span
-            className={`block w-5 h-0.5 bg-yellow50-FE transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
-          />
-          <span
-            className={`block w-5 h-0.5 bg-yellow50-FE transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
-          />
-        </button>
+          {/* Hamburger (mobile only) */}
+          <button
+            className="md:hidden flex flex-col justify-center items-center gap-1.5 p-2 rounded-lg border border-black400-33 bg-[#F0CB030D] backdrop-blur-sm"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            <span
+              className={`block w-5 h-0.5 bg-yellow50-FE transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
+            />
+            <span
+              className={`block w-5 h-0.5 bg-yellow50-FE transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
+            />
+            <span
+              className={`block w-5 h-0.5 bg-yellow50-FE transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+            />
+          </button>
+        </div>
       </header>
 
       {/* Mobile dropdown */}
@@ -160,14 +162,15 @@ function App() {
         </div>
       )}
 
-      {/* About page — mobile section indicator */}
+      {/* About page (mobile section indicator) */}
       {isAboutPage && (
         <div className="md:hidden fixed bottom-0 left-0 right-0 z-20 bg-black900-004/90 backdrop-blur-sm border-t border-black400-33">
           <ul className="flex items-center justify-around px-4 py-3">
             {[
               { label: "Hi!", id: "Hi" },
+              { label: "Stacks", id: "Stacks" },
               { label: "Exp", id: "Experience" },
-              { label: "Behind", id: "BehindTheScreen" },
+              { label: "Beyond", id: "BeyondTheScreen" },
               { label: "Philosophy", id: "DesignPhilosophy" },
             ].map((s) => (
               <li key={s.id}>
@@ -200,7 +203,7 @@ function App() {
 
       <footer className="pb-10">
         <CallToAction />
-        <div className="w-[80%] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+        <div className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto flex flex-col md:flex-row items-center md:items-center justify-between gap-10">
           <div className="space-y-6">
             <h2 className="text-title-md font-medium text-yellow50-FE">
               PROMISE ORIMADEGUN
@@ -216,9 +219,9 @@ function App() {
             <nav className="flex items-center gap-6">
               {footerSocials.map(({ Icon, path }) => (
                 <figure key={path} className="size-5">
-                  <Link to={path}>
+                  <a href={path} target="_blank" rel="noopener noreferrer">
                     <Icon />
-                  </Link>
+                  </a>
                 </figure>
               ))}
             </nav>
