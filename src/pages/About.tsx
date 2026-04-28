@@ -248,7 +248,7 @@ function About() {
                       section === "Stacks"
                         ? "text-yellow500-F0 animate-pulse"
                         : "text-white"
-                    } text-title-lg lg:text-headline-sm font-medium`}
+                    } text-title-lg lg:text-title-lg`}
                   >
                     My Stacks
                   </p>
@@ -267,7 +267,7 @@ function About() {
                         />
                       </div>
 
-                      <p className="text-body-md text-black50-E6">
+                      <p className="text-title-lg font-light text-black50-E6">
                         {stack.name}
                       </p>
                     </div>
@@ -292,7 +292,7 @@ function About() {
                 </h2>
                 <a
                   href="https://docs.google.com/document/d/1IVAdEew4oZp-9LthlHcyu6W6LTcG_fPz7EY-EGAZBN4/edit?usp=sharing"
-                  className="flex items-center cursor-pointer gap-2"
+                  className="flex items-center cursor-pointer hover:brightness-75 gap-2"
                 >
                   <p className="text-label-md lg:text-label-md text-yellow500-F0">
                     See Resume
@@ -311,12 +311,13 @@ function About() {
                     href={experience.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex flex-col sm:flex-row gap-4 md:gap-5 lg:gap-6 group"
+                    className="flex flex-col lg:items-center sm:flex-row gap-4 md:gap-5 lg:gap-6 group"
                   >
-                    <figure className="w-36 sm:w-[22%] md:w-[20%] lg:w-[20%] max-w-36 sm:max-w-none aspect-video sm:aspect-1/0.5 rounded-lg overflow-hidden shrink-0">
+                    <figure className="rounded-lg overflow-hidden shrink-0 w-fit">
                       <img
                         src={experience.image}
-                        className="size-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:brightness-75"
+                        alt={experience.mainText}
+                        className="w-36 h-20 object-cover transition-all duration-300 group-hover:scale-110 group-hover:brightness-75"
                       />
                     </figure>
                     <div className="space-y-2 flex-1">

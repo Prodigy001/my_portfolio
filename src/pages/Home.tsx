@@ -215,7 +215,7 @@ function Splash() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-15">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-10">
             {selectedWorks.map((work) => (
               <div key={work.slug} className="space-y-5 lg:space-y-6">
                 <figure className="w-full aspect-1/0.7 rounded-lg overflow-hidden">
