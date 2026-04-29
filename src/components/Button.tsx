@@ -8,6 +8,7 @@ interface ButtonProps {
   onClick?: () => void;
   href?: string;
   target?: "_blank" | "_self" | "_parent" | "_top";
+  width?: "w-fit" | "w-36" | "w-40" | "w-48" | "w-56" | "w-64" | "w-full";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,8 +19,9 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   href,
   target = "_self",
+  width = "w-fit",
 }) => {
-  const sharedClasses = `w-36 md:w-auto lg:w-auto p-4 h-12 tw-all-center text-center gap-2 rounded-lg hover:opacity-60 cursor-pointer ${bgColor}`;
+  const sharedClasses = `${width} p-4 h-12 tw-all-center text-center gap-2 rounded-lg hover:opacity-60 cursor-pointer ${bgColor}`;
 
   if (href) {
     return (

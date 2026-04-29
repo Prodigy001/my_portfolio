@@ -150,7 +150,7 @@ function Splash() {
     <div className="relative bg-black900-004 space-y-16 md:space-y-20">
       <section className="min-h-screen w-[90%] md:w-[85%] lg:w-[80%] mx-auto flex items-center pt-10">
         <div className="flex flex-col pt-20 md:pt-20 space-y-8 md:space-y-10 lg:pt-40 lg:flex-row gap-30 lg:gap-20 w-full">
-          <div className="w-full lg:w-1/2 space-y-6">
+          <div className="w-full lg:text-justify lg:w-1/2 space-y-6">
             <figure className="size-40 md:size-52 lg:size-60 rounded-3xl overflow-hidden">
               <img
                 src="../../images/profile.png"
@@ -158,11 +158,11 @@ function Splash() {
               />
             </figure>
 
-            <h1 className="text-headline-lg md:text-headline-lg lg:text-headline-lg text-black50-E6">
+            <h1 className="text-headline-lg text-black50-E6">
               I design products people actually use From 0 → launch → scale.
             </h1>
 
-            <p className="text-body-sm md:text-body-sm lg:text-body-sm text-black300-54">
+            <p className="text-body-md text-black300-54">
               I’m Promise, a Product Designer helping startups ship high-impact
               fintech, SaaS, and Web3 products — from early ideas to live
               systems used by real users.
@@ -207,7 +207,10 @@ function Splash() {
         </div>
       </section>
 
-      <section className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto">
+      <section
+        id="selected-works"
+        className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto"
+      >
         <div className="pt-10 md:pt-10 pb-10 md:pb-10 space-y-4 md:space-y-9">
           <div className="space-y-4 md:space-y-4">
             <h2 className="text-headline-lg md:text-headline-lg text-black50-E6">
@@ -236,6 +239,7 @@ function Splash() {
                     text="View Project"
                     color="text-white"
                     bgColor="bg-black400-33"
+                    width="w-36"
                     href={work.link}
                     target="_blank"
                   />
@@ -256,11 +260,12 @@ function Splash() {
             ))}
           </div>
 
-          <div className="pt-10 flex items-center justify-center">
+          <div className="pt-10 flex items-center justify-items-start md:justify-center lg:justify-center">
             <Button
               text="View More on Behance"
               bgColor="bg-yellow500-F0"
               color="text-black500-00A"
+              width="w-64"
             />
           </div>
         </div>

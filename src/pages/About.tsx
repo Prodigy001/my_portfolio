@@ -135,7 +135,7 @@ function About() {
     <div className="relative w-full bg-black900-004 pb-20">
       <div className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto">
         {/*  (Mobile + tablet) : sticky "ABOUT ME" + dots  */}
-        <div className="lg:hidden sticky top-20 z-10 bg-transparent backdrop-blur-sm border-b border-black400-33 px-4 py-3 flex items-center justify-between">
+        <div className="lg:hidden sticky top-25 z-10 bg-black900-004 border-b border-black400-33 px-4 py-3 flex items-center justify-between">
           <h1 className="text-black50-E6 text-title-lg font-medium">
             ABOUT ME
           </h1>
@@ -187,7 +187,7 @@ function About() {
           <div className="flex-1 pl-0 lg:pl-2 space-y-20 lg:space-y-28">
             <section
               id="Hi"
-              className="flex flex-col sm:flex-row pt-0 lg:pt-46 gap-6 lg:gap-10 scroll-mt-33 lg:scroll-mt-24"
+              className="flex flex-col sm:flex-row pt-0 lg:pt-46 gap-6 lg:gap-10 scroll-mt-43 lg:scroll-mt-24"
             >
               <figure className="size-28 sm:size-40 min-w-28 sm:min-w-40 overflow-hidden rounded-xl shrink-0">
                 <img
@@ -240,7 +240,7 @@ function About() {
               </div>
             </section>
 
-            <section id="Stacks" className="scroll-mt-33 lg:scroll-mt-24">
+            <section id="Stacks" className="scroll-mt-43 lg:scroll-mt-24">
               <div className="flex flex-col sm:flex-row gap-6 lg:gap-10">
                 <div className="sm:w-40 sm:min-w-40 shrink-0">
                   <p
@@ -278,7 +278,7 @@ function About() {
 
             <section
               id="Experience"
-              className="flex flex-col sm:flex-row gap-6 lg:gap-10 scroll-mt-33 lg:scroll-mt-24"
+              className="flex flex-col sm:flex-row gap-6 lg:gap-10 scroll-mt-43 lg:scroll-mt-24"
             >
               <div className="sm:w-40 sm:min-w-40 space-y-3 lg:space-y-3 shrink-0">
                 <h2
@@ -335,7 +335,7 @@ function About() {
 
             <section
               id="BeyondTheScreen"
-              className="space-y-10 lg:space-y-20 scroll-mt-33 lg:scroll-mt-24"
+              className="space-y-10 lg:space-y-20 scroll-mt-43 lg:scroll-mt-24"
             >
               <div className="space-y-4">
                 <p
@@ -437,7 +437,7 @@ function About() {
 
             <section
               id="DesignPhilosophy"
-              className="space-y-10 lg:space-y-10 scroll-mt-33 lg:scroll-mt-24"
+              className="space-y-10 lg:space-y-10 scroll-mt-43 lg:scroll-mt-24"
             >
               <div className="space-y-4">
                 <p

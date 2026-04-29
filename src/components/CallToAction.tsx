@@ -5,7 +5,7 @@ import Chat from "../icons/Chat";
 const CallToAction: React.FC = () => {
   return (
     <section className="w-full mx-auto py-20 space-y-2 tw-all-center">
-      <div className="w-[80%] rounded-2xl bg-linear-to-r from-yellow500-F0 to-[#FEF8D7] px-8 py-14 text-center">
+      <div className="w-[90%] lg:w-[80%] rounded-2xl bg-linear-to-r from-yellow500-F0 to-[#FEF8D7] px-8 py-14 text-center">
         <h2 className="text-headline-lg md:text-3xl text-black">
           Let’s build something meaningful.
         </h2>
@@ -22,11 +22,15 @@ const CallToAction: React.FC = () => {
             bgColor="bg-yellow100-FA"
             color="text-black400-33"
             Icon={Chat}
+            href="https://calendly.com/promise-orimadegun/30min"
+            target="_blank"
           />
           <Button
             text="View My Work"
             bgColor="bg-black400-33"
             color="text-white"
+            href="https://docs.google.com/document/d/1IVAdEew4oZp-9LthlHcyu6W6LTcG_fPz7EY-EGAZBN4/edit?usp=sharing"
+            target="_blank"
           />
         </div>
       </div>

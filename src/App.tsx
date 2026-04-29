@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import LinkedIn from "./icons/LinkedIn";
 import Twitter from "./icons/Twitter";
 import TikTok from "./icons/TikTok";
@@ -8,7 +8,6 @@ import CallToAction from "./components/CallToAction";
 const headerLinks = [
   { label: "Home", path: "/" },
   { label: "Work", path: "/" },
-  { label: "Playground", path: "/" },
   { label: "About", path: "/about" },
 ];
 
@@ -18,18 +17,43 @@ const footerSocials = [
   { Icon: TikTok, path: "https://www.tiktok.com/@kyng_prodigy" },
 ];
 
+const HEADER_OFFSET = 80;
+
 function App() {
   const [currentPage, setCurrentPage] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [section, setSection] = useState("Hi");
+  const [scrollToWork, setScrollToWork] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isAboutPage = location.pathname.includes("about");
 
+  // Scroll to top on route change (except when scrollToWork is queued)
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [location.pathname]);
 
+  // After navigating home, scroll to Selected Works
+  useEffect(() => {
+    if (!scrollToWork) return;
+    if (location.pathname !== "/") return;
+
+    // Wait for the page to render then scroll
+    const timer = setTimeout(() => {
+      const el = document.getElementById("selected-works");
+      if (el) {
+        const top =
+          el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET - 16;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+      setScrollToWork(false);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [scrollToWork, location.pathname]);
+
+  // Section detection for About page
   function isElementInViewPort(el: HTMLElement) {
     const top = el.getBoundingClientRect().top;
     const height = window.innerHeight;
@@ -77,17 +101,39 @@ function App() {
     };
   }, [isAboutPage, checkSectionPosition]);
 
-  function changePage(page: string) {
-    if (page !== "About") setSection("Hi");
-    setCurrentPage(page);
+  // Nav click handler
+  function handleNavClick(label: string, path: string) {
+    setCurrentPage(label);
     setMenuOpen(false);
+
+    if (label === "Work") {
+      if (location.pathname === "/") {
+        // Already on home — just scroll
+        const el = document.getElementById("selected-works");
+        if (el) {
+          const top =
+            el.getBoundingClientRect().top +
+            window.scrollY -
+            HEADER_OFFSET -
+            16;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      } else {
+        // On another page — navigate home first, then scroll
+        setScrollToWork(true);
+        navigate("/");
+      }
+      return;
+    }
+
+    if (label !== "About") setSection("Hi");
   }
 
   return (
     <div className="min-h-screen w-full bg-black900-004 no-scrollbar">
-      <header className="top-0 fixed z-20 w-full backdrop-blur-sm lg:backdrop-blur-none md:bg-transparent lg:bg-transparent">
+      <header className="top-0 fixed z-20 w-full bg-black900-004">
         <div className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto flex items-center justify-between py-5">
-          <div className="py-2 px-4 lg:border lg:border-black400-33 lg:backdrop-blur-sm lg:rounded-lg">
+          <div className="py-2 space-y-2">
             <h1 className="font-medium text-title-md text-yellow50-FE">
               PROMISE ORIMADEGUN
             </h1>
@@ -110,7 +156,7 @@ function App() {
                 >
                   <Link
                     to={link.path}
-                    onClick={() => changePage(link.label)}
+                    onClick={() => handleNavClick(link.label, link.path)}
                     className="block p-2 size-full"
                   >
                     {link.label}
@@ -120,7 +166,7 @@ function App() {
             </ul>
           </nav>
 
-          {/* Hamburger (mobile only) */}
+          {/* Hamburger — mobile */}
           <button
             className="md:hidden flex flex-col justify-center items-center gap-1.5 p-2 rounded-lg border border-black400-33 bg-[#F0CB030D] backdrop-blur-sm"
             onClick={() => setMenuOpen((o) => !o)}
@@ -147,7 +193,7 @@ function App() {
               <li key={link.label}>
                 <Link
                   to={link.path}
-                  onClick={() => changePage(link.label)}
+                  onClick={() => handleNavClick(link.label, link.path)}
                   className={`block py-3 px-4 rounded-lg text-label-md font-medium transition-colors ${
                     link.label === currentPage
                       ? "bg-yellow500-F0 text-black500-00A"
@@ -162,7 +208,7 @@ function App() {
         </div>
       )}
 
-      {/* About page (mobile section indicator) */}
+      {/* About page — mobile section indicator */}
       {isAboutPage && (
         <div className="md:hidden fixed bottom-0 left-0 right-0 z-20 bg-black900-004/90 backdrop-blur-sm border-t border-black400-33">
           <ul className="flex items-center justify-around px-4 py-3">
@@ -203,7 +249,7 @@ function App() {
 
       <footer className="pb-5">
         <CallToAction />
-        <div className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto flex flex-col md:flex-row items-center md:items-center justify-between gap-10">
+        <div className="w-[90%] md:w-[85%] lg:w-[80%] mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
           <div className="space-y-6">
             <h2 className="text-title-md font-medium text-yellow50-FE">
               PROMISE ORIMADEGUN
@@ -233,7 +279,12 @@ function App() {
                   key={link.label}
                   className="text-title-md text-black50-E6 hover:text-yellow500-F0"
                 >
-                  <Link to={link.path}>{link.label}</Link>
+                  <Link
+                    to={link.path}
+                    onClick={() => handleNavClick(link.label, link.path)}
+                  >
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
