@@ -8,12 +8,6 @@ function WorkRouter() {
     case "byclick-downloader":
       return <ByClick />;
 
-    case "airbills-pay":
-      return <Airbills />;
-
-    case "solana-dex":
-      return <SolanaDex />;
-
     default:
       return (
         <div className="text-black p-10 text-center">Project not found</div>

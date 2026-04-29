@@ -206,7 +206,7 @@ function App() {
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="fixed top-20 w-[50%] right-5 z-20 text-center rounded-2xl md:hidden bg-transparent backdrop-blur-sm border border-black400-33">
+        <div className="fixed top-20 w-[50%] right-5 z-20 text-center rounded-2xl md:hidden bg-black900-004 border border-black400-33">
           <ul className="flex flex-col px-6 py-4 gap-1">
             {headerLinks.map((link) => (
               <li key={link.label}>
@@ -278,7 +278,7 @@ function App() {
                 Let's work together!
               </p>
               <p className="text-title-md font-medium text-black50-E6">
-                OrimadegunAdebanjo@gmail.com
+                Hello@promiseorimadegun.com
               </p>
             </div>
             <nav className="flex items-center gap-6">
