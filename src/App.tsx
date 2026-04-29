@@ -39,18 +39,29 @@ function App() {
     if (!scrollToWork) return;
     if (location.pathname !== "/") return;
 
-    // Wait for the page to render then scroll
-    const timer = setTimeout(() => {
+    let attempts = 0;
+
+    const interval = setInterval(() => {
       const el = document.getElementById("selected-works");
+
       if (el) {
         const top =
           el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET - 16;
-        window.scrollTo({ top, behavior: "smooth" });
-      }
-      setScrollToWork(false);
-    }, 100);
 
-    return () => clearTimeout(timer);
+        window.scrollTo({ top, behavior: "smooth" });
+        setScrollToWork(false);
+        clearInterval(interval);
+      }
+
+      // safety stop (prevents infinite loop)
+      attempts++;
+      if (attempts > 20) {
+        clearInterval(interval);
+        setScrollToWork(false);
+      }
+    }, 50);
+
+    return () => clearInterval(interval);
   }, [scrollToWork, location.pathname]);
 
   // Section detection for About page
@@ -106,9 +117,17 @@ function App() {
     setCurrentPage(label);
     setMenuOpen(false);
 
+    if (label === "Home") {
+      if (location.pathname === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate("/");
+      }
+      return;
+    }
+
     if (label === "Work") {
       if (location.pathname === "/") {
-        // Already on home — just scroll
         const el = document.getElementById("selected-works");
         if (el) {
           const top =
@@ -116,10 +135,10 @@ function App() {
             window.scrollY -
             HEADER_OFFSET -
             16;
+
           window.scrollTo({ top, behavior: "smooth" });
         }
       } else {
-        // On another page — navigate home first, then scroll
         setScrollToWork(true);
         navigate("/");
       }
