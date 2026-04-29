@@ -281,6 +281,8 @@ function Splash() {
               bgColor="bg-yellow500-F0"
               color="text-black500-00A"
               width="w-64"
+              href="https://www.behance.net/kyng-prodigy"
+              target="_blank"
             />
           </div>
         </div>
