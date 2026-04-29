@@ -235,14 +235,17 @@ function Splash() {
                     </p>
                   </div>
 
-                  <Button
-                    text="View Project"
-                    color="text-white"
-                    bgColor="bg-black400-33"
-                    width="w-36"
-                    href={work.link}
-                    target="_blank"
-                  />
+                  {/* Desktop button (unchanged behavior) */}
+                  <div className="hidden sm:block">
+                    <Button
+                      text="View Project"
+                      color="text-white"
+                      bgColor="bg-black400-33"
+                      width="w-36"
+                      href={work.link}
+                      target="_blank"
+                    />
+                  </div>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-2">
@@ -255,6 +258,18 @@ function Splash() {
                       {tag.label}
                     </Link>
                   ))}
+                </div>
+
+                {/* Mobile button (comes AFTER tags) */}
+                <div className="sm:hidden pt-2">
+                  <Button
+                    text="View Project"
+                    color="text-white"
+                    bgColor="bg-black400-33"
+                    width="w-36"
+                    href={work.link}
+                    target="_blank"
+                  />
                 </div>
               </div>
             ))}
