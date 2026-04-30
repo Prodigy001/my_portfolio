@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
             <Icon />
           </div>
         )}
-        <p className={`font-medium text-label-md ${color}`}>{text}</p>
+        <p className={`font-medium text-label-lg ${color}`}>{text}</p>
       </a>
     );
   }
@@ -48,7 +48,7 @@ const Button: React.FC<ButtonProps> = ({
           <Icon />
         </div>
       )}
-      <p className={`font-medium text-label-md ${color}`}>{text}</p>
+      <p className={`font-medium text-label-lg ${color}`}>{text}</p>
     </button>
   );
 };

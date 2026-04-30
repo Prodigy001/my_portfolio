@@ -156,7 +156,7 @@ function App() {
             <h1 className="font-medium text-title-md text-yellow50-FE">
               PROMISE ORIMADEGUN
             </h1>
-            <h2 className="text-body-sm text-black700-A3">
+            <h2 className="text-body-lg text-black700-A3">
               Product designer & UX Strategist
             </h2>
           </div>
@@ -171,7 +171,7 @@ function App() {
                     link.label === currentPage
                       ? "bg-yellow500-F0 border-black300-54 text-black500-00A"
                       : "border-transparent text-yellow50-FE hover:bg-yellow500-F0/10"
-                  } rounded-sm border font-medium text-label-md`}
+                  } rounded-sm border font-medium text-body-lg`}
                 >
                   <Link
                     to={link.path}
@@ -213,7 +213,7 @@ function App() {
                 <Link
                   to={link.path}
                   onClick={() => handleNavClick(link.label, link.path)}
-                  className={`block py-3 px-4 rounded-lg text-label-md font-medium transition-colors ${
+                  className={`block py-3 px-4 rounded-lg text-body-lg font-medium transition-colors ${
                     link.label === currentPage
                       ? "bg-yellow500-F0 text-black500-00A"
                       : "text-yellow50-FE hover:bg-yellow500-F0/10"
@@ -256,7 +256,7 @@ function App() {
                         : "w-1.5 h-1.5 bg-black400-33"
                     }`}
                   />
-                  <span className="text-body-xs">{s.label}</span>
+                  <span className="text-body-sm">{s.label}</span>
                 </button>
               </li>
             ))}
@@ -274,7 +274,7 @@ function App() {
               PROMISE ORIMADEGUN
             </h2>
             <div className="space-y-2">
-              <p className="text-body-sm text-black200-8A">
+              <p className="text-body-lg text-black200-8A">
                 Let's work together!
               </p>
               <p className="text-title-md font-medium text-black50-E6">
@@ -292,7 +292,7 @@ function App() {
             </nav>
           </div>
           <nav>
-            <ul className="flex flex-row md:flex-col gap-6 md:gap-10">
+            <ul className="flex flex-row md:flex-col gap-6 md:gap-10 md:text-right">
               {headerLinks.map((link) => (
                 <li
                   key={link.label}

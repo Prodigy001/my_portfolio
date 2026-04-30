@@ -173,7 +173,7 @@ function About() {
                         s.id === section
                           ? "text-yellow500-F0"
                           : "text-black200-8A"
-                      } hover:text-yellow500-F0 text-label-md cursor-pointer transition-colors`}
+                      } hover:text-yellow500-F0 text-body-md cursor-pointer transition-colors whitespace-nowrap`}
                       onClick={() => scrollToSection(s.id)}
                     >
                       {s.label}
@@ -201,7 +201,7 @@ function About() {
                     section === "Hi"
                       ? "text-yellow500-F0 animate-pulse"
                       : "text-white"
-                  } text-title-lg lg:text-headline-sm font-medium`}
+                  } text-headline-sm font-medium`}
                 >
                   Hi! I am Promise Orimadegun
                 </h1>
@@ -210,7 +210,7 @@ function About() {
                     <div className="size-5 tw-all-center shrink-0">
                       <Location />
                     </div>
-                    <p className="text-body-sm text-black200-8A">
+                    <p className="text-body-md text-black200-8A">
                       Lagos Nigeria (Remote friendly)
                     </p>
                   </div>
@@ -218,18 +218,18 @@ function About() {
                     <div className="size-5 shrink-0">
                       <Graduation />
                     </div>
-                    <p className="text-body-sm text-black200-8A">
+                    <p className="text-body-md text-black200-8A">
                       B.SC Physiology
                     </p>
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <p className="text-body-md lg:text-body-lg text-black200-8A font-light">
+                  <p className="text-body-lg text-black200-8A font-light">
                     I'm a Product Designer with 5+ years of experience designing
                     fintech, SaaS, and Web3 products used by real people in
                     high‑trust, high‑stakes environments.
                   </p>
-                  <p className="text-body-md lg:text-body-lg text-black200-8A font-light">
+                  <p className="text-body-lg text-black200-8A font-light">
                     My strength lies in turning complex flows — payments,
                     dashboards, wallets, and operational tools — into clear,
                     calm, and usable experiences. I work closely with engineers,
@@ -248,7 +248,7 @@ function About() {
                       section === "Stacks"
                         ? "text-yellow500-F0 animate-pulse"
                         : "text-white"
-                    } text-title-lg lg:text-title-lg`}
+                    } text-headline-sm`}
                   >
                     My Stacks
                   </p>
@@ -286,7 +286,7 @@ function About() {
                     section === "Experience"
                       ? "text-yellow500-F0 animate-pulse"
                       : "text-black50-E6"
-                  } text-title-lg`}
+                  } text-headline-sm`}
                 >
                   Experience
                 </h2>
@@ -294,9 +294,7 @@ function About() {
                   href="https://docs.google.com/document/d/1IVAdEew4oZp-9LthlHcyu6W6LTcG_fPz7EY-EGAZBN4/edit?usp=sharing"
                   className="flex items-center cursor-pointer hover:brightness-75 gap-2"
                 >
-                  <p className="text-label-md lg:text-label-md text-yellow500-F0">
-                    See Resume
-                  </p>
+                  <p className="text-body-md text-yellow500-F0">See Resume</p>
                   <img
                     src="../images/ArrowUpRight.png"
                     alt="resume icon"
@@ -321,10 +319,10 @@ function About() {
                       />
                     </figure>
                     <div className="space-y-2 flex-1">
-                      <p className="group-hover:text-yellow500-F0 active:text-yellow500-F0 text-title-md text-black50-E6">
+                      <p className="group-hover:text-yellow500-F0 active:text-yellow500-F0 text-title-lg text-black50-E6">
                         {experience.mainText}
                       </p>
-                      <p className="text-body-sm text-black300-54">
+                      <p className="text-body-lg text-black300-54">
                         {experience.subText}
                       </p>
                     </div>
@@ -343,11 +341,11 @@ function About() {
                     section === "BeyondTheScreen"
                       ? "text-yellow500-F0 animate-pulse"
                       : "text-black50-E6"
-                  } text-title-lg`}
+                  } text-headline-sm`}
                 >
                   Beyond The Screen
                 </p>
-                <p className="text-body-md lg:text-body-lg text-black200-8A">
+                <p className="text-body-lg text-black200-8A">
                   Design, to me, is also about conversations, shared learning,
                   and showing up where products are being built
                 </p>
@@ -360,7 +358,7 @@ function About() {
                     <br />
                     Speaker & Attendee
                   </p>
-                  <p className="text-body-md lg:text-body-lg text-black200-8A">
+                  <p className="text-body-lg text-black200-8A">
                     Spoke on product design, usability, and building products
                     for real users, while engaging with founders, builders, and
                     operators across fintech, SaaS, and Web3.
@@ -370,7 +368,7 @@ function About() {
                   <div className="w-1/2 rounded-xl overflow-hidden">
                     <img
                       src="../images/bts-1.png"
-                      alt="Behind The Scene"
+                      alt="Beyond The Screen"
                       className="size-full object-contain"
                     />
                   </div>
@@ -378,14 +376,14 @@ function About() {
                     <div className="w-full h-1/2 rounded-xl overflow-hidden">
                       <img
                         src="../images/bts-2.png"
-                        alt="Behind The Scene"
+                        alt="Beyond The Screen"
                         className="size-full object-contain"
                       />
                     </div>
                     <div className="w-full h-1/2 rounded-xl overflow-hidden">
                       <img
                         src="../images/bts-3.png"
-                        alt="Behind The Scene"
+                        alt="Beyond The Screen"
                         className="size-full object-contain"
                       />
                     </div>
@@ -398,7 +396,7 @@ function About() {
                   <p className="text-title-lg text-black50-E6">
                     Design Bounties & Hackathons
                   </p>
-                  <p className="text-body-md lg:text-body-lg text-black200-8A">
+                  <p className="text-body-lg text-black200-8A">
                     I've won multiple Superteam design bounties, including a
                     Hall of Fame design bounty, working on real product problems
                     across payments, wallets, and user flows. These competitive
@@ -411,7 +409,7 @@ function About() {
                   <div className="w-1/2 rounded-xl overflow-hidden">
                     <img
                       src="../images/bts-4.png"
-                      alt="Behind The Scene"
+                      alt="Beyond The Screen"
                       className="size-full object-contain"
                     />
                   </div>
@@ -419,14 +417,14 @@ function About() {
                     <div className="w-full h-1/2 rounded-xl overflow-hidden">
                       <img
                         src="../images/bts-5.png"
-                        alt="Behind The Scene"
+                        alt="Beyond The Screen"
                         className="size-full object-contain"
                       />
                     </div>
                     <div className="w-full h-1/2 rounded-xl overflow-hidden">
                       <img
                         src="../images/bts-6.png"
-                        alt="Behind The Scene"
+                        alt="Beyond The Screen"
                         className="size-full object-contain"
                       />
                     </div>
@@ -445,11 +443,11 @@ function About() {
                     section === "DesignPhilosophy"
                       ? "text-yellow500-F0 animate-pulse"
                       : "text-black50-E6"
-                  } text-title-lg`}
+                  } text-headline-sm`}
                 >
                   Design Philosophy
                 </p>
-                <p className="text-body-sm lg:text-body-sm text-black200-8A">
+                <p className="text-body-lg text-black200-8A">
                   How I think about systems, responsibility, and product design.
                 </p>
               </div>
@@ -459,7 +457,7 @@ function About() {
                     Power lives in systems, which is why designing them
                     responsibly matters
                   </q>
-                  <p className="text-body-md lg:text-body-lg text-black300-54">
+                  <p className="text-body-lg text-black300-54">
                     — Personal design principle
                   </p>
                 </div>
@@ -468,7 +466,7 @@ function About() {
                     Every interface teaches users how to behave. I design with
                     that responsibility in mind
                   </q>
-                  <p className="text-body-md lg:text-body-lg text-black300-54">
+                  <p className="text-body-lg text-black300-54">
                     — Personal design principle
                   </p>
                 </div>
