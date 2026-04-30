@@ -9,7 +9,7 @@ const CallToAction: React.FC = () => {
         <h2 className="text-headline-lg md:text-3xl text-black">
           Let’s build something meaningful.
         </h2>
-        <p className="mt-4 text-title-lg text-black300-54 max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-4 text-body-lg text-black300-54 max-w-2xl mx-auto leading-relaxed">
           Got a product idea, redesign, or need a designer who can actually
           ship? I’m open to working with founders and teams building impactful
           products.
